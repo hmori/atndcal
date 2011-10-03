@@ -88,41 +88,4 @@ static NSString *searchGoogleUrlFormat = @"http://www.google.co.jp/search?q=%@&h
 }
 
 
-/*
-static void charactersParsed(void* context, const xmlChar* ch, int len) {
-    NSMutableString* result = context;
-    NSString* parsedString;
-    parsedString = [[NSString alloc] initWithBytesNoCopy:
-                    (xmlChar*) ch length: len encoding:
-                    NSUTF8StringEncoding freeWhenDone: NO];
-    [result appendString: parsedString];
-    [parsedString release];
-}
-
-static void structuredError(void * userData, xmlErrorPtr error) {
-    (void)userData;
-    (void)error;
-}
-
-- (NSString*) flattenHTML {
-    int mem_base = xmlMemBlocks();
-    NSMutableString* result = [NSMutableString string];
-    xmlSAXHandler handler; bzero(&handler,
-                                 sizeof(xmlSAXHandler));
-    handler.characters = &charactersParsed;
-    
-    xmlSetStructuredErrorFunc(xmlGenericErrorContext,
-                              &structuredError);
-    
-    htmlSAXParseDoc((xmlChar*)[self UTF8String], "utf-8",
-                    &handler, result);
-    
-    if (mem_base != xmlMemBlocks()) {
-        NSLog( @"Leak of %d blocks found in htmlSAXParseDoc",
-              xmlMemBlocks() - mem_base);
-    }
-    return result;
-}
-*/
-
 @end
