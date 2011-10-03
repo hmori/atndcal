@@ -151,6 +151,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B600DC671439C26A002B0F8D /* atndcal-extend-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "atndcal-extend-Prefix.pch"; sourceTree = "<group>"; };
 		B6024CF01435D0DA007FB27B /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = "External/RegexKitLite-4.0/RegexKitLite.h"; sourceTree = "<group>"; };
 		B6024CF11435D0DA007FB27B /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = "External/RegexKitLite-4.0/RegexKitLite.m"; sourceTree = "<group>"; };
 		B6024CF31435D1FA007FB27B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -442,6 +443,7 @@
 				B682B5AA1432FD8700E43A46 /* atndcal-Info.plist */,
 				B682B5AB1432FD8700E43A46 /* InfoPlist.strings */,
 				B682B5AE1432FD8700E43A46 /* atndcal-Prefix.pch */,
+				B600DC671439C26A002B0F8D /* atndcal-extend-Prefix.pch */,
 				B68DDEF81439412D00A7A125 /* atndcal-exclusive-Prefix.pch */,
 				B682B5AF1432FD8700E43A46 /* main.m */,
 			);
