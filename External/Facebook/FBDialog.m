@@ -395,8 +395,6 @@ BOOL FBIsDeviceIPad() {
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request
     navigationType:(UIWebViewNavigationType)navigationType {
     
-    NSLog(@"shouldStartLoadWithRequest: request=%@", request);
-    
   NSURL* url = request.URL;
 
   if ([url.scheme isEqualToString:@"fbconnect"]) {
