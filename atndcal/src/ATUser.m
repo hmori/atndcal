@@ -22,6 +22,7 @@ static NSString * const kUsers = @"users";
 static NSString * const kUser_id = @"user_id";
 static NSString * const kNickname = @"nickname";
 static NSString * const kTwitter_id = @"twitter_id";
+static NSString * const kTwitter_img = @"twitter_img";
 static NSString * const kStatus = @"status";
 
 
@@ -40,15 +41,14 @@ static NSString * const kStatus = @"status";
         id events = [jsonData objectForKey:kEvents];
         if ([events isKindOfClass:NSArray.class]) {
             for (id e in events) {
-#if DEBUG
+/*
                 NSString *event_id = [e objectForKey:@"event_id"];
                 NSString *title = [e objectForKey:@"title"];
                 LOG(@"-----");
                 LOG(@"-event_id=%@", event_id);
                 LOG(@"-title=%@", title);
-#endif
+*/
                 id users = [e objectForKey:kUsers];
-                
                 [dictionary setObject:users forKey:kUsers];
             }
         }
@@ -61,6 +61,7 @@ static NSString * const kStatus = @"status";
     user.user_id = [dictionary objectForKey:kUser_id];
     user.nickname = [dictionary objectForKey:kNickname];
     user.twitter_id = [dictionary objectForKey:kTwitter_id];
+    user.twitter_img = [dictionary objectForKey:kTwitter_img];
     user.status = [dictionary objectForKey:kStatus];
     return user;
 }
@@ -74,12 +75,14 @@ static NSString * const kStatus = @"status";
 @synthesize user_id = _user_id;
 @synthesize nickname = _nickname;
 @synthesize twitter_id = _twitter_id;
+@synthesize twitter_img = _twitter_img;
 @synthesize status = _status;
 
 - (void)dealloc {
     [_user_id release];
     [_nickname release];
     [_twitter_id release];
+    [_twitter_img release];
     [_status release];
     [super dealloc];
 }

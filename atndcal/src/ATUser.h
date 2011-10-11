@@ -19,14 +19,16 @@
 @end
 
 @interface ATUser : NSObject {
-    NSString *_user_id;
-    NSString *_nickname;
-    NSString *_twitter_id;
-    NSString *_status;
+    id _user_id;
+    id _nickname;
+    id _twitter_id;
+    id _twitter_img;
+    id _status;
 }
-@property (nonatomic, copy) NSString *user_id;
-@property (nonatomic, copy) NSString *nickname;
-@property (nonatomic, copy) NSString *twitter_id;
-@property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) id user_id;
+@property (nonatomic, copy) id nickname;
+@property (nonatomic, copy) id twitter_id;
+@property (nonatomic, copy) id twitter_img;
+@property (nonatomic, copy) id status;
 
 @end

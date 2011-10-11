@@ -16,6 +16,9 @@
 @implementation ATEventOutlineCell
 @synthesize eventOutline = _eventOutline;
 
+
+#define heightEventOutlineCell 52.0f
+
 static UIFont *_titleFont = nil;
 static UIFont *_detailFont = nil;
 static UIColor *_titleColor = nil;
@@ -74,6 +77,9 @@ static NSString * const fbmarkPath = @"atndcal.bundle/images/mark/fbmark0808.png
 - (void)drawContentView:(CGRect)r {
     [super drawContentView:r];
     
+    LOG_FRAME(r);
+    
+    
 	CGRect rect = CGRectInset(r, 3.0f, 3.0f);
 	rect.origin.x += 24.0f;
     rect.size.width -= 24.0f;
@@ -84,9 +90,9 @@ static NSString * const fbmarkPath = @"atndcal.bundle/images/mark/fbmark0808.png
 	[textColor set];
 
     [_eventOutline.title drawAtPoint:rect.origin 
-                     forWidth:rect.size.width 
-                     withFont:_titleFont 
-                lineBreakMode:UILineBreakModeTailTruncation];
+                            forWidth:rect.size.width 
+                            withFont:_titleFont 
+                       lineBreakMode:UILineBreakModeTailTruncation];
 
     textColor = ([_eventOutline isOver]) ? _disableColor : _detailColor;
     textColor = (self.selected || self.highlighted) ? [UIColor whiteColor] : textColor;
@@ -113,5 +119,13 @@ static NSString * const fbmarkPath = @"atndcal.bundle/images/mark/fbmark0808.png
     }
 
 }
+
+
+#pragma mark - Public 
+
++ (CGFloat)heightCell {
+    return heightEventOutlineCell;
+}
+
 
 @end

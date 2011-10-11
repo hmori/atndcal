@@ -23,6 +23,7 @@ typedef enum {
 + (NSMutableDictionary *)fetchDictionaryForCalendar;
 + (NSMutableArray *)fetchArrayForBookmark;
 + (NSMutableArray *)fetchArrayForAttend;
++ (NSMutableArray *)arrayForEventObjects:(id)events;
 
 @end
 

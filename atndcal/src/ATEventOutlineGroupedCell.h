@@ -1,16 +1,20 @@
 //
-//  ATEventTableViewCell.h
-//  ATndCal
+//  ATEventOutlineGroupedCell.h
+//  atndcal
 //
-//  Created by Mori Hidetoshi on 11/08/25.
+//  Created by Mori Hidetoshi on 11/10/10.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "ATEventOutline.h"
 
-@interface ATEventOutlineCell : TKIndicatorCell {
+@interface ATEventOutlineGroupedCell : UITableViewCell {
     ATEventOutline *_eventOutline;
+    
+    UILabel *_titleLabel;
+    UILabel *_dateLabel;
+    UILabel *_placeLabel;
 }
 @property (nonatomic, retain) ATEventOutline *eventOutline;
 

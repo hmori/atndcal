@@ -22,6 +22,8 @@ extern NSString * const ATNotificationNameFbEventDetailRequest;
 extern NSString * const ATNotificationNameFbRsvpStatusRequest;
 extern NSString * const ATNotificationNameFbUpdateRsvpStatusRequest;
 extern NSString * const ATNotificationNameAnalysisRequest;
+extern NSString * const ATNotificationNameProfileUserRequest;
+extern NSString * const ATNotificationNameEventsRequest;
 
 extern NSString * const kATRequestUserInfoStatusCode;
 extern NSString * const kATRequestUserInfoReceivedData;

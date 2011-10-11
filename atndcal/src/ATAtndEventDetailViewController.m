@@ -17,6 +17,7 @@
 
 #import "ATAttendeeViewController.h"
 #import "ATWebViewController.h"
+#import "ATProfileViewController.h"
 #import "ATTextAnalysisViewController.h"
 
 #import "ATRssParser.h"
@@ -308,6 +309,8 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [(ATAttendeeViewController *)controller setEvent:_event];
     } else if (item == ATAtndEventDetailItemOwner) {
         //TODO:
+        controller = [[[ATProfileViewController alloc] init] autorelease];
+        ((ATProfileViewController *)controller).userId = _event.owner_id;
     } else if (item == ATAtndEventDetailItemPlace) {
         [self placeAction:nil];
     } else if (item == ATAtndEventDetailItemAddress) {

@@ -324,7 +324,7 @@ static NSString *atndEventSearchUrl = @"http://api.atnd.org/events/";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 52.0f;
+    return [ATEventOutlineCell heightCell];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

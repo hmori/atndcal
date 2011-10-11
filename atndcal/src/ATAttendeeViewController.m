@@ -12,6 +12,7 @@
 #import "ATUser.h"
 #import "NSString+SBJSON.h"
 
+#import "ATProfileViewController.h"
 
 @interface ATAttendeeViewController ()
 @property (nonatomic, retain) NSMutableArray *userArray;
@@ -95,6 +96,19 @@ static NSString *twitterUsersLookupUrl = @"http://api.twitter.com/1/users/lookup
 - (void)setupCellData {
 }
 
+- (void)actionDidSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    LOG_CURRENT_METHOD;
+
+    if (indexPath.row < _userArray.count) {
+        ATUser *user = [ATUserManager userWithDictionary:[_userArray objectAtIndex:indexPath.row]];
+
+        ATProfileViewController *ctl = [[[ATProfileViewController alloc] init] autorelease];
+        ctl.userId = user.user_id;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
+}
+
+
 #pragma mark - Public
 
 - (void)reloadAction:(id)sender {
@@ -116,8 +130,10 @@ static NSString *twitterUsersLookupUrl = @"http://api.twitter.com/1/users/lookup
     
     NSMutableArray *attendRows = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *attendImageUrls = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *attendAccessorys = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *waitingRows = [NSMutableArray arrayWithCapacity:0];
     NSMutableArray *waitingImageUrls = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *waitingAccessorys = [NSMutableArray arrayWithCapacity:0];
     
     for (id u in _userArray) {
         ATUser *user = [ATUserManager userWithDictionary:u];
@@ -128,9 +144,11 @@ static NSString *twitterUsersLookupUrl = @"http://api.twitter.com/1/users/lookup
         if ([user.status boolValue]) {
             [attendRows addObject:nickname];
             [attendImageUrls addObject:imageUrl];
+            [attendAccessorys addObject:[NSNumber numberWithInteger:UITableViewCellAccessoryDisclosureIndicator]];
         } else {
             [waitingRows addObject:nickname];
             [waitingImageUrls addObject:imageUrl];
+            [waitingAccessorys addObject:[NSNumber numberWithInteger:UITableViewCellAccessoryDisclosureIndicator]];
         }
     }
     
@@ -141,6 +159,7 @@ static NSString *twitterUsersLookupUrl = @"http://api.twitter.com/1/users/lookup
     d.title = @"参加者";
     d.rows = attendRows;
     d.imageUrls = attendImageUrls;
+    d.accessorys = attendAccessorys;
     [tmp addObject:d];
     
     if (waitingRows.count > 0) {
@@ -148,6 +167,7 @@ static NSString *twitterUsersLookupUrl = @"http://api.twitter.com/1/users/lookup
         d.title = @"補欠者";
         d.rows = waitingRows;
         d.imageUrls = waitingImageUrls;
+        d.accessorys = waitingAccessorys;
         [tmp addObject:d];
     }
     

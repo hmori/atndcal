@@ -11,7 +11,7 @@
 
 #import "ATTitleView.h"
 #import "ATEventOutlineCell.h"
-#import "ATEventDetailViewController.h"
+//#import "ATEventDetailViewController.h"
 
 @interface ATEventListViewController ()
 - (UITableViewCell *)setupCellForRowAtIndexPath:(NSIndexPath *)indexPath cell:(UITableViewCell *)cell;
@@ -23,7 +23,7 @@
 #pragma mark - UITableViewDelegate && DataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 52.0f;
+    return [ATEventOutlineCell heightCell];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

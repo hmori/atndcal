@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B600DC6A1439D023002B0F8D /* ATProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B600DC691439D023002B0F8D /* ATProfileViewController.m */; };
 		B6024CF21435D0DA007FB27B /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = B6024CF11435D0DA007FB27B /* RegexKitLite.m */; };
 		B6024CF41435D1FA007FB27B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6024CF31435D1FA007FB27B /* libicucore.dylib */; };
 		B654B90714374E8700AD55F1 /* ATNoticeInfoConnecter.m in Sources */ = {isa = PBXBuildFile; fileRef = B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */; };
+		B6787BBC143ADF8200E3C223 /* ATProfileLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */; };
 		B682B5A31432FD8700E43A46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A21432FD8700E43A46 /* UIKit.framework */; };
 		B682B5A51432FD8700E43A46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A41432FD8700E43A46 /* Foundation.framework */; };
 		B682B5A71432FD8700E43A46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A61432FD8700E43A46 /* CoreGraphics.framework */; };
@@ -117,6 +119,7 @@
 		B6C36B56143458D0005AFB7D /* ATKeyphraseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B55143458D0005AFB7D /* ATKeyphraseResult.m */; };
 		B6C36B5914345994005AFB7D /* ATKeyphraseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B5814345994005AFB7D /* ATKeyphraseParser.m */; };
 		B6C36B74143564D9005AFB7D /* NSMutableURLRequest+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B73143564D8005AFB7D /* NSMutableURLRequest+ATCategory.m */; };
+		B6C5C00C14425732009E8A02 /* ATEventOutlineGroupedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C5C00B14425731009E8A02 /* ATEventOutlineGroupedCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,11 +155,15 @@
 
 /* Begin PBXFileReference section */
 		B600DC671439C26A002B0F8D /* atndcal-extend-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "atndcal-extend-Prefix.pch"; sourceTree = "<group>"; };
+		B600DC681439D023002B0F8D /* ATProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATProfileViewController.h; path = src/ATProfileViewController.h; sourceTree = "<group>"; };
+		B600DC691439D023002B0F8D /* ATProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATProfileViewController.m; path = src/ATProfileViewController.m; sourceTree = "<group>"; };
 		B6024CF01435D0DA007FB27B /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = "External/RegexKitLite-4.0/RegexKitLite.h"; sourceTree = "<group>"; };
 		B6024CF11435D0DA007FB27B /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = "External/RegexKitLite-4.0/RegexKitLite.m"; sourceTree = "<group>"; };
 		B6024CF31435D1FA007FB27B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		B654B90514374E8600AD55F1 /* ATNoticeInfoConnecter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATNoticeInfoConnecter.h; path = src/ATNoticeInfoConnecter.h; sourceTree = "<group>"; };
 		B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATNoticeInfoConnecter.m; path = src/ATNoticeInfoConnecter.m; sourceTree = "<group>"; };
+		B6787BBA143ADF8200E3C223 /* ATProfileLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATProfileLabelView.h; path = src/ATProfileLabelView.h; sourceTree = "<group>"; };
+		B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATProfileLabelView.m; path = src/ATProfileLabelView.m; sourceTree = "<group>"; };
 		B682B59E1432FD8700E43A46 /* atndcal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atndcal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B682B5A21432FD8700E43A46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B682B5A41432FD8700E43A46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -348,6 +355,8 @@
 		B6C36B5814345994005AFB7D /* ATKeyphraseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATKeyphraseParser.m; path = src/ATKeyphraseParser.m; sourceTree = "<group>"; };
 		B6C36B72143564D7005AFB7D /* NSMutableURLRequest+ATCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableURLRequest+ATCategory.h"; path = "src/NSMutableURLRequest+ATCategory.h"; sourceTree = "<group>"; };
 		B6C36B73143564D8005AFB7D /* NSMutableURLRequest+ATCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+ATCategory.m"; path = "src/NSMutableURLRequest+ATCategory.m"; sourceTree = "<group>"; };
+		B6C5C00A14425731009E8A02 /* ATEventOutlineGroupedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATEventOutlineGroupedCell.h; path = src/ATEventOutlineGroupedCell.h; sourceTree = "<group>"; };
+		B6C5C00B14425731009E8A02 /* ATEventOutlineGroupedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATEventOutlineGroupedCell.m; path = src/ATEventOutlineGroupedCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -632,6 +641,7 @@
 		B682B62E1433016700E43A46 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B682B648143301CB00E43A46 /* Cell */,
 				B682B6A5143303BE00E43A46 /* ATAlertView.h */,
 				B682B6A4143303BE00E43A46 /* ATAlertView.m */,
 				B682B6A9143303DF00E43A46 /* ATActionSheet.h */,
@@ -640,7 +650,8 @@
 				B682B6A0143303BE00E43A46 /* ATTitleView.m */,
 				B682B6A3143303BE00E43A46 /* ATCalendarTitleView.h */,
 				B682B6A2143303BE00E43A46 /* ATCalendarTitleView.m */,
-				B682B648143301CB00E43A46 /* Cell */,
+				B6787BBA143ADF8200E3C223 /* ATProfileLabelView.h */,
+				B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -749,6 +760,8 @@
 			children = (
 				B682B67E1433032500E43A46 /* ATEventOutlineCell.h */,
 				B682B67D1433032500E43A46 /* ATEventOutlineCell.m */,
+				B6C5C00A14425731009E8A02 /* ATEventOutlineGroupedCell.h */,
+				B6C5C00B14425731009E8A02 /* ATEventOutlineGroupedCell.m */,
 				B682B67C1433032500E43A46 /* ATEventTextCell.h */,
 				B682B67B1433032500E43A46 /* ATEventTextCell.m */,
 				B682B6801433032500E43A46 /* ATEventMapCell.h */,
@@ -823,6 +836,8 @@
 				B682B6DE143304BF00E43A46 /* ATEkEventViewController.m */,
 				B682B7391433F40400E43A46 /* ATTextAnalysisViewController.h */,
 				B682B73A1433F40800E43A46 /* ATTextAnalysisViewController.m */,
+				B600DC681439D023002B0F8D /* ATProfileViewController.h */,
+				B600DC691439D023002B0F8D /* ATProfileViewController.m */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -1085,6 +1100,9 @@
 				B6C36B74143564D9005AFB7D /* NSMutableURLRequest+ATCategory.m in Sources */,
 				B6024CF21435D0DA007FB27B /* RegexKitLite.m in Sources */,
 				B654B90714374E8700AD55F1 /* ATNoticeInfoConnecter.m in Sources */,
+				B600DC6A1439D023002B0F8D /* ATProfileViewController.m in Sources */,
+				B6787BBC143ADF8200E3C223 /* ATProfileLabelView.m in Sources */,
+				B6C5C00C14425732009E8A02 /* ATEventOutlineGroupedCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -68,6 +68,18 @@ OBJECT_SINGLETON_TEMPLATE(ATEventOutlineManager, sharedATEventOutlineManager)
     return eventArray;
 }
 
++ (NSMutableArray *)arrayForEventObjects:(id)events {
+    NSMutableArray *eventArray = [NSMutableArray arrayWithCapacity:0];
+    if ([events isKindOfClass:NSArray.class]) {
+        for (id event in events) {
+            ATEventOutline *eventOutline = [[[ATEventOutline alloc] init] autorelease];
+            [eventOutline setEventObject:event type:ATEventTypeAtnd];
+            [eventArray addObject:eventOutline];
+        }
+    }
+    return eventArray;
+}
+
 @end
 
 

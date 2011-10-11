@@ -22,6 +22,8 @@ NSString * const ATNotificationNameFbEventDetailRequest = @"ATNotificationNameFb
 NSString * const ATNotificationNameFbRsvpStatusRequest = @"ATNotificationNameFbRsvpStatusRequest";
 NSString * const ATNotificationNameFbUpdateRsvpStatusRequest = @"ATNotificationNameFbUpdateRsvpStatusRequest";
 NSString * const ATNotificationNameAnalysisRequest = @"ATNotificationNameAnalysisRequest";
+NSString * const ATNotificationNameProfileUserRequest = @"ATNotificationNameProfileUserRequest";
+NSString * const ATNotificationNameEventsRequest = @"ATNotificationNameEventsRequest";
 
 NSString * const kATRequestUserInfoStatusCode = @"kATRequestUserInfoStatusCode";
 NSString * const kATRequestUserInfoReceivedData = @"kATRequestUserInfoReceivedData";
