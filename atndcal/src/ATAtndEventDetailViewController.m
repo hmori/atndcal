@@ -241,6 +241,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         ATEventLabelTextCell *c = (ATEventLabelTextCell *)cell;
         c.label.text = @"主催者";
         c.field.text = _event.owner_nickname;
+        c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else if (item == ATAtndEventDetailItemPlace) {
         cell = [self cellForIdentifier:ATEventCellTypeLabelText tableView:tv];
         ATEventLabelTextCell *c = (ATEventLabelTextCell *)cell;
@@ -308,7 +309,6 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         controller = [[[ATAttendeeViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
         [(ATAttendeeViewController *)controller setEvent:_event];
     } else if (item == ATAtndEventDetailItemOwner) {
-        //TODO:
         controller = [[[ATProfileViewController alloc] init] autorelease];
         ((ATProfileViewController *)controller).userId = _event.owner_id;
     } else if (item == ATAtndEventDetailItemPlace) {

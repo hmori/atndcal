@@ -30,7 +30,6 @@ static UIColor *_disableColor = nil;
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.font = _titleFont;
-        _titleLabel.text = @"タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル";
         [self.contentView addSubview:_titleLabel];
         
         _dateLabel = [[UILabel alloc] init];
@@ -38,14 +37,12 @@ static UIColor *_disableColor = nil;
         _detailColor = _detailColor;
         _dateLabel.textColor = _detailColor;
         _dateLabel.font = _detailFont;
-        _dateLabel.text = @"10/10 8:00 〜 10:00";
         [self.contentView addSubview:_dateLabel];
 
         _placeLabel = [[UILabel alloc] init];
         _placeLabel.backgroundColor = [UIColor clearColor];
         _placeLabel.font = _detailFont;
         _placeLabel.textColor = _detailColor;
-        _placeLabel.text = @"七北田公園";
         [self.contentView addSubview:_placeLabel];
 
     }

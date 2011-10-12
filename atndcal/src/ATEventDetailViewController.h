@@ -32,7 +32,7 @@ typedef enum {
     ATTitleView *_titleView;
     
     //EventKit
-    EKEventViewController *_detailViewController;
+//    EKEventViewController *_detailViewController;
 	EKEventStore *_eventStore;
 	EKCalendar *_defaultCalendar;
 }

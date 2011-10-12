@@ -15,7 +15,7 @@
 
 @interface ATEventDetailViewController ()
 @property (nonatomic, retain) id eventObject;
-@property (nonatomic, retain) EKEventViewController *detailViewController;
+//@property (nonatomic, retain) EKEventViewController *detailViewController;
 @property (nonatomic, retain) EKEventStore *eventStore;
 @property (nonatomic, retain) EKCalendar *defaultCalendar;
 
@@ -27,7 +27,7 @@
 @implementation ATEventDetailViewController
 @synthesize eventObject = _eventObject;
 @synthesize bookmarkedIdentifier = _bookmarkedIdentifier;
-@synthesize detailViewController = _detailViewController;
+//@synthesize detailViewController = _detailViewController;
 @synthesize eventStore = _eventStore;
 @synthesize defaultCalendar = _defaultCalendar;
 
@@ -56,7 +56,7 @@ static NSString *starString = nil;
     [_eventObject release];
     [_bookmarkedIdentifier release];
     [_titleView release];
-    [_detailViewController release];
+//    [_detailViewController release];
     [_eventStore release];
     [_defaultCalendar release];
     [super dealloc];
@@ -231,6 +231,8 @@ static NSString *starString = nil;
         ATEkEventViewController *ctl = [[[ATEkEventViewController alloc] init] autorelease];
         ctl.titleViewString = title;
         ctl.ekEvents = [NSMutableArray arrayWithArray:ekEvents];
+        ctl.eventStore = _eventStore;
+        ctl.defaultCalendar = _defaultCalendar;
         UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:ctl] autorelease];
         [self presentModalViewController:nav animated:YES];
     } else {

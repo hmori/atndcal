@@ -10,22 +10,39 @@
 
 #import "NSDate+ATCategory.h"
 
+@interface ATEkEventCell ()
+- (void)initATEkEventCell;
+@end
+
+
 @implementation ATEkEventCell
 
 @synthesize ekEvent = _ekEvent;
 
 static UIFont *_titleFont = nil;
 static UIFont *_detailFont = nil;
+static UIColor *_detailColor = nil;
 
 static NSString * const dateFormat = @"%@-%@";
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-		_titleFont = [[UIFont boldSystemFontOfSize:14] retain];
-		_detailFont = [[UIFont systemFontOfSize:12] retain];
+        [self initATEkEventCell];
     }
     return self;
+}
+
+- (void)initATEkEventCell {
+    if (!_titleFont) {
+        _titleFont = [[UIFont boldSystemFontOfSize:14] retain];
+    }
+    if (!_detailFont) {
+        _detailFont = [[UIFont systemFontOfSize:12] retain];
+    }
+    if (!_detailColor) {
+        _detailColor = [HEXCOLOR(0x2470D8FF) retain];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -63,9 +80,10 @@ static NSString * const dateFormat = @"%@-%@";
 		rect.origin.x += 30;
 	}
 	
+    UIColor *detailTextColor = self.selected || self.highlighted ? [UIColor whiteColor] : _detailColor;
 	UIColor *textColor = self.selected || self.highlighted ? [UIColor whiteColor] : [UIColor blackColor];
-	[textColor set];
-    
+
+	[detailTextColor set];
     NSDate *startDate = _ekEvent.startDate;
     NSDate *endDate = _ekEvent.endDate;
     
@@ -90,14 +108,16 @@ static NSString * const dateFormat = @"%@-%@";
                withFont:_detailFont 
           lineBreakMode:UILineBreakModeTailTruncation];
 
-    CGRect titleRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y, rect.size.width-widthDate, 19);
+	[textColor set];
+    
+    CGRect titleRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+3, rect.size.width-widthDate, 19);
     [_ekEvent.title drawAtPoint:titleRect.origin 
                        forWidth:titleRect.size.width 
                        withFont:_titleFont 
                   lineBreakMode:UILineBreakModeTailTruncation];
     
 
-    CGRect locationRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+19, rect.size.width-widthDate, 19);
+    CGRect locationRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+21, rect.size.width-widthDate, 19);
     [_ekEvent.location drawAtPoint:locationRect.origin 
                           forWidth:locationRect.size.width 
                           withFont:_detailFont 
