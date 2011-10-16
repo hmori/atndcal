@@ -18,10 +18,12 @@
 
         self.label.textAlignment = UITextAlignmentLeft;
         self.label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        self.label.backgroundColor = [UIColor clearColor];
 
         self.field.numberOfLines = INT_MAX;
         self.field.font = [UIFont systemFontOfSize:14.0f];
         self.field.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        self.field.backgroundColor = [UIColor clearColor];
 
         _widthLabel = 45.0f;
     }

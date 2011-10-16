@@ -120,6 +120,7 @@
 		B6C36B5914345994005AFB7D /* ATKeyphraseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B5814345994005AFB7D /* ATKeyphraseParser.m */; };
 		B6C36B74143564D9005AFB7D /* NSMutableURLRequest+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B73143564D8005AFB7D /* NSMutableURLRequest+ATCategory.m */; };
 		B6C5C00C14425732009E8A02 /* ATEventOutlineGroupedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C5C00B14425731009E8A02 /* ATEventOutlineGroupedCell.m */; };
+		B6CF85021449709C00C46836 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CF85011449709C00C46836 /* Twitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -357,6 +358,7 @@
 		B6C36B73143564D8005AFB7D /* NSMutableURLRequest+ATCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+ATCategory.m"; path = "src/NSMutableURLRequest+ATCategory.m"; sourceTree = "<group>"; };
 		B6C5C00A14425731009E8A02 /* ATEventOutlineGroupedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATEventOutlineGroupedCell.h; path = src/ATEventOutlineGroupedCell.h; sourceTree = "<group>"; };
 		B6C5C00B14425731009E8A02 /* ATEventOutlineGroupedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATEventOutlineGroupedCell.m; path = src/ATEventOutlineGroupedCell.m; sourceTree = "<group>"; };
+		B6CF85011449709C00C46836 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6CF85021449709C00C46836 /* Twitter.framework in Frameworks */,
 				B6024CF41435D1FA007FB27B /* libicucore.dylib in Frameworks */,
 				B682B622143300A200E43A46 /* QuartzCore.framework in Frameworks */,
 				B682B6201433008E00E43A46 /* MessageUI.framework in Frameworks */,
@@ -423,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				B6024CF31435D1FA007FB27B /* libicucore.dylib */,
+				B6CF85011449709C00C46836 /* Twitter.framework */,
 				B682B621143300A200E43A46 /* QuartzCore.framework */,
 				B682B61F1433008E00E43A46 /* MessageUI.framework */,
 				B682B61B1433008100E43A46 /* EventKit.framework */,
@@ -1200,7 +1204,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AD3EB057-9B4C-4C1E-81F1-04C81F2D8995";
+				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1222,7 +1226,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AD3EB057-9B4C-4C1E-81F1-04C81F2D8995";
+				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

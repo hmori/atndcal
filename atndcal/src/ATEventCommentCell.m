@@ -22,10 +22,12 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         POOL_START;
+        self.label.backgroundColor = [UIColor clearColor];
         self.label.font = [UIFont boldSystemFontOfSize:16];
         self.label.textAlignment = UITextAlignmentLeft;
         self.label.textColor = [UIColor blackColor];
         self.pubDateLabel = [[[UILabel alloc] init] autorelease];
+        _pubDateLabel.backgroundColor = [UIColor clearColor];
         _pubDateLabel.font = [UIFont systemFontOfSize:13];
         _pubDateLabel.textColor = HEXCOLOR(0x44608CFF);
         [self.contentView addSubview:_pubDateLabel];

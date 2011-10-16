@@ -7,6 +7,7 @@
 //
 
 #import "ATFbEventDetailViewController.h"
+#import <Twitter/Twitter.h>
 
 #import "ATCommon.h"
 #import "ATFbEventStatusViewController.h"
@@ -51,6 +52,8 @@ typedef enum {
 - (UITableViewCell *)cellForIdentifier:(ATEventCellType)type tableView:(UITableView *)tv;
 - (void)addEkEventFacebook:(id)sender;
 - (void)showEkEventFacebook:(id)sender;
+- (void)openMail:(id)sender;
+
 - (void)successFbRsvpStatusRequest:(NSDictionary *)userInfo;
 - (void)errorFbRsvpStatusRequest:(NSDictionary *)userInfo;
 
@@ -69,7 +72,8 @@ typedef enum {
 @synthesize itemsInSection3 = _itemsInSection3;
 @synthesize itemsInSection4 = _itemsInSection4;
 
-static NSString *fbWebEventUrl = @"http://m.facebook.com/event.php?eid=";
+static NSString *fbMobileWebEventUrl = @"http://m.facebook.com/event.php?eid=";
+static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
 
 - (id)initWithEventObject:(id)eventObject {
     LOG_CURRENT_METHOD;
@@ -438,6 +442,31 @@ static NSString *fbWebEventUrl = @"http://m.facebook.com/event.php?eid=";
     POOL_END;
 }
 
+- (void)openMail:(id)sender {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    static NSString *bodyFormat = @""
+    "<html>"
+    "<head>"
+    "</head>"
+    "<body bgcolor='#FFFFFF'>"
+    "<br/>"
+    "<hr/>"
+    "%@"
+    "<br/>&nbsp;(from <a href='%@'>%@</a>)"
+    "</body>"
+    "</html>";
+    
+    NSString *subject = [NSString stringWithFormat:@"[Facebook]%@", _event.name];
+    NSString *body = [NSString stringWithFormat:bodyFormat, 
+                      [ATFbEventManager stringDivWithFbEvent:_event],
+                      kAtndcalDownloadUrl,
+                      [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleDisplayName"]
+                      ];
+    
+    [self openMailWithSubject:subject body:body];
+    POOL_END;
+}
 
 #pragma mark - Public
 
@@ -447,11 +476,11 @@ static NSString *fbWebEventUrl = @"http://m.facebook.com/event.php?eid=";
     
     ATActionSheet *actionSheet = [[[ATActionSheet alloc] initWithTitle:_event.name] autorelease];
     [actionSheet addButtonWithTitle:@"ブラウザで開く" callback:^(ATActionSheet *actionSheet, NSInteger index) {
-        NSString *urlString = [NSString stringWithFormat:@"%@%@", fbWebEventUrl, _event.id_];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@", fbMobileWebEventUrl, _event.id_];
         [self openWebView:sender url:urlString];
     }];
     [actionSheet addButtonWithTitle:@"Safariで開く" callback:^(ATActionSheet *actionSheet, NSInteger index) {
-        NSString *urlString = [NSString stringWithFormat:@"%@%@", fbWebEventUrl, _event.id_];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@", fbMobileWebEventUrl, _event.id_];
         [self openSafari:sender url:urlString];
     }];
     [actionSheet addButtonWithTitle:@"その日の予定を見る" callback:^(ATActionSheet *actionSheet, NSInteger index) {
@@ -469,6 +498,17 @@ static NSString *fbWebEventUrl = @"http://m.facebook.com/event.php?eid=";
             [self addBookmark:sender type:ATEventTypeFacebook eventId:_event.id_];
         }];
     }
+    if ([TWTweetComposeViewController canSendTweet]) {
+        [actionSheet addButtonWithTitle:@"ツイートする" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+            NSString *urlString = [NSString stringWithFormat:@"%@%@", fbWebEventUrl, _event.id_];
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSString *initialText = [NSString stringWithFormat:@"\"%@:Facebook\" via ATND暦", _event.name];
+            [self sendTweet:sender initialText:initialText url:url];
+        }];
+    }
+    [actionSheet addButtonWithTitle:@"メール送信" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        [self openMail:sender];
+    }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
     [actionSheet showInView:self.view];
     
@@ -479,8 +519,8 @@ static NSString *fbWebEventUrl = @"http://m.facebook.com/event.php?eid=";
     LOG_CURRENT_METHOD;
     POOL_START;
     
-    NSString *eventDateStart = [ATFbEventManager stringForDispDate:_event fbEventDate:ATEventDateStart];
-    NSString *eventDateEnd = [ATFbEventManager stringForDispDate:_event fbEventDate:ATEventDateEnd];
+    NSString *eventDateStart = [ATFbEventManager stringForDispDate:_event fbEventDate:ATFbEventDateStart];
+    NSString *eventDateEnd = [ATFbEventManager stringForDispDate:_event fbEventDate:ATFbEventDateEnd];
     
     NSMutableString *title = [NSMutableString stringWithFormat:@"%@", eventDateStart];
     if (eventDateEnd) {

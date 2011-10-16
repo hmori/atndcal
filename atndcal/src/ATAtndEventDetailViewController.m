@@ -7,6 +7,7 @@
 //
 
 #import "ATAtndEventDetailViewController.h"
+#import <Twitter/Twitter.h>
 #import "ATCommon.h"
 
 #import "ATEventDateCell.h"
@@ -55,6 +56,7 @@ typedef enum {
 - (UITableViewCell *)cellForIdentifier:(ATEventCellType)type tableView:(UITableView *)tv;
 - (void)addEkEventAtnd:(id)sender;
 - (void)showEkEventAtnd:(id)sender;
+- (void)openMail:(id)sender;
 
 - (void)successEventCommentRequest:(NSDictionary *)userInfo;
 - (void)errorEventCommentRequest:(NSDictionary *)userInfo;
@@ -484,6 +486,33 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     POOL_END;
 }
 
+- (void)openMail:(id)sender {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    static NSString *bodyFormat = @""
+    "<html>"
+    "<head>"
+    "</head>"
+    "<body bgcolor='#FFFFFF'>"
+    "<br/>"
+    "<hr/>"
+    "%@"
+    "<br/>&nbsp;(from <a href='%@'>%@</a>)"
+    "</body>"
+    "</html>";
+    
+    NSString *subject = [NSString stringWithFormat:@"[ATND]%@", _event.title];
+    NSString *body = [NSString stringWithFormat:bodyFormat, 
+                      [ATEventManager stringDivWithEvent:_event],
+                      kAtndcalDownloadUrl,
+                      [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleDisplayName"]
+                      ];
+    
+    [self openMailWithSubject:subject body:body];
+    POOL_END;
+}
+
+
 #pragma mark - Public
 
 - (void)otherAction:(id)sender {
@@ -514,6 +543,18 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
             [self addBookmark:sender type:ATEventTypeAtnd eventId:_event.event_id];
         }];
     }
+    if ([TWTweetComposeViewController canSendTweet]) {
+        [actionSheet addButtonWithTitle:@"ツイートする" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+            NSString *urlString = [NSString stringWithFormat:@"%@%@", atndWebEventUrl, _event.event_id];
+            NSURL *url = [NSURL URLWithString:urlString];
+            NSString *initialText = [NSString stringWithFormat:@"\"%@\" via ATND暦", _event.title];
+            [self sendTweet:sender initialText:initialText url:url];
+        }];
+    }
+    [actionSheet addButtonWithTitle:@"メール送信" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        [self openMail:sender];
+    }];
+    
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
     [actionSheet showInView:self.view];
     POOL_END;
@@ -669,6 +710,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     
     POOL_END;
 }
+
 
 #pragma mark - AtndRequest Callback
 

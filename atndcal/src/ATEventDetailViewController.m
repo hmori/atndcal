@@ -7,6 +7,7 @@
 //
 
 #import "ATEventDetailViewController.h"
+#import <Twitter/Twitter.h>
 #import "ATCommon.h"
 
 #import "ATWebViewController.h"
@@ -18,6 +19,7 @@
 //@property (nonatomic, retain) EKEventViewController *detailViewController;
 @property (nonatomic, retain) EKEventStore *eventStore;
 @property (nonatomic, retain) EKCalendar *defaultCalendar;
+@property (nonatomic, retain) ATMailComposer *mailComposer;
 
 - (void)initATEventDetailViewController;
 - (NSString *)titleString;
@@ -30,6 +32,7 @@
 //@synthesize detailViewController = _detailViewController;
 @synthesize eventStore = _eventStore;
 @synthesize defaultCalendar = _defaultCalendar;
+@synthesize mailComposer = _mailComposer;
 
 static NSString *starString = nil;
 
@@ -56,9 +59,9 @@ static NSString *starString = nil;
     [_eventObject release];
     [_bookmarkedIdentifier release];
     [_titleView release];
-//    [_detailViewController release];
     [_eventStore release];
     [_defaultCalendar release];
+    [_mailComposer release];
     [super dealloc];
 }
 
@@ -264,6 +267,38 @@ static NSString *starString = nil;
     POOL_END;
 }
 
+- (void)sendTweet:(id)sender initialText:(NSString *)initialText url:(NSURL *)url {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    
+    TWTweetComposeViewController *tweetViewController = [[[TWTweetComposeViewController alloc] init] autorelease];
+    [tweetViewController setInitialText:initialText];
+    [tweetViewController addURL:url];
+    
+    [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
+        if (result == TWTweetComposeViewControllerResultDone) {
+            NSString *message = @"ツイートしました.";
+            [[TKAlertCenter defaultCenter] performSelectorOnMainThread:@selector(postAlertWithMessage:) 
+                                                            withObject:message 
+                                                         waitUntilDone:NO];
+        }
+        [self dismissModalViewControllerAnimated:YES];
+    }];
+    [self presentModalViewController:tweetViewController animated:YES];
+    POOL_END;
+}
+
+- (void)openMailWithSubject:(NSString *)subject body:(NSString *)body {
+    POOL_START;
+    
+    self.mailComposer = [[[ATMailComposer alloc] init] autorelease];
+    [_mailComposer setSubject:subject];
+    [_mailComposer setBody:body];
+    [_mailComposer setIsHTML:YES];
+    [_mailComposer openMailOnViewController:self];
+    
+    POOL_END;
+}
 
 #pragma mark - EKEventEditViewDelegate
 

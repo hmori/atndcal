@@ -27,6 +27,10 @@ static NSString * const kVenue = @"venue";
 static NSString * const kPrivacy = @"privacy";
 static NSString * const kUpdate_time = @"update_time";
 
+static NSString * const kStreet = @"street";
+static NSString * const kLatitude = @"latitude";
+static NSString * const kLongitude = @"longitude";
+
 static NSString * const timeZonePST = @"PST";
 
 + (NSArray *)arrayWithJson:(NSString *)jsonString {
@@ -108,6 +112,100 @@ static NSString * const timeZonePST = @"PST";
     return [NSDate dateFromYmdString:[startDate stringYmdWithTimeZone:[NSTimeZone timeZoneWithAbbreviation:timeZonePST]]];
 }
 
++ (NSString *)stringDivWithFbEvent:(ATFbEvent *)fbEvent {
+    static NSString *divFormat = @""
+    "<div style='margin:5px;padding:5px;border:1px solid #f0f0f0;background:#f5f5f5;-webkit-border-radius:5px;'>"
+    
+    "<h1>%@</h1>"
+    
+    "<hr/>"
+    
+    "<table border='0' cellspacing='1' style='background-color:#4682B4;'>"
+    "<tbody>"
+    
+    "<tr>"
+    "<td width='55px' style='background-color:#4682B4;color:#ffffff;'>"
+    "日時"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "%@"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "会場"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "<a href='http://www.google.co.jp/maps?%@'>%@ (%@)</a>"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "Web"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "<a href='http://www.facebook.com/event.php?eid=%@'>http://www.facebook.com/event.php?eid=%@</a>"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "主催者"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "%@"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "詳細:"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "%@"
+    "</td>"
+    "</tr>"
+    
+    "</tbody>"
+    "</table>"
+    
+    "</div>";
+
+    NSString *location = nil;
+    if (fbEvent.location && [fbEvent.location length] > 0) {
+        location = fbEvent.location;
+    }
+    
+    NSString *street = nil;
+    if (fbEvent.venue && [fbEvent.venue isKindOfClass:NSDictionary.class] &&
+        [fbEvent.venue objectForKey:kStreet] && [[fbEvent.venue objectForKey:kStreet] length] > 0) {
+        street = [fbEvent.venue objectForKey:kStreet];
+    }
+    NSString *googleMapParam = nil;
+    if (fbEvent.venue && [fbEvent.venue isKindOfClass:NSDictionary.class] &&
+        [fbEvent.venue objectForKey:kLatitude] && [fbEvent.venue objectForKey:kLongitude]) {
+        googleMapParam = [NSString stringWithFormat:@"q=%@,%@&z=17", 
+                          [fbEvent.venue objectForKey:kLatitude], 
+                          [fbEvent.venue objectForKey:kLongitude]];
+    } else if (street) {
+        googleMapParam = [NSString stringWithFormat:@"q=%@&z=17", street];
+    } else {
+        googleMapParam = [NSString stringWithFormat:@"q=%@&z=17", location];
+    }
+
+    
+    NSString *divString = [NSString stringWithFormat:divFormat, 
+                           fbEvent.name,
+                           [ATFbEventManager stringForDispDate:fbEvent],
+                           [googleMapParam escapeHTML], location, street,
+                           fbEvent.id_, fbEvent.id_,
+                           fbEvent.owner, 
+                           fbEvent.description_];
+    
+    return divString;
+}
 
 @end
 

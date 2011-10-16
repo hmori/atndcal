@@ -163,6 +163,93 @@ static NSString * const kUpdated_at = @"updated_at";
     return string;
 }
 
++ (NSString *)stringDivWithEvent:(ATEvent *)event {
+    LOG_CURRENT_METHOD;
+    
+    static NSString *divFormat = @""
+    "<div style='margin:5px;padding:5px;border:1px solid #f0f0f0;background:#f5f5f5;-webkit-border-radius:5px;'>"
+    
+    "<h1>%@</h1>"
+    "<h2>%@</h2>"
+    
+    "<hr/>"
+    
+    "<table border='0' cellspacing='1' style='background-color:#4682B4;'>"
+    "<tbody>"
+    
+    "<tr>"
+    "<td width='55px' style='background-color:#4682B4;color:#ffffff;'>"
+    "日時"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "%@"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "定員"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "%@"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "会場"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "<a href='http://www.google.co.jp/maps?%@'>%@ (%@)</a>"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "Web"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "<a href='%@'>%@</a>"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "主催者"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "<a href='http://atnd.org/users/%@'>%@</a>"
+    "</td>"
+    "</tr>"
+    
+    "<tr>"
+    "<td style='background-color:#4682B4;color:#ffffff;'>"
+    "詳細"
+    "</td>"
+    "<td style='background-color:#ffffff;color:#4682B4;'>"
+    "%@"
+    "</td>"
+    "</tr>"
+    
+    "</tbody>"
+    "</table>"
+    
+    "</div>";
+    
+    NSString *googleMapParam = [NSString stringWithFormat:@"q=%@,%@&z=17", event.lat, event.lon];
+    
+    NSString *divString = [NSString stringWithFormat:divFormat, 
+                           event.title,
+                           event.catch_,
+                           [ATEventManager stringForDispDate:event],
+                           [ATEventManager stringForDispCapacity:event],
+                           [googleMapParam escapeHTML], event.place, event.address,
+                           event.url, event.url,
+                           event.owner_id, event.owner_nickname, 
+                           event.description_];
+    
+    return divString;
+}
 
 @end
 

@@ -14,6 +14,7 @@
 #import "ATEventOutline.h"
 #import "ATTitleView.h"
 
+#import "ATMailComposer.h"
 
 typedef enum {
     ATEventCellTypeText,
@@ -35,6 +36,8 @@ typedef enum {
 //    EKEventViewController *_detailViewController;
 	EKEventStore *_eventStore;
 	EKCalendar *_defaultCalendar;
+    
+    ATMailComposer *_mailComposer;
 }
 @property (nonatomic, readonly) NSString *bookmarkedIdentifier;
 
@@ -58,6 +61,8 @@ typedef enum {
               title:(NSString *)title;
 - (void)addBookmark:(id)sender type:(ATEventType)type eventId:(NSString *)eventId;
 - (void)removeBookmark:(id)sender;
+- (void)sendTweet:(id)sender initialText:(NSString *)initialText url:(NSURL *)url;
+- (void)openMailWithSubject:(NSString *)subject body:(NSString *)body;
 
 
 @end

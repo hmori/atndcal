@@ -26,6 +26,7 @@ typedef enum {
 + (NSString *)stringForDispCapacity:(ATEvent *)event;
 + (NSString *)stringForDispDate:(ATEvent *)event;
 + (NSString *)stringForDispDate:(ATEvent *)event eventDate:(ATEventDate)eventDate;
++ (NSString *)stringDivWithEvent:(ATEvent *)event;
 @end
 
 

@@ -16,22 +16,20 @@
 
 #define widthTitle 60.0f
 
-static NSString * const startFieldText = @"開始日時";
-static NSString * const endFieldText = @"終了日時";
-
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         POOL_START;
         self.label.textAlignment = UITextAlignmentLeft;
+        self.label.backgroundColor = [UIColor clearColor];
+        self.field.backgroundColor = [UIColor clearColor];
 
         self.startField = [[[UILabel alloc] init] autorelease];
         self.endField = [[[UILabel alloc] init] autorelease];
+        _startField.backgroundColor = [UIColor clearColor];
+        _endField.backgroundColor = [UIColor clearColor];
         _startField.font = [UIFont systemFontOfSize:13.0];
         _endField.font = [UIFont systemFontOfSize:13.0];
-        _startField.text = startFieldText;
-        _endField.text = endFieldText;
         [self.contentView addSubview:_startField];
         [self.contentView addSubview:_endField];
         POOL_END;

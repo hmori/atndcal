@@ -22,8 +22,11 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        _field.backgroundColor = [UIColor clearColor];
         _field.numberOfLines = INT_MAX;
         _field.font = [UIFont systemFontOfSize:14.0f];
+        
+        self.label.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

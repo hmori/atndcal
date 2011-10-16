@@ -26,6 +26,7 @@ typedef enum {
 + (NSString *)stringForDispDate:(ATFbEvent *)fbEvent;
 + (NSString *)stringForDispDate:(ATFbEvent *)fbEvent fbEventDate:(ATFbEventDate)fbEventDate;
 + (NSDate *)dateYmdStartTimeFromFbEvent:(ATFbEvent *)fbEvent;
++ (NSString *)stringDivWithFbEvent:(ATFbEvent *)fbEvent;
 @end
 
 @interface ATFbEvent : NSObject {
