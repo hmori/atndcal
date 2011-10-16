@@ -556,7 +556,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     }];
     
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     POOL_END;
 }
 
@@ -598,7 +598,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [self openMap:sender keyword:title];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -613,7 +613,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [self openMap:sender keyword:title];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -628,7 +628,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [self openMap:sender keyword:title];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -645,7 +645,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [self openSafari:sender url:_event.url];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -670,7 +670,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [self presentModalViewController:nav animated:YES];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -689,7 +689,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [self openSafari:sender url:urlString];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }

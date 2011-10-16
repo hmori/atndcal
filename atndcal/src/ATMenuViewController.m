@@ -149,7 +149,7 @@
                 [self fbLogoutAction:nil];
             }];
             [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-            [actionSheet showInView:self.view];
+            [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
         } else {
             [self fbLoginAction:nil];
         }

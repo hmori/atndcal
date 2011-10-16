@@ -241,7 +241,7 @@
         [self openSafari:sender];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }

@@ -510,7 +510,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self openMail:sender];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -535,7 +535,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self addEkEventFacebook:sender];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -553,7 +553,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self openMap:sender keyword:title];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -568,7 +568,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self openMap:sender keyword:title];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
 
     POOL_END;
 }
@@ -585,7 +585,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self openMap:sender keyword:title];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
@@ -609,7 +609,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self presentModalViewController:nav animated:YES];
     }];
     [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
-    [actionSheet showInView:self.view];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
     
     POOL_END;
 }
