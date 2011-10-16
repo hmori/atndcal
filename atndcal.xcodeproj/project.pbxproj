@@ -1190,7 +1190,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hidetoshi Mori";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1204,7 +1204,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
+				PROVISIONING_PROFILE = "74B14AA4-353F-496E-B72B-F152F60A8C39";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1213,7 +1213,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hidetoshi Mori";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atndcal/atndcal-Prefix.pch";
@@ -1226,7 +1226,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
+				PROVISIONING_PROFILE = "74B14AA4-353F-496E-B72B-F152F60A8C39";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

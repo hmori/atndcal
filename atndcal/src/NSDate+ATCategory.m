@@ -71,6 +71,7 @@
         info.hour = 0;
         info.minute = 0;
         info.second = 0;
+        info.weekday = 0;
         info.year = [[ymd substringWithRange:NSMakeRange(0, 4)] intValue];
         info.month = [[ymd substringWithRange:NSMakeRange(4, 2)] intValue];
         info.day = [[ymd substringWithRange:NSMakeRange(6, 2)] intValue];

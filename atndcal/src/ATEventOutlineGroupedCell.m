@@ -34,7 +34,6 @@ static UIColor *_disableColor = nil;
         
         _dateLabel = [[UILabel alloc] init];
         _dateLabel.backgroundColor = [UIColor clearColor];
-        _detailColor = _detailColor;
         _dateLabel.textColor = _detailColor;
         _dateLabel.font = _detailFont;
         [self.contentView addSubview:_dateLabel];

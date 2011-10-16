@@ -16,7 +16,7 @@
 
 @interface ATEventDetailViewController ()
 @property (nonatomic, retain) id eventObject;
-//@property (nonatomic, retain) EKEventViewController *detailViewController;
+@property (nonatomic, retain) ATTitleView *titleView;
 @property (nonatomic, retain) EKEventStore *eventStore;
 @property (nonatomic, retain) EKCalendar *defaultCalendar;
 @property (nonatomic, retain) ATMailComposer *mailComposer;
@@ -28,8 +28,8 @@
 
 @implementation ATEventDetailViewController
 @synthesize eventObject = _eventObject;
+@synthesize titleView = _titleView;
 @synthesize bookmarkedIdentifier = _bookmarkedIdentifier;
-//@synthesize detailViewController = _detailViewController;
 @synthesize eventStore = _eventStore;
 @synthesize defaultCalendar = _defaultCalendar;
 @synthesize mailComposer = _mailComposer;
@@ -79,13 +79,13 @@ static NSString *starString = nil;
     POOL_START;
     [super loadView];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction 
-                                                                                           target:self 
-                                                                                           action:@selector(otherAction:)];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction 
+                                                                                            target:self 
+                                                                                            action:@selector(otherAction:)] autorelease];
     
     
     
-    _titleView = [[ATTitleView alloc] init];
+    self.titleView = [[[ATTitleView alloc] init] autorelease];
     [_titleView setTitle:[self titleString]];
     self.navigationItem.titleView = _titleView;
     POOL_END;
