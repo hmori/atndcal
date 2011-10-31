@@ -7,10 +7,10 @@
 //
 
 #import "ATTableViewController.h"
+#import "ATCommon.h"
 
 #import "ATCalendarTableViewController.h"
 #import "UIImage+ATCategory.h"
-#import "ATTitleView.h"
 
 @interface ATTableViewController ()
 - (void)initATTableViewController;

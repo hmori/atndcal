@@ -113,16 +113,11 @@ static NSString * const timeZonePST = @"PST";
 }
 
 + (NSString *)stringDivWithFbEvent:(ATFbEvent *)fbEvent {
-    static NSString *divFormat = @""
-    "<div style='margin:5px;padding:5px;border:1px solid #f0f0f0;background:#f5f5f5;-webkit-border-radius:5px;'>"
     
-    "<h1>%@</h1>"
+    static NSString *hTitleFormat = @""
+    "<h1>%@</h1>";
     
-    "<hr/>"
-    
-    "<table border='0' cellspacing='1' style='background-color:#4682B4;'>"
-    "<tbody>"
-    
+    static NSString *trDateFormat = @""
     "<tr>"
     "<td width='55px' style='background-color:#4682B4;color:#ffffff;'>"
     "日時"
@@ -130,8 +125,9 @@ static NSString * const timeZonePST = @"PST";
     "<td style='background-color:#ffffff;color:#4682B4;'>"
     "%@"
     "</td>"
-    "</tr>"
-    
+    "</tr>";
+
+    static NSString *trPlaceFormat = @""
     "<tr>"
     "<td style='background-color:#4682B4;color:#ffffff;'>"
     "会場"
@@ -139,8 +135,9 @@ static NSString * const timeZonePST = @"PST";
     "<td style='background-color:#ffffff;color:#4682B4;'>"
     "<a href='http://www.google.co.jp/maps?%@'>%@ (%@)</a>"
     "</td>"
-    "</tr>"
-    
+    "</tr>";
+
+    static NSString *trWebFormat = @""
     "<tr>"
     "<td style='background-color:#4682B4;color:#ffffff;'>"
     "Web"
@@ -148,8 +145,9 @@ static NSString * const timeZonePST = @"PST";
     "<td style='background-color:#ffffff;color:#4682B4;'>"
     "<a href='http://www.facebook.com/event.php?eid=%@'>http://www.facebook.com/event.php?eid=%@</a>"
     "</td>"
-    "</tr>"
+    "</tr>";
     
+    static NSString *trOwnerFormat = @""
     "<tr>"
     "<td style='background-color:#4682B4;color:#ffffff;'>"
     "主催者"
@@ -157,8 +155,9 @@ static NSString * const timeZonePST = @"PST";
     "<td style='background-color:#ffffff;color:#4682B4;'>"
     "%@"
     "</td>"
-    "</tr>"
-    
+    "</tr>";
+
+    static NSString *trDescriptionFormat = @""
     "<tr>"
     "<td style='background-color:#4682B4;color:#ffffff;'>"
     "詳細:"
@@ -166,18 +165,25 @@ static NSString * const timeZonePST = @"PST";
     "<td style='background-color:#ffffff;color:#4682B4;'>"
     "%@"
     "</td>"
-    "</tr>"
+    "</tr>";
     
-    "</tbody>"
-    "</table>"
     
-    "</div>";
+    NSMutableString *divString = [NSMutableString stringWithCapacity:0];
+    [divString appendString:@"<div style='margin:5px;padding:5px;border:1px solid #f0f0f0;background:#f5f5f5;-webkit-border-radius:5px;'>"];
+    if (fbEvent.name && (NSNull *)fbEvent.name != [NSNull null]) {
+        [divString appendFormat:hTitleFormat, fbEvent.name];
+    }
+    [divString appendString:@"<hr/><table border='0' cellspacing='1' style='background-color:#4682B4;'><tbody>"];
+
+    NSString *dispDate = [ATFbEventManager stringForDispDate:fbEvent];
+    if (dispDate) {
+        [divString appendFormat:trDateFormat, dispDate];
+    }
 
     NSString *location = nil;
     if (fbEvent.location && [fbEvent.location length] > 0) {
         location = fbEvent.location;
     }
-    
     NSString *street = nil;
     if (fbEvent.venue && [fbEvent.venue isKindOfClass:NSDictionary.class] &&
         [fbEvent.venue objectForKey:kStreet] && [[fbEvent.venue objectForKey:kStreet] length] > 0) {
@@ -194,16 +200,25 @@ static NSString * const timeZonePST = @"PST";
     } else {
         googleMapParam = [NSString stringWithFormat:@"q=%@&z=17", location];
     }
+    if (location || street) {
+        [divString appendFormat:trPlaceFormat, [googleMapParam escapeHTML], location, street];
+    }
 
+    if (fbEvent.id_ && (NSNull *)fbEvent.id_ != [NSNull null]) {
+        [divString appendFormat:trWebFormat, fbEvent.id_, fbEvent.id_];
+    }
     
-    NSString *divString = [NSString stringWithFormat:divFormat, 
-                           fbEvent.name,
-                           [ATFbEventManager stringForDispDate:fbEvent],
-                           [googleMapParam escapeHTML], location, street,
-                           fbEvent.id_, fbEvent.id_,
-                           fbEvent.owner, 
-                           fbEvent.description_];
+    if (fbEvent.owner && (NSNull *)fbEvent.owner != [NSNull null]) {
+        [divString appendFormat:trOwnerFormat, fbEvent.owner];
+    }
     
+    NSString *dispDescription = fbEvent.description_;
+    if (dispDescription) {
+        [divString appendFormat:trDescriptionFormat, dispDescription];
+    }
+
+    [divString appendString:@"</tbody></table></div>"];
+
     return divString;
 }
 

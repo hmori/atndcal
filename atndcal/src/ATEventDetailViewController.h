@@ -12,9 +12,9 @@
 #import <EventKitUI/EventKitUI.h>
 
 #import "ATEventOutline.h"
-#import "ATTitleView.h"
-
 #import "ATMailComposer.h"
+
+@class ATTitleView;
 
 typedef enum {
     ATEventCellTypeText,
@@ -33,7 +33,6 @@ typedef enum {
     ATTitleView *_titleView;
     
     //EventKit
-//    EKEventViewController *_detailViewController;
 	EKEventStore *_eventStore;
 	EKCalendar *_defaultCalendar;
     

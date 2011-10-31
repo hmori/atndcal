@@ -57,6 +57,7 @@ typedef enum {
 - (void)addEkEventAtnd:(id)sender;
 - (void)showEkEventAtnd:(id)sender;
 - (void)openMail:(id)sender;
+- (void)clipEvernote:(id)sender;
 
 - (void)successEventCommentRequest:(NSDictionary *)userInfo;
 - (void)errorEventCommentRequest:(NSDictionary *)userInfo;
@@ -512,6 +513,27 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     POOL_END;
 }
 
+- (void)clipEvernote:(id)sender {
+    LOG_CURRENT_METHOD;
+    
+    NSString *title = [NSString stringWithFormat:@"[ATND]%@", _event.title];
+    NSString *divContent = [ATEventManager stringDivWithEvent:_event];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", atndWebEventUrl, _event.event_id];
+
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:0];
+    [param setObject:title forKey:@"title"];
+    [param setObject:divContent forKey:@"divContent"];
+    [param setObject:@"ATND" forKey:@"tags"];
+    [param setObject:urlString forKey:@"sourceURL"];
+    
+    BOOL isSuccess = [[ATEvernoteConnecter sharedATEvernoteConnecter] createNote:param];
+    if (isSuccess) {
+        [[TKAlertCenter defaultCenter] performSelectorOnMainThread:@selector(postAlertWithMessage:) 
+                                                        withObject:@"クリップしました." 
+                                                     waitUntilDone:YES];
+    }
+}
+
 
 #pragma mark - Public
 
@@ -543,6 +565,19 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
             [self addBookmark:sender type:ATEventTypeAtnd eventId:_event.event_id];
         }];
     }
+    
+    NSString *evernoteUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsEvernoteUsername];
+    if (evernoteUsername) {
+        [actionSheet addButtonWithTitle:@"Evernoteにクリップ" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+            NSInvocationOperation *invOperation = [[[NSInvocationOperation alloc] 
+                                                    initWithTarget:self 
+                                                    selector:@selector(clipEvernote:) 
+                                                    object:sender] autorelease];
+            invOperation.queuePriority = NSOperationQueuePriorityVeryHigh;
+            [[ATOperationManager sharedATOperationManager] addOperation:invOperation];
+        }];
+    }
+    
     if ([TWTweetComposeViewController canSendTweet]) {
         [actionSheet addButtonWithTitle:@"ツイートする" callback:^(ATActionSheet *actionSheet, NSInteger index) {
             NSString *urlString = [NSString stringWithFormat:@"%@%@", atndWebEventUrl, _event.event_id];

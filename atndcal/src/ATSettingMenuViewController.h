@@ -10,11 +10,23 @@
 #import <TapkuLibrary/TapkuLibrary.h>
 #import "ATLabelTextFieldCell.h"
 
+typedef enum {
+    ATSettingMenuSectionAtnd,
+    ATSettingMenuSectionFacebook,
+    ATSettingMenuSectionEvernote,
+    ATSettingMenuSectionAuto,
+    ATSettingMenuSectionReset,
+} ATSettingMenuSection;
+
+
 @interface ATSettingMenuViewController : TKTableViewController {
-    ATLabelTextFieldCell *_userNameCell;
+  @private
+    NSMutableArray *_sectionItems;
+    ATLabelTextFieldCell *_usernameCell;
     UITableViewCell *_requestDaysCountCell;
     UITableViewCell *_facebookLoginCell;
     UITableViewCell *_facebookLogoutCell;
+    UITableViewCell *_evernoteCell;
     UITableViewCell *_requestAutoLoadingCell;
     TKButtonCell *_dataResetCell;
 }

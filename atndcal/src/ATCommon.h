@@ -15,6 +15,9 @@
 #import "ATActionSheet.h"
 #import "ATAlertView.h"
 #import "NSMutableURLRequest+ATCategory.h"
+#import "ATEvernoteConnecter.h"
+#import "ATTitleView.h"
+#import "ATWaitingView.h"
 
 extern NSString * const kDefaultsNoticeInfoVersion;
 extern NSString * const kDefaultsFinalCalendarSearchText;

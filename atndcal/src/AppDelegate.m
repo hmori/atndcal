@@ -53,6 +53,9 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL*)url {
     LOG_CURRENT_METHOD;
     LOG(@"%@ [%@|%@|%@|%@]", url, url.scheme, url.host, url.path, url.query);
+    
+    [_facebookConnecter.facebook handleOpenURL:url];
+    
     return YES;
 }
 

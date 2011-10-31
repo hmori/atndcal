@@ -9,9 +9,7 @@
 #import "ATEventListViewController.h"
 #import "ATCommon.h"
 
-#import "ATTitleView.h"
 #import "ATEventOutlineCell.h"
-//#import "ATEventDetailViewController.h"
 
 @interface ATEventListViewController ()
 - (UITableViewCell *)setupCellForRowAtIndexPath:(NSIndexPath *)indexPath cell:(UITableViewCell *)cell;

@@ -9,8 +9,6 @@
 #import "ATWebViewController.h"
 #import "ATCommon.h"
 
-#import "ATTitleView.h"
-
 #define heightToolbar 44.0f
 
 @interface ATWebViewController ()

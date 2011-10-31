@@ -10,6 +10,23 @@
 		B600DC6A1439D023002B0F8D /* ATProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B600DC691439D023002B0F8D /* ATProfileViewController.m */; };
 		B6024CF21435D0DA007FB27B /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = B6024CF11435D0DA007FB27B /* RegexKitLite.m */; };
 		B6024CF41435D1FA007FB27B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6024CF31435D1FA007FB27B /* libicucore.dylib */; };
+		B62941B014500E4E00B338C0 /* EDAMLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = B629418C14500E4E00B338C0 /* EDAMLimits.m */; };
+		B62941B114500E4E00B338C0 /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = B629418E14500E4E00B338C0 /* Errors.m */; };
+		B62941B214500E4E00B338C0 /* NoteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419014500E4E00B338C0 /* NoteStore.m */; };
+		B62941B314500E4E00B338C0 /* Types.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419214500E4E00B338C0 /* Types.m */; };
+		B62941B414500E4E00B338C0 /* UserStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419414500E4E00B338C0 /* UserStore.m */; };
+		B62941B514500E4E00B338C0 /* TBinaryProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419814500E4E00B338C0 /* TBinaryProtocol.m */; };
+		B62941B614500E4E00B338C0 /* TProtocolException.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419B14500E4E00B338C0 /* TProtocolException.m */; };
+		B62941B714500E4E00B338C0 /* TProtocolUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419E14500E4E00B338C0 /* TProtocolUtil.m */; };
+		B62941B814500E4E00B338C0 /* TApplicationException.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941A114500E4E00B338C0 /* TApplicationException.m */; };
+		B62941B914500E4E00B338C0 /* TException.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941A314500E4E00B338C0 /* TException.m */; };
+		B62941BA14500E4E00B338C0 /* THTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941A814500E4E00B338C0 /* THTTPClient.m */; };
+		B62941BB14500E4E00B338C0 /* TMemoryBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941AA14500E4E00B338C0 /* TMemoryBuffer.m */; };
+		B62941BC14500E4E00B338C0 /* TTransportException.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941AD14500E4E00B338C0 /* TTransportException.m */; };
+		B62941BD14500E4E00B338C0 /* TSharedProcessorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941AF14500E4E00B338C0 /* TSharedProcessorFactory.m */; };
+		B62941C014501BAC00B338C0 /* ATSettingEvernoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941BF14501BAB00B338C0 /* ATSettingEvernoteViewController.m */; };
+		B62941C3145192AC00B338C0 /* ATWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941C2145192AC00B338C0 /* ATWaitingView.m */; };
+		B62941D01452EE4400B338C0 /* ATEvernoteConnecter.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941CF1452EE4400B338C0 /* ATEvernoteConnecter.m */; };
 		B654B90714374E8700AD55F1 /* ATNoticeInfoConnecter.m in Sources */ = {isa = PBXBuildFile; fileRef = B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */; };
 		B6787BBC143ADF8200E3C223 /* ATProfileLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */; };
 		B682B5A31432FD8700E43A46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A21432FD8700E43A46 /* UIKit.framework */; };
@@ -161,6 +178,45 @@
 		B6024CF01435D0DA007FB27B /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = "External/RegexKitLite-4.0/RegexKitLite.h"; sourceTree = "<group>"; };
 		B6024CF11435D0DA007FB27B /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = "External/RegexKitLite-4.0/RegexKitLite.m"; sourceTree = "<group>"; };
 		B6024CF31435D1FA007FB27B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		B629418B14500E4E00B338C0 /* EDAMLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMLimits.h; sourceTree = "<group>"; };
+		B629418C14500E4E00B338C0 /* EDAMLimits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMLimits.m; sourceTree = "<group>"; };
+		B629418D14500E4E00B338C0 /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
+		B629418E14500E4E00B338C0 /* Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Errors.m; sourceTree = "<group>"; };
+		B629418F14500E4E00B338C0 /* NoteStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteStore.h; sourceTree = "<group>"; };
+		B629419014500E4E00B338C0 /* NoteStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteStore.m; sourceTree = "<group>"; };
+		B629419114500E4E00B338C0 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		B629419214500E4E00B338C0 /* Types.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Types.m; sourceTree = "<group>"; };
+		B629419314500E4E00B338C0 /* UserStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStore.h; sourceTree = "<group>"; };
+		B629419414500E4E00B338C0 /* UserStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStore.m; sourceTree = "<group>"; };
+		B629419714500E4E00B338C0 /* TBinaryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBinaryProtocol.h; sourceTree = "<group>"; };
+		B629419814500E4E00B338C0 /* TBinaryProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBinaryProtocol.m; sourceTree = "<group>"; };
+		B629419914500E4E00B338C0 /* TProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocol.h; sourceTree = "<group>"; };
+		B629419A14500E4E00B338C0 /* TProtocolException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolException.h; sourceTree = "<group>"; };
+		B629419B14500E4E00B338C0 /* TProtocolException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolException.m; sourceTree = "<group>"; };
+		B629419C14500E4E00B338C0 /* TProtocolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolFactory.h; sourceTree = "<group>"; };
+		B629419D14500E4E00B338C0 /* TProtocolUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProtocolUtil.h; sourceTree = "<group>"; };
+		B629419E14500E4E00B338C0 /* TProtocolUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TProtocolUtil.m; sourceTree = "<group>"; };
+		B62941A014500E4E00B338C0 /* TApplicationException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TApplicationException.h; sourceTree = "<group>"; };
+		B62941A114500E4E00B338C0 /* TApplicationException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TApplicationException.m; sourceTree = "<group>"; };
+		B62941A214500E4E00B338C0 /* TException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TException.h; sourceTree = "<group>"; };
+		B62941A314500E4E00B338C0 /* TException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TException.m; sourceTree = "<group>"; };
+		B62941A414500E4E00B338C0 /* TProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProcessor.h; sourceTree = "<group>"; };
+		B62941A514500E4E00B338C0 /* TProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TProcessorFactory.h; sourceTree = "<group>"; };
+		B62941A714500E4E00B338C0 /* THTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THTTPClient.h; sourceTree = "<group>"; };
+		B62941A814500E4E00B338C0 /* THTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THTTPClient.m; sourceTree = "<group>"; };
+		B62941A914500E4E00B338C0 /* TMemoryBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMemoryBuffer.h; sourceTree = "<group>"; };
+		B62941AA14500E4E00B338C0 /* TMemoryBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMemoryBuffer.m; sourceTree = "<group>"; };
+		B62941AB14500E4E00B338C0 /* TTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTransport.h; sourceTree = "<group>"; };
+		B62941AC14500E4E00B338C0 /* TTransportException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTransportException.h; sourceTree = "<group>"; };
+		B62941AD14500E4E00B338C0 /* TTransportException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTransportException.m; sourceTree = "<group>"; };
+		B62941AE14500E4E00B338C0 /* TSharedProcessorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSharedProcessorFactory.h; sourceTree = "<group>"; };
+		B62941AF14500E4E00B338C0 /* TSharedProcessorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSharedProcessorFactory.m; sourceTree = "<group>"; };
+		B62941BE14501BAA00B338C0 /* ATSettingEvernoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATSettingEvernoteViewController.h; path = src/ATSettingEvernoteViewController.h; sourceTree = "<group>"; };
+		B62941BF14501BAB00B338C0 /* ATSettingEvernoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATSettingEvernoteViewController.m; path = src/ATSettingEvernoteViewController.m; sourceTree = "<group>"; };
+		B62941C1145192AC00B338C0 /* ATWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATWaitingView.h; path = src/ATWaitingView.h; sourceTree = "<group>"; };
+		B62941C2145192AC00B338C0 /* ATWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATWaitingView.m; path = src/ATWaitingView.m; sourceTree = "<group>"; };
+		B62941CE1452EE4400B338C0 /* ATEvernoteConnecter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATEvernoteConnecter.h; path = src/ATEvernoteConnecter.h; sourceTree = "<group>"; };
+		B62941CF1452EE4400B338C0 /* ATEvernoteConnecter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATEvernoteConnecter.m; path = src/ATEvernoteConnecter.m; sourceTree = "<group>"; };
 		B654B90514374E8600AD55F1 /* ATNoticeInfoConnecter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATNoticeInfoConnecter.h; path = src/ATNoticeInfoConnecter.h; sourceTree = "<group>"; };
 		B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATNoticeInfoConnecter.m; path = src/ATNoticeInfoConnecter.m; sourceTree = "<group>"; };
 		B6787BBA143ADF8200E3C223 /* ATProfileLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATProfileLabelView.h; path = src/ATProfileLabelView.h; sourceTree = "<group>"; };
@@ -402,6 +458,95 @@
 			name = RegexKitLite;
 			sourceTree = "<group>";
 		};
+		B629418814500E1C00B338C0 /* Evernote */ = {
+			isa = PBXGroup;
+			children = (
+				B629418914500E4E00B338C0 /* src */,
+			);
+			name = Evernote;
+			sourceTree = "<group>";
+		};
+		B629418914500E4E00B338C0 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B629418A14500E4E00B338C0 /* edam */,
+				B629419514500E4E00B338C0 /* thrift */,
+			);
+			name = src;
+			path = External/Evernote/src;
+			sourceTree = "<group>";
+		};
+		B629418A14500E4E00B338C0 /* edam */ = {
+			isa = PBXGroup;
+			children = (
+				B629418B14500E4E00B338C0 /* EDAMLimits.h */,
+				B629418C14500E4E00B338C0 /* EDAMLimits.m */,
+				B629418D14500E4E00B338C0 /* Errors.h */,
+				B629418E14500E4E00B338C0 /* Errors.m */,
+				B629418F14500E4E00B338C0 /* NoteStore.h */,
+				B629419014500E4E00B338C0 /* NoteStore.m */,
+				B629419114500E4E00B338C0 /* Types.h */,
+				B629419214500E4E00B338C0 /* Types.m */,
+				B629419314500E4E00B338C0 /* UserStore.h */,
+				B629419414500E4E00B338C0 /* UserStore.m */,
+			);
+			path = edam;
+			sourceTree = "<group>";
+		};
+		B629419514500E4E00B338C0 /* thrift */ = {
+			isa = PBXGroup;
+			children = (
+				B629419614500E4E00B338C0 /* protocol */,
+				B629419F14500E4E00B338C0 /* server */,
+				B62941A014500E4E00B338C0 /* TApplicationException.h */,
+				B62941A114500E4E00B338C0 /* TApplicationException.m */,
+				B62941A214500E4E00B338C0 /* TException.h */,
+				B62941A314500E4E00B338C0 /* TException.m */,
+				B62941A414500E4E00B338C0 /* TProcessor.h */,
+				B62941A514500E4E00B338C0 /* TProcessorFactory.h */,
+				B62941A614500E4E00B338C0 /* transport */,
+				B62941AE14500E4E00B338C0 /* TSharedProcessorFactory.h */,
+				B62941AF14500E4E00B338C0 /* TSharedProcessorFactory.m */,
+			);
+			path = thrift;
+			sourceTree = "<group>";
+		};
+		B629419614500E4E00B338C0 /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B629419714500E4E00B338C0 /* TBinaryProtocol.h */,
+				B629419814500E4E00B338C0 /* TBinaryProtocol.m */,
+				B629419914500E4E00B338C0 /* TProtocol.h */,
+				B629419A14500E4E00B338C0 /* TProtocolException.h */,
+				B629419B14500E4E00B338C0 /* TProtocolException.m */,
+				B629419C14500E4E00B338C0 /* TProtocolFactory.h */,
+				B629419D14500E4E00B338C0 /* TProtocolUtil.h */,
+				B629419E14500E4E00B338C0 /* TProtocolUtil.m */,
+			);
+			path = protocol;
+			sourceTree = "<group>";
+		};
+		B629419F14500E4E00B338C0 /* server */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = server;
+			sourceTree = "<group>";
+		};
+		B62941A614500E4E00B338C0 /* transport */ = {
+			isa = PBXGroup;
+			children = (
+				B62941A714500E4E00B338C0 /* THTTPClient.h */,
+				B62941A814500E4E00B338C0 /* THTTPClient.m */,
+				B62941A914500E4E00B338C0 /* TMemoryBuffer.h */,
+				B62941AA14500E4E00B338C0 /* TMemoryBuffer.m */,
+				B62941AB14500E4E00B338C0 /* TTransport.h */,
+				B62941AC14500E4E00B338C0 /* TTransportException.h */,
+				B62941AD14500E4E00B338C0 /* TTransportException.m */,
+			);
+			path = transport;
+			sourceTree = "<group>";
+		};
 		B682B5931432FD8700E43A46 = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +653,7 @@
 		B682B5E81432FF0600E43A46 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				B629418814500E1C00B338C0 /* Evernote */,
 				B6024CEF1435D0C2007FB27B /* RegexKitLite */,
 				B682B6011432FF8600E43A46 /* SBJSON */,
 				B682B5EF1432FF4E00E43A46 /* Facebook */,
@@ -656,6 +802,8 @@
 				B682B6A2143303BE00E43A46 /* ATCalendarTitleView.m */,
 				B6787BBA143ADF8200E3C223 /* ATProfileLabelView.h */,
 				B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */,
+				B62941C1145192AC00B338C0 /* ATWaitingView.h */,
+				B62941C2145192AC00B338C0 /* ATWaitingView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -689,6 +837,8 @@
 			isa = PBXGroup;
 			children = (
 				B682B6451433019F00E43A46 /* Category */,
+				B682B66C1433030700E43A46 /* ATCommon.h */,
+				B682B66B1433030700E43A46 /* ATCommon.m */,
 				B682B703143304F600E43A46 /* ObjectSingleton.h */,
 				B682B65C1433030700E43A46 /* NetworkActivityIndicator.h */,
 				B682B65B1433030700E43A46 /* NetworkActivityIndicator.m */,
@@ -710,8 +860,8 @@
 				B682B6651433030700E43A46 /* ATMailComposer.m */,
 				B682B6681433030700E43A46 /* ATFacebookConnecter.h */,
 				B682B6671433030700E43A46 /* ATFacebookConnecter.m */,
-				B682B66C1433030700E43A46 /* ATCommon.h */,
-				B682B66B1433030700E43A46 /* ATCommon.m */,
+				B62941CE1452EE4400B338C0 /* ATEvernoteConnecter.h */,
+				B62941CF1452EE4400B338C0 /* ATEvernoteConnecter.m */,
 				B654B90514374E8600AD55F1 /* ATNoticeInfoConnecter.h */,
 				B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */,
 			);
@@ -859,6 +1009,8 @@
 				B682B6C21433047F00E43A46 /* ATSettingAutoLoadingViewController.m */,
 				B682B6C31433047F00E43A46 /* ATSettingInfoViewController.h */,
 				B682B6C41433047F00E43A46 /* ATSettingInfoViewController.m */,
+				B62941BE14501BAA00B338C0 /* ATSettingEvernoteViewController.h */,
+				B62941BF14501BAB00B338C0 /* ATSettingEvernoteViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -1107,6 +1259,23 @@
 				B600DC6A1439D023002B0F8D /* ATProfileViewController.m in Sources */,
 				B6787BBC143ADF8200E3C223 /* ATProfileLabelView.m in Sources */,
 				B6C5C00C14425732009E8A02 /* ATEventOutlineGroupedCell.m in Sources */,
+				B62941B014500E4E00B338C0 /* EDAMLimits.m in Sources */,
+				B62941B114500E4E00B338C0 /* Errors.m in Sources */,
+				B62941B214500E4E00B338C0 /* NoteStore.m in Sources */,
+				B62941B314500E4E00B338C0 /* Types.m in Sources */,
+				B62941B414500E4E00B338C0 /* UserStore.m in Sources */,
+				B62941B514500E4E00B338C0 /* TBinaryProtocol.m in Sources */,
+				B62941B614500E4E00B338C0 /* TProtocolException.m in Sources */,
+				B62941B714500E4E00B338C0 /* TProtocolUtil.m in Sources */,
+				B62941B814500E4E00B338C0 /* TApplicationException.m in Sources */,
+				B62941B914500E4E00B338C0 /* TException.m in Sources */,
+				B62941BA14500E4E00B338C0 /* THTTPClient.m in Sources */,
+				B62941BB14500E4E00B338C0 /* TMemoryBuffer.m in Sources */,
+				B62941BC14500E4E00B338C0 /* TTransportException.m in Sources */,
+				B62941BD14500E4E00B338C0 /* TSharedProcessorFactory.m in Sources */,
+				B62941C014501BAC00B338C0 /* ATSettingEvernoteViewController.m in Sources */,
+				B62941C3145192AC00B338C0 /* ATWaitingView.m in Sources */,
+				B62941D01452EE4400B338C0 /* ATEvernoteConnecter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1190,12 +1359,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hidetoshi Mori";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atndcal/atndcal-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${SRCROOT}/External/TapkuLibrary/src";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/External/Evernote/src/**",
+					"${SRCROOT}/External/TapkuLibrary/src",
+				);
 				INFOPLIST_FILE = "atndcal/atndcal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = (
@@ -1204,7 +1380,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74B14AA4-353F-496E-B72B-F152F60A8C39";
+				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1213,11 +1389,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hidetoshi Mori";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atndcal/atndcal-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${SRCROOT}/External/TapkuLibrary/src";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/External/Evernote/src/**",
+					"${SRCROOT}/External/TapkuLibrary/src",
+				);
 				INFOPLIST_FILE = "atndcal/atndcal-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = (
@@ -1226,7 +1409,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74B14AA4-353F-496E-B72B-F152F60A8C39";
+				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

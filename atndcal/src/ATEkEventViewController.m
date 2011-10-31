@@ -9,7 +9,6 @@
 #import "ATEkEventViewController.h"
 #import "ATCommon.h"
 
-#import "ATTitleView.h"
 #import "ATEkEventCell.h"
 
 @interface ATEkEventViewController ()

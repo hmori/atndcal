@@ -13,7 +13,7 @@
 #import "ATFbEventStatusViewController.h"
 #import "ATTextAnalysisViewController.h"
 
-#import "ATTitleView.h"
+//#import "ATTitleView.h"
 
 #import "ATEventDateCell.h"
 #import "ATEventTextCell.h"
@@ -53,6 +53,7 @@ typedef enum {
 - (void)addEkEventFacebook:(id)sender;
 - (void)showEkEventFacebook:(id)sender;
 - (void)openMail:(id)sender;
+- (void)clipEvernote:(id)sender;
 
 - (void)successFbRsvpStatusRequest:(NSDictionary *)userInfo;
 - (void)errorFbRsvpStatusRequest:(NSDictionary *)userInfo;
@@ -468,6 +469,28 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
     POOL_END;
 }
 
+- (void)clipEvernote:(id)sender {
+    LOG_CURRENT_METHOD;
+    
+    NSString *title = [NSString stringWithFormat:@"[Facebook]%@", _event.name];
+    NSString *divContent = [ATFbEventManager stringDivWithFbEvent:_event];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", fbWebEventUrl, _event.id_];
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:0];
+    [param setObject:title forKey:@"title"];
+    [param setObject:divContent forKey:@"divContent"];
+    [param setObject:@"Facebook" forKey:@"tags"];
+    [param setObject:urlString forKey:@"sourceURL"];
+    
+    BOOL isSuccess = [[ATEvernoteConnecter sharedATEvernoteConnecter] createNote:param];
+    if (isSuccess) {
+        [[TKAlertCenter defaultCenter] performSelectorOnMainThread:@selector(postAlertWithMessage:) 
+                                                        withObject:@"クリップしました." 
+                                                     waitUntilDone:YES];
+    }
+}
+
+
 #pragma mark - Public
 
 - (void)otherAction:(id)sender {
@@ -498,6 +521,19 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
             [self addBookmark:sender type:ATEventTypeFacebook eventId:_event.id_];
         }];
     }
+
+    NSString *evernoteUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsEvernoteUsername];
+    if (evernoteUsername) {
+        [actionSheet addButtonWithTitle:@"Evernoteにクリップ" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+            NSInvocationOperation *invOperation = [[[NSInvocationOperation alloc] 
+                                                    initWithTarget:self 
+                                                    selector:@selector(clipEvernote:) 
+                                                    object:sender] autorelease];
+            invOperation.queuePriority = NSOperationQueuePriorityVeryHigh;
+            [[ATOperationManager sharedATOperationManager] addOperation:invOperation];
+        }];
+    }
+
     if ([TWTweetComposeViewController canSendTweet]) {
         [actionSheet addButtonWithTitle:@"ツイートする" callback:^(ATActionSheet *actionSheet, NSInteger index) {
             NSString *urlString = [NSString stringWithFormat:@"%@%@", fbWebEventUrl, _event.id_];

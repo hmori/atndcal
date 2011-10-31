@@ -9,10 +9,9 @@
 #import "ATSettingMenuViewController.h"
 #import "ATCommon.h"
 
-#import "ATTitleView.h"
-
 #import "ATSettingLoadDaysViewController.h"
 #import "ATSettingAutoLoadingViewController.h"
+#import "ATSettingEvernoteViewController.h"
 
 #import "ATEventForDate.h"
 #import "ATEventForAttend.h"
@@ -54,9 +53,9 @@
     ATSetting *setting = [ATSetting sharedATSetting];
     ATResource *resource = [ATResource sharedATResource];
     
-    _userNameCell = [[ATLabelTextFieldCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-    _userNameCell.textLabel.text = [setting objectForItemKey:@"Title" key:kDefaultsSettingAtndNickname];
-    _userNameCell.field.placeholder = @"username";
+    _usernameCell = [[ATLabelTextFieldCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    _usernameCell.textLabel.text = [setting objectForItemKey:@"Title" key:kDefaultsSettingAtndNickname];
+    _usernameCell.field.placeholder = @"username";
     
     _requestDaysCountCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     _requestDaysCountCell.textLabel.text = [setting objectForItemKey:@"Title" key:kDefaultsSettingAtndLoadDaysValue];
@@ -76,7 +75,10 @@
                        highlightedImage:[resource imageOfPath:@"FBConnect.bundle/images/LogoutPressed.png"]] autorelease];
     logoutImageView.center = _facebookLogoutCell.contentView.center;
     [_facebookLogoutCell.contentView addSubview:logoutImageView];
-    
+
+    _evernoteCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    _evernoteCell.textLabel.text = @"Evernote";
+    _evernoteCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     _requestAutoLoadingCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     _requestAutoLoadingCell.textLabel.text = [setting objectForItemKey:@"Title" key:kDefaultsSettingAutoLoadingValue];
@@ -84,7 +86,14 @@
     
     _dataResetCell = [[TKButtonCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     _dataResetCell.textLabel.text = @"キャッシュクリア";
+
     
+    _sectionItems = [[NSMutableArray alloc] initWithCapacity:0];
+    [_sectionItems addObject:[NSNumber numberWithInt:ATSettingMenuSectionAtnd]];
+    [_sectionItems addObject:[NSNumber numberWithInt:ATSettingMenuSectionFacebook]];
+    [_sectionItems addObject:[NSNumber numberWithInt:ATSettingMenuSectionEvernote]];
+    [_sectionItems addObject:[NSNumber numberWithInt:ATSettingMenuSectionAuto]];
+    [_sectionItems addObject:[NSNumber numberWithInt:ATSettingMenuSectionReset]];
     POOL_END;
 }
 
@@ -92,10 +101,12 @@
 - (void)dealloc {
     [[ATCommon facebookConnecter] removeObserver:self forKeyPath:@"countUpdateMeData"];
 
-    [_userNameCell release];
+    [_sectionItems release];
+    [_usernameCell release];
     [_requestDaysCountCell release];
     [_facebookLoginCell release];
     [_facebookLogoutCell release];
+    [_evernoteCell release];
     [_requestAutoLoadingCell release];
     [_dataResetCell release];
     [super dealloc];
@@ -114,25 +125,31 @@
     LOG_CURRENT_METHOD;
     [super viewWillAppear:animated];
     
-    _userNameCell.field.text = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsSettingAtndNickname];
+    _usernameCell.field.text = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsSettingAtndNickname];
     [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate & DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    LOG_CURRENT_METHOD;
+    return _sectionItems.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
+    LOG_CURRENT_METHOD;
     NSInteger row = 0;
-    if (section == 0) {
+    
+    ATSettingMenuSection sectionItem = [[_sectionItems objectAtIndex:section] intValue];
+    if (sectionItem == ATSettingMenuSectionAtnd) {
         row = 2;
-    } else if (section == 1) {
+    } else if (sectionItem == ATSettingMenuSectionFacebook) {
         row = 1;
-    } else if (section == 2) {
+    } else if (sectionItem == ATSettingMenuSectionEvernote) {
         row = 1;
-    } else if (section == 3) {
+    } else if (sectionItem == ATSettingMenuSectionAuto) {
+        row = 1;
+    } else if (sectionItem == ATSettingMenuSectionReset) {
         row = 1;
     }
 	return row;
@@ -140,43 +157,55 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSString *title = nil;
-    if (section == 0) {
+    ATSettingMenuSection sectionItem = [[_sectionItems objectAtIndex:section] intValue];
+    if (sectionItem == ATSettingMenuSectionAtnd) {
         title = [[[[ATSetting sharedATSetting] preferenceSpecifiersOfRoot] objectAtIndex:0] objectForKey:@"Title"];
-    } else if (section == 1) {
+    } else if (sectionItem == ATSettingMenuSectionFacebook) {
         title = @"Facebook";
-    } else if (section == 2) {
+    } else if (sectionItem == ATSettingMenuSectionEvernote) {
+        title = @"Evernote";
+    } else if (sectionItem == ATSettingMenuSectionAuto) {
         title = @"自動";
-    } else if (section == 3) {
+    } else if (sectionItem == ATSettingMenuSectionReset) {
         title = @"データ";
     }
     return title;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    LOG_CURRENT_METHOD;
 	UITableViewCell *cell = nil;
     
     ATSetting *setting = [ATSetting sharedATSetting];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (indexPath.section == 0 && indexPath.row == 0) {
-        cell = _userNameCell;
-    } else if (indexPath.section == 0 && indexPath.row == 1) {
-        cell = _requestDaysCountCell;
-        cell.detailTextLabel.text = 
-        [setting stringTitleOfValue:[defaults objectForKey:kDefaultsSettingAtndLoadDaysValue] 
-                                key:kDefaultsSettingAtndLoadDaysValue];
-    } else if (indexPath.section == 1 && indexPath.row == 0) {
+    
+    ATSettingMenuSection sectionItem = [[_sectionItems objectAtIndex:indexPath.section] intValue];
+    if (sectionItem == ATSettingMenuSectionAtnd) {
+        if (indexPath.row == 0) {
+            cell = _usernameCell;
+        } else if (indexPath.row == 1) {
+            cell = _requestDaysCountCell;
+            cell.detailTextLabel.text = 
+            [setting stringTitleOfValue:[defaults objectForKey:kDefaultsSettingAtndLoadDaysValue] 
+                                    key:kDefaultsSettingAtndLoadDaysValue];
+        }
+    } else if (sectionItem == ATSettingMenuSectionFacebook) {
         ATFacebookConnecter *fbConnecter = [ATCommon facebookConnecter];
         if ([fbConnecter.facebook isSessionValid]) {
             cell = _facebookLogoutCell;
         } else {
             cell = _facebookLoginCell;
         }
-    } else if (indexPath.section == 2 && indexPath.row == 0) {
+    } else if (sectionItem == ATSettingMenuSectionEvernote) {
+        cell = _evernoteCell;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        cell.detailTextLabel.text = [defaults objectForKey:kDefaultsEvernoteUsername];
+    } else if (sectionItem == ATSettingMenuSectionAuto) {
         cell = _requestAutoLoadingCell;
         cell.detailTextLabel.text = 
         [setting stringTitleOfValue:[defaults objectForKey:kDefaultsSettingAutoLoadingValue] 
                                 key:kDefaultsSettingAutoLoadingValue];
-    } else if (indexPath.section == 3 && indexPath.row == 0) {
+    } else if (sectionItem == ATSettingMenuSectionReset) {
         cell = _dataResetCell;
     }
     return cell;
@@ -187,10 +216,14 @@
     POOL_START;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0 && indexPath.row == 1) {
-        ATSettingLoadDaysViewController *ctl = [[[ATSettingLoadDaysViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-        [self.navigationController pushViewController:ctl animated:YES];
-    } else if (indexPath.section == 1 && indexPath.row == 0) {
+    
+    ATSettingMenuSection sectionItem = [[_sectionItems objectAtIndex:indexPath.section] intValue];
+    if (sectionItem == ATSettingMenuSectionAtnd) {
+        if (indexPath.row == 1) {
+            ATSettingLoadDaysViewController *ctl = [[[ATSettingLoadDaysViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+            [self.navigationController pushViewController:ctl animated:YES];
+        }
+    } else if (sectionItem == ATSettingMenuSectionFacebook) {
         ATFacebookConnecter *fbConnecter = [ATCommon facebookConnecter];
         if ([fbConnecter.facebook isSessionValid]) {
             ATActionSheet *actionSheet = [[[ATActionSheet alloc] initWithTitle:@"Facebook"] autorelease];
@@ -202,11 +235,13 @@
         } else {
             [self fbLoginAction:nil];
         }
-    } else if (indexPath.section == 2 && indexPath.row == 0) {
+    } else if (sectionItem == ATSettingMenuSectionEvernote) {
+        ATSettingEvernoteViewController *ctl = [[[ATSettingEvernoteViewController alloc] init] autorelease];
+        [self.navigationController pushViewController:ctl animated:YES];
+    } else if (sectionItem == ATSettingMenuSectionAuto) {
         ATSettingAutoLoadingViewController *ctl = [[[ATSettingAutoLoadingViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
         [self.navigationController pushViewController:ctl animated:YES];
-    } else if (indexPath.section == 3 && indexPath.row == 0) {
-        
+    } else if (sectionItem == ATSettingMenuSectionReset) {
         ATActionSheet *actionSheet = [[[ATActionSheet alloc] initWithTitle:@"保存されたキャッシュデータをクリアします。"] autorelease];
         [actionSheet addDestructiveButtonWithTitle:@"キャッシュクリア" callback:^(ATActionSheet *actionSheet, NSInteger index) {
             [self clearDataAction:nil];
@@ -255,7 +290,7 @@
     LOG_CURRENT_METHOD;
     POOL_START;
 
-    NSString *nickname = [[_userNameCell.field.text copy] autorelease];
+    NSString *nickname = [[_usernameCell.field.text copy] autorelease];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nickname forKey:kDefaultsSettingAtndNickname];
     [defaults synchronize];
