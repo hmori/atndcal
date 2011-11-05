@@ -13,6 +13,7 @@
 #import "ATFbEventStatusViewController.h"
 #import "ATTextAnalysisViewController.h"
 #import "ATWebViewController.h"
+#import "ATSettingEvernoteViewController.h"
 
 #import "ATEventDateCell.h"
 #import "ATEventTextCell.h"
@@ -588,17 +589,21 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [self selectTimerForNotification:sender message:message startDate:startDate];
     }];
 
-    NSString *evernoteUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsEvernoteUsername];
-    if (evernoteUsername) {
-        [actionSheet addButtonWithTitle:@"Evernoteにクリップ" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+    [actionSheet addButtonWithTitle:@"Evernoteにクリップ" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSString *evernoteUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsEvernoteUsername];
+        if (evernoteUsername) {
             NSInvocationOperation *invOperation = [[[NSInvocationOperation alloc] 
                                                     initWithTarget:self 
                                                     selector:@selector(clipEvernote:) 
                                                     object:sender] autorelease];
             invOperation.queuePriority = NSOperationQueuePriorityVeryHigh;
             [[ATOperationManager sharedATOperationManager] addOperation:invOperation];
-        }];
-    }
+        } else {
+            ATSettingEvernoteViewController *ctl = [[[ATSettingEvernoteViewController alloc] init] autorelease];
+            UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:ctl] autorelease];
+            [self presentModalViewController:nav animated:YES];
+        }
+    }];
 
     if ([TWTweetComposeViewController canSendTweet]) {
         [actionSheet addButtonWithTitle:@"ツイートする" callback:^(ATActionSheet *actionSheet, NSInteger index) {

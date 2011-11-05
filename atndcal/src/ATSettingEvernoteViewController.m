@@ -142,7 +142,12 @@
 
 - (void)closeAction:(id)sender {
     LOG_CURRENT_METHOD;
-    [self dismissModalViewControllerAnimated:YES];
+    id parent = [((UINavigationController *)self.presentingViewController).viewControllers lastObject];
+    [self dismissViewControllerAnimated:YES completion:^(void) {
+        if ([parent respondsToSelector:@selector(clipEvernote:)]) {
+            [parent performSelector:@selector(clipEvernote:)];
+        }
+    }];
 }
 
 - (void)doneAction:(id)sender {
