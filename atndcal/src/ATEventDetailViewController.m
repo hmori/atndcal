@@ -410,7 +410,12 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
     POOL_END;
 }
 
-- (void)requestLwws:(NSString *)address location:(CLLocation *)location startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+- (void)requestLwws:(NSString *)address 
+           location:(CLLocation *)location 
+          startDate:(NSDate *)startDate 
+            endDate:(NSDate *)endDate 
+   searchCandidates:(NSArray *)searchCandidates {
+
     POOL_START;
     
     static NSString *defaultRssTitle = @"東京";
@@ -425,6 +430,17 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
                     NSString *addressString = ABCreateStringWithAddressDictionary(placemark.addressDictionary, YES);
                     self.rssLdWeather = [self searchRssLdWeather:addressString];
                     [addressString release];
+                    if (_rssLdWeather) {
+                        break;
+                    }
+                }
+            }
+            if (!_rssLdWeather) {
+                for (NSString *candidate in searchCandidates) {
+                    self.rssLdWeather = [self searchRssLdWeather:candidate];
+                    if (_rssLdWeather) {
+                        break;
+                    }
                 }
             }
             if (!_rssLdWeather) {

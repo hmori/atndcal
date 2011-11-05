@@ -815,10 +815,25 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     NSDate *startDate = [NSDate dateForAtndDateString:_event.started_at];
     NSDate *endDate = [NSDate dateForAtndDateString:_event.ended_at];
     
+    NSMutableArray *searchCandidates = [NSMutableArray arrayWithCapacity:0];
+    if (_event.place && (NSNull *)_event.place != [NSNull null]) {
+        [searchCandidates addObject:_event.place];
+    }
+    if (_event.title && (NSNull *)_event.title != [NSNull null]) {
+        [searchCandidates addObject:_event.title];
+    }
+    if (_event.catch_ && (NSNull *)_event.catch_ != [NSNull null]) {
+        [searchCandidates addObject:_event.catch_];
+    }
+    if (_event.description_ && (NSNull *)_event.description_ != [NSNull null]) {
+        [searchCandidates addObject:_event.description_];
+    }
+    
     [self requestLwws:_event.address 
              location:location 
             startDate:startDate 
-              endDate:endDate];
+              endDate:endDate
+     searchCandidates:searchCandidates];
     
     POOL_END;
 }

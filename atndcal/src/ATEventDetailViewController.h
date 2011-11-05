@@ -76,7 +76,11 @@ typedef enum {
 - (void)removeBookmark:(id)sender;
 - (void)sendTweet:(id)sender initialText:(NSString *)initialText url:(NSURL *)url;
 - (void)openMailWithSubject:(NSString *)subject body:(NSString *)body;
-- (void)requestLwws:(NSString *)address location:(CLLocation *)location startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (void)requestLwws:(NSString *)address 
+           location:(CLLocation *)location 
+          startDate:(NSDate *)startDate 
+            endDate:(NSDate *)endDate 
+   searchCandidates:(NSArray *)searchCandidates;
 - (UIActivityIndicatorView *)indicatorViewForCellImage;
 - (void)settingLwwsCell:(ATLwwsCell *)cell;
 - (void)selectTimerForNotification:(id)sender message:(NSString *)message startDate:(NSDate *)startDate;

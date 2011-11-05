@@ -750,7 +750,22 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
     NSDate *endDate = [NSDate dateConvertFromPstDate:
                        [NSDate dateWithTimeIntervalSince1970:[_event.end_time doubleValue]]];
     
-    [self requestLwws:street location:location startDate:startDate endDate:endDate];
+    NSMutableArray *searchCandidates = [NSMutableArray arrayWithCapacity:0];
+    if (_event.location && [_event.location length] > 0) {
+        [searchCandidates addObject:_event.location];
+    }
+    if (_event.name && [_event.name length] > 0) {
+        [searchCandidates addObject:_event.name];
+    }
+    if (_event.description_ && [_event.description_ length] > 0) {
+        [searchCandidates addObject:_event.description_];
+    }
+    
+    [self requestLwws:street 
+             location:location 
+            startDate:startDate 
+              endDate:endDate
+     searchCandidates:searchCandidates];
    
     POOL_END;
 }
