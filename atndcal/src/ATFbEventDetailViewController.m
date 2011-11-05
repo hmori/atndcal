@@ -202,18 +202,32 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    static NSString *title1 = @"場所";
+    static NSString *title3 = @"詳細";
+    static NSString *title4 = @"出欠の返事";
     NSString *title = nil;
     if (section == 0) {
         title = _event.name;
     } else if (section == 1) {
-        title = @"場所";
+        title = title1;
     } else if (section == 3) {
-        title = @"詳細";
+        title = title3;
     } else if (section == 4) {
-        title = @"出欠の返事";
+        title = title4;
     } else if (section == 5) {
         if (self.lwws) {
             title = self.lwws.title;
+        }
+    }
+    return title;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    static NSString *title5 = @"powered by Livedoor Weather Hacks";
+    NSString *title = nil;
+    if (section == 5) {
+        if (self.lwws) {
+            title = title5;
         }
     }
     return title;
@@ -564,7 +578,8 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         }];
     }
     [actionSheet addButtonWithTitle:@"事前に通知する" callback:^(ATActionSheet *actionSheet, NSInteger index) {
-        NSString *message = [NSString stringWithFormat:@"%@ : [%@] @ %@", 
+        static NSString *messageFormat = @"%@ : [%@] @ %@";
+        NSString *message = [NSString stringWithFormat:messageFormat, 
                              _event.name, 
                              [ATFbEventManager stringForDispDate:_event],
                              _event.location];

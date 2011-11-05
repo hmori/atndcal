@@ -202,21 +202,36 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    static NSString *title1 = @"場所";
+    static NSString *title3 = @"詳細";
+    static NSString *title4 = @"出席";
+    static NSString *title6 = @"コメント";
     NSString *title = nil;
     if (section == 0) {
         title = _event.title;
     } else if (section == 1) {
-        title = @"場所";
+        title = title1;
     } else if (section == 3) {
-        title = @"詳細";
+        title = title3;
     } else if (section == 4) {
-        title = @"出席";
+        title = title4;
     } else if (section == 5) {
         if (self.lwws) {
             title = self.lwws.title;
         }
     } else if (section == 6) {
-        title = @"コメント";
+        title = title6;
+    }
+    return title;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    static NSString *title5 = @"powered by Livedoor Weather Hacks";
+    NSString *title = nil;
+    if (section == 5) {
+        if (self.lwws) {
+            title = title5;
+        }
     }
     return title;
 }
@@ -599,7 +614,8 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         }];
     }
     [actionSheet addButtonWithTitle:@"事前に通知する" callback:^(ATActionSheet *actionSheet, NSInteger index) {
-        NSString *message = [NSString stringWithFormat:@"%@ : [%@] @ %@", 
+        static NSString *messageFormat = @"%@ : [%@] @ %@";
+        NSString *message = [NSString stringWithFormat:messageFormat, 
                              _event.title, 
                              [ATEventManager stringForDispDate:_event],
                              _event.place];

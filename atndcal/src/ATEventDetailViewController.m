@@ -145,9 +145,10 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
 #pragma mark - Private
 
 - (NSString *)titleString {
+    static NSString *titleFormat = @"%@%@";
     NSString *titleString = nil;
     if (_bookmarkedIdentifier) {
-        titleString = [NSString stringWithFormat:@"%@%@", starString, [self eventTitle]];
+        titleString = [NSString stringWithFormat:titleFormat, starString, [self eventTitle]];
     } else {
         titleString = [self eventTitle];
     }
@@ -239,11 +240,7 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
 }
 
 - (void)scheduleAlarmForDate:(NSDate *)theDate message:(NSString *)message {
-//    UIApplication *app = [UIApplication sharedApplication];
-//    NSArray *oldNotifications = [app scheduledLocalNotifications];
-//    if ([oldNotifications count] > 0) {
-//        [app cancelAllLocalNotifications];
-//    }
+    POOL_START;
 
     UILocalNotification *alarm = [[[UILocalNotification alloc] init] autorelease];
     if (alarm) {
@@ -254,6 +251,7 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
         alarm.alertBody = message;
         [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
     }
+    POOL_END;
 }
 
 
@@ -413,6 +411,8 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
 }
 
 - (void)requestLwws:(NSString *)address location:(CLLocation *)location startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+    POOL_START;
+    
     static NSString *defaultRssTitle = @"東京";
     
     NSArray *forecasts = [[ATLdWeatherConnecter sharedATLdWeatherConnecter] forecasts];
@@ -440,6 +440,7 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
         [self requestLwwsWithStartDate:startDate endDate:endDate];
     }
 
+    POOL_END;
 }
 
 - (UIActivityIndicatorView *)indicatorViewForCellImage {
@@ -456,6 +457,7 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
 - (void)settingLwwsCell:(ATLwwsCell *)cell {
     static NSString *labelFormat = @"%@  [%@℃ 〜 %@℃]";
     
+    POOL_START;
     if (self.lwws) {
         if (self.lwws.imageUrl) {
             UIImage *i = [[TKImageCenter sharedImageCenter] imageAtURL:self.lwws.imageUrl queueIfNeeded:YES];
@@ -475,6 +477,8 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
         cell.label.text = nil;
         cell.field.text = nil;
     }
+    
+    POOL_END;
 }
 
 - (void)selectTimerForNotification:(id)sender message:(NSString *)message startDate:(NSDate *)startDate {
