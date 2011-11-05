@@ -133,6 +133,15 @@
 		B682B71C143305DF00E43A46 /* h_mori.png in Resources */ = {isa = PBXBuildFile; fileRef = B682B71A143305DF00E43A46 /* h_mori.png */; };
 		B682B71F143305EC00E43A46 /* at.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B682B71D143305EC00E43A46 /* at.xcdatamodeld */; };
 		B682B73B1433F40D00E43A46 /* ATTextAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B73A1433F40800E43A46 /* ATTextAnalysisViewController.m */; };
+		B69272571461084F0091BDB1 /* ATLwwsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B69272561461084F0091BDB1 /* ATLwwsCell.m */; };
+		B692725A146210350091BDB1 /* ATLwws.m in Sources */ = {isa = PBXBuildFile; fileRef = B6927259146210350091BDB1 /* ATLwws.m */; };
+		B6A152DD146018E80091AD74 /* ATLdWeatherRssParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A152DC146018E70091AD74 /* ATLdWeatherRssParser.m */; };
+		B6A152E01460193D0091AD74 /* ATRssLdWeather.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A152DF1460193D0091AD74 /* ATRssLdWeather.m */; };
+		B6A152E3146029570091AD74 /* ATLdWeatherConnecter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A152E2146029560091AD74 /* ATLdWeatherConnecter.m */; };
+		B6A152E61460E6A10091AD74 /* ATLwwsXmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A152E51460E6920091AD74 /* ATLwwsXmlParser.m */; };
+		B6BC57FA14645813000B41A3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6BC57F914645812000B41A3 /* CoreLocation.framework */; };
+		B6BC57FC14645C44000B41A3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6BC57FB14645C44000B41A3 /* AddressBook.framework */; };
+		B6BC57FE14645D5F000B41A3 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6BC57FD14645D5F000B41A3 /* AddressBookUI.framework */; };
 		B6C36B56143458D0005AFB7D /* ATKeyphraseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B55143458D0005AFB7D /* ATKeyphraseResult.m */; };
 		B6C36B5914345994005AFB7D /* ATKeyphraseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B5814345994005AFB7D /* ATKeyphraseParser.m */; };
 		B6C36B74143564D9005AFB7D /* NSMutableURLRequest+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C36B73143564D8005AFB7D /* NSMutableURLRequest+ATCategory.m */; };
@@ -406,6 +415,21 @@
 		B682B7391433F40400E43A46 /* ATTextAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATTextAnalysisViewController.h; path = src/ATTextAnalysisViewController.h; sourceTree = "<group>"; };
 		B682B73A1433F40800E43A46 /* ATTextAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATTextAnalysisViewController.m; path = src/ATTextAnalysisViewController.m; sourceTree = "<group>"; };
 		B68DDEF81439412D00A7A125 /* atndcal-exclusive-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "atndcal-exclusive-Prefix.pch"; sourceTree = "<group>"; };
+		B69272551461084F0091BDB1 /* ATLwwsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATLwwsCell.h; path = src/ATLwwsCell.h; sourceTree = "<group>"; };
+		B69272561461084F0091BDB1 /* ATLwwsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLwwsCell.m; path = src/ATLwwsCell.m; sourceTree = "<group>"; };
+		B6927258146210350091BDB1 /* ATLwws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATLwws.h; path = src/ATLwws.h; sourceTree = "<group>"; };
+		B6927259146210350091BDB1 /* ATLwws.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLwws.m; path = src/ATLwws.m; sourceTree = "<group>"; };
+		B6A152DB146018E70091AD74 /* ATLdWeatherRssParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATLdWeatherRssParser.h; path = src/ATLdWeatherRssParser.h; sourceTree = "<group>"; };
+		B6A152DC146018E70091AD74 /* ATLdWeatherRssParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLdWeatherRssParser.m; path = src/ATLdWeatherRssParser.m; sourceTree = "<group>"; };
+		B6A152DE1460193D0091AD74 /* ATRssLdWeather.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATRssLdWeather.h; path = src/ATRssLdWeather.h; sourceTree = "<group>"; };
+		B6A152DF1460193D0091AD74 /* ATRssLdWeather.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATRssLdWeather.m; path = src/ATRssLdWeather.m; sourceTree = "<group>"; };
+		B6A152E1146029560091AD74 /* ATLdWeatherConnecter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATLdWeatherConnecter.h; path = src/ATLdWeatherConnecter.h; sourceTree = "<group>"; };
+		B6A152E2146029560091AD74 /* ATLdWeatherConnecter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLdWeatherConnecter.m; path = src/ATLdWeatherConnecter.m; sourceTree = "<group>"; };
+		B6A152E41460E6720091AD74 /* ATLwwsXmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATLwwsXmlParser.h; path = src/ATLwwsXmlParser.h; sourceTree = "<group>"; };
+		B6A152E51460E6920091AD74 /* ATLwwsXmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATLwwsXmlParser.m; path = src/ATLwwsXmlParser.m; sourceTree = "<group>"; };
+		B6BC57F914645812000B41A3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B6BC57FB14645C44000B41A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		B6BC57FD14645D5F000B41A3 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		B6C36B54143458D0005AFB7D /* ATKeyphraseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATKeyphraseResult.h; path = src/ATKeyphraseResult.h; sourceTree = "<group>"; };
 		B6C36B55143458D0005AFB7D /* ATKeyphraseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATKeyphraseResult.m; path = src/ATKeyphraseResult.m; sourceTree = "<group>"; };
 		B6C36B5714345994005AFB7D /* ATKeyphraseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATKeyphraseParser.h; path = src/ATKeyphraseParser.h; sourceTree = "<group>"; };
@@ -422,6 +446,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6BC57FE14645D5F000B41A3 /* AddressBookUI.framework in Frameworks */,
+				B6BC57FC14645C44000B41A3 /* AddressBook.framework in Frameworks */,
+				B6BC57FA14645813000B41A3 /* CoreLocation.framework in Frameworks */,
 				B6CF85021449709C00C46836 /* Twitter.framework in Frameworks */,
 				B6024CF41435D1FA007FB27B /* libicucore.dylib in Frameworks */,
 				B682B622143300A200E43A46 /* QuartzCore.framework in Frameworks */,
@@ -571,6 +598,9 @@
 			isa = PBXGroup;
 			children = (
 				B6024CF31435D1FA007FB27B /* libicucore.dylib */,
+				B6BC57FD14645D5F000B41A3 /* AddressBookUI.framework */,
+				B6BC57FB14645C44000B41A3 /* AddressBook.framework */,
+				B6BC57F914645812000B41A3 /* CoreLocation.framework */,
 				B6CF85011449709C00C46836 /* Twitter.framework */,
 				B682B621143300A200E43A46 /* QuartzCore.framework */,
 				B682B61F1433008E00E43A46 /* MessageUI.framework */,
@@ -850,6 +880,10 @@
 				B6C36B5814345994005AFB7D /* ATKeyphraseParser.m */,
 				B682B7041433050E00E43A46 /* ATRssParser.h */,
 				B682B7051433050E00E43A46 /* ATRssParser.m */,
+				B6A152DB146018E70091AD74 /* ATLdWeatherRssParser.h */,
+				B6A152DC146018E70091AD74 /* ATLdWeatherRssParser.m */,
+				B6A152E41460E6720091AD74 /* ATLwwsXmlParser.h */,
+				B6A152E51460E6920091AD74 /* ATLwwsXmlParser.m */,
 				B682B6601433030700E43A46 /* ATResource.h */,
 				B682B65F1433030700E43A46 /* ATResource.m */,
 				B682B6621433030700E43A46 /* ATRequestOperation.h */,
@@ -864,6 +898,8 @@
 				B62941CF1452EE4400B338C0 /* ATEvernoteConnecter.m */,
 				B654B90514374E8600AD55F1 /* ATNoticeInfoConnecter.h */,
 				B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */,
+				B6A152E1146029560091AD74 /* ATLdWeatherConnecter.h */,
+				B6A152E2146029560091AD74 /* ATLdWeatherConnecter.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -926,6 +962,8 @@
 				B682B6831433032500E43A46 /* ATEventDateCell.m */,
 				B682B6861433032500E43A46 /* ATEventCommentCell.h */,
 				B682B6851433032500E43A46 /* ATEventCommentCell.m */,
+				B69272551461084F0091BDB1 /* ATLwwsCell.h */,
+				B69272561461084F0091BDB1 /* ATLwwsCell.m */,
 				B682B67A1433032500E43A46 /* ATLabelTextFieldCell.h */,
 				B682B6791433032500E43A46 /* ATLabelTextFieldCell.m */,
 				B682B6881433032500E43A46 /* ATEkEventCell.h */,
@@ -1022,6 +1060,10 @@
 				B682B6F1143304E800E43A46 /* ATRssChannel.m */,
 				B682B6F2143304E800E43A46 /* ATRssItem.h */,
 				B682B6F3143304E800E43A46 /* ATRssItem.m */,
+				B6A152DE1460193D0091AD74 /* ATRssLdWeather.h */,
+				B6A152DF1460193D0091AD74 /* ATRssLdWeather.m */,
+				B6927258146210350091BDB1 /* ATLwws.h */,
+				B6927259146210350091BDB1 /* ATLwws.m */,
 			);
 			name = Rss;
 			sourceTree = "<group>";
@@ -1276,6 +1318,12 @@
 				B62941C014501BAC00B338C0 /* ATSettingEvernoteViewController.m in Sources */,
 				B62941C3145192AC00B338C0 /* ATWaitingView.m in Sources */,
 				B62941D01452EE4400B338C0 /* ATEvernoteConnecter.m in Sources */,
+				B6A152DD146018E80091AD74 /* ATLdWeatherRssParser.m in Sources */,
+				B6A152E01460193D0091AD74 /* ATRssLdWeather.m in Sources */,
+				B6A152E3146029570091AD74 /* ATLdWeatherConnecter.m in Sources */,
+				B6A152E61460E6A10091AD74 /* ATLwwsXmlParser.m in Sources */,
+				B69272571461084F0091BDB1 /* ATLwwsCell.m in Sources */,
+				B692725A146210350091BDB1 /* ATLwws.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

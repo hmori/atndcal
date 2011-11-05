@@ -21,6 +21,7 @@
     NSMutableArray *_itemsInSection2;
     NSMutableArray *_itemsInSection3;
     NSMutableArray *_itemsInSection4;
+    NSMutableArray *_itemsInSection5;
     
     BOOL _isContinueDescription;
 }
@@ -32,5 +33,6 @@
 - (void)mapAction:(id)sender;
 - (void)textAction:(id)sender text:(NSString *)text;
 - (void)reloadRsvpStatusAction:(id)sender;
+- (void)reloadLwwsAction:(id)sender;
 
 @end

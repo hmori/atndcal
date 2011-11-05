@@ -17,6 +17,7 @@
 @end
 
 @interface ATRssItem : NSObject {
+  @private
     NSString *_title;
     NSString *_author;
     NSString *_link;

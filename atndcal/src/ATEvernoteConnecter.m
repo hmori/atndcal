@@ -27,8 +27,8 @@ NSString * const kDefaultsEvernotePassword = @"kDefaultsEvernotePassword";
 NSString * const consumerKey  = kAtndcalEvernoteConsumerKey;
 NSString * const consumerSecret = kAtndcalEvernoteConsumerSecret;
 
-NSString * const userStoreUri = @"https://sandbox.evernote.com/edam/user";
-NSString * const noteStoreUriBase = @"https://sandbox.evernote.com/edam/note/"; 
+NSString * const userStoreUri = @"https://www.evernote.com/edam/user";
+NSString * const noteStoreUriBase = @"https://www.evernote.com/edam/note/"; 
 
 OBJECT_SINGLETON_TEMPLATE(ATEvernoteConnecter, sharedATEvernoteConnecter)
 

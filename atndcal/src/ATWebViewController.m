@@ -247,7 +247,12 @@
 - (void)firstLoadAction:(id)sender {
     LOG_CURRENT_METHOD;
     POOL_START;
-    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:_initUrlString]];
+    NSString *url = _initUrlString;
+    if ([_initUrlString hasSuffix:@".xml"]) {
+        static NSString *macReaderUrlFormat = @"http://reader.mac.com/mobile/v1/%@";
+        url = [NSString stringWithFormat:macReaderUrlFormat, [_initUrlString URLEncode]];
+    }
+    NSURLRequest *req = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
 	[_webView loadRequest:req];
     POOL_END;
 }

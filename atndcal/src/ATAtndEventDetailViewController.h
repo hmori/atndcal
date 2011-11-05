@@ -14,12 +14,14 @@
   @private
     ATEvent *_event;
     NSArray *_commentItems;
+    
     NSMutableArray *_itemsInSection0;
     NSMutableArray *_itemsInSection1;
     NSMutableArray *_itemsInSection2;
     NSMutableArray *_itemsInSection3;
     NSMutableArray *_itemsInSection4;
     NSMutableArray *_itemsInSection5;
+    NSMutableArray *_itemsInSection6;
     
     BOOL _isContinueDescription;
 }
@@ -34,5 +36,6 @@
 - (void)entryAction:(id)sender;
 
 - (void)reloadCommentAction:(id)sender;
+- (void)reloadLwwsAction:(id)sender;
 
 @end

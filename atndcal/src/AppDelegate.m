@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ATCommon.h"
 
+#import "ATLdWeatherConnecter.h"
+
 @interface AppDelegate ()
 @end
 
@@ -33,11 +35,17 @@
     LOG_CURRENT_METHOD;
     POOL_START;
     
+    NSDictionary *dictionnary = [[NSDictionary alloc] initWithObjectsAndKeys:@"Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3", @"UserAgent", nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionnary];
+    [dictionnary release];
+
+    
     [[ATSetting sharedATSetting] registerDefaultsFromSettingsBundle];
     _facebookConnecter = [[ATFacebookConnecter alloc] init];
     _noticeInfoConnecter = [[ATNoticeInfoConnecter alloc] init];
     [_noticeInfoConnecter checkNoticeInfo:nil];
 
+    [[ATLdWeatherConnecter sharedATLdWeatherConnecter] forecastConnect];
     
     _calenderCtl = [[ATCalendarTableViewController alloc] init];
     _nav = [[UINavigationController alloc] initWithRootViewController:_calenderCtl];

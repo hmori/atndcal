@@ -8,11 +8,16 @@
 
 #import "ATEventDetailViewController.h"
 #import <Twitter/Twitter.h>
+#import <AddressBookUI/AddressBookUI.h>
 #import "ATCommon.h"
 
 #import "ATWebViewController.h"
 #import "ATEkEventViewController.h"
 #import "ATEventForBookmark.h"
+
+#import "ATLdWeatherConnecter.h"
+#import "ATLwwsXmlParser.h"
+#import "ATLwwsCell.h"
 
 @interface ATEventDetailViewController ()
 @property (nonatomic, retain) id eventObject;
@@ -24,6 +29,12 @@
 - (void)initATEventDetailViewController;
 - (NSString *)titleString;
 - (NSArray *)fetchEventsForStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (NSString *)stringForLwwsDayParamWithToday:(NSDate *)todayDate startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (ATRssLdWeather *)searchRssLdWeather:(NSString *)string;
+- (void)requestLwwsWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
+    - (void)successLwwsRequest:(NSDictionary *)userInfo;
+- (void)errorLwwsRequest:(NSDictionary *)userInfo;
 @end
 
 @implementation ATEventDetailViewController
@@ -33,8 +44,13 @@
 @synthesize eventStore = _eventStore;
 @synthesize defaultCalendar = _defaultCalendar;
 @synthesize mailComposer = _mailComposer;
+@synthesize lwws = _lwws;
+@synthesize rssLdWeather = _rssLdWeather;
 
 static NSString *starString = nil;
+static NSString * const newImage = NewImageCenterImage;
+
+static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/rest/v1";
 
 - (id)initWithEventObject:(id)eventObject {
     LOG_CURRENT_METHOD;
@@ -51,10 +67,20 @@ static NSString *starString = nil;
         unsigned char bytes[2] = {0xe3,0x2f};
         starString = [[NSString alloc] initWithBytes:bytes length:2 encoding:NSUTF16StringEncoding];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(notificationLwwsRequest:) 
+                                                 name:ATNotificationNameLwwsRequest 
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(newImageRetrieved) 
+                                                 name:newImage 
+                                               object:nil];
 }
 
 - (void)dealloc {
     LOG_CURRENT_METHOD;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ATNotificationNameLwwsRequest object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:newImage object:nil];
 
     [_eventObject release];
     [_bookmarkedIdentifier release];
@@ -62,6 +88,8 @@ static NSString *starString = nil;
     [_eventStore release];
     [_defaultCalendar release];
     [_mailComposer release];
+    [_lwws release];
+    [_rssLdWeather release];
     [super dealloc];
 }
 
@@ -143,6 +171,70 @@ static NSString *starString = nil;
                                                                     calendars:calendarArray]; 
 	NSArray *events = [self.eventStore eventsMatchingPredicate:predicate];
 	return events;
+}
+
+- (NSString *)stringForLwwsDayParamWithToday:(NSDate *)todayDate startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+    static NSString *today = @"today";
+    static NSString *tomorrow = @"tomorrow";
+    static NSString *dayaftertomorrow = @"dayaftertomorrow";
+    
+    NSString *day = nil;
+    NSDate *tomorrowDate = [todayDate dateByAddingDays:1];
+    NSDate *dayAfterTomorrowDate = [tomorrowDate dateByAddingDays:1];
+
+    if ([todayDate isSameDay:startDate]) {
+        day = today;
+    } else if ([tomorrowDate isSameDay:startDate]) {
+        day = tomorrow;
+    } else if ([dayAfterTomorrowDate isSameDay:startDate]) {
+        day = dayaftertomorrow;
+    } else {
+        if ([todayDate compare:startDate] > 0) {
+            if ([todayDate compare:endDate] < 0) {
+                day = today;
+            }
+        } else {
+            day = dayaftertomorrow;
+        }
+    }
+    return day;
+}
+
+- (ATRssLdWeather *)searchRssLdWeather:(NSString *)string {
+    ATRssLdWeather *rssLdWeather = nil;
+    NSArray *forecasts = [[ATLdWeatherConnecter sharedATLdWeatherConnecter] forecasts];
+    for (ATRssLdWeather *rss in forecasts) {
+        NSRange r = [string rangeOfString:rss.title];
+        if (r.location != NSNotFound) {
+            rssLdWeather = rss;
+            break;
+        }
+    }
+    return rssLdWeather;
+}
+
+- (void)requestLwwsWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+    
+    NSString *day = [self stringForLwwsDayParamWithToday:[NSDate date] startDate:startDate endDate:endDate];
+    if (day && _rssLdWeather) {
+        NSMutableDictionary *requestParam = [NSMutableDictionary dictionary];
+        [requestParam setObject:_rssLdWeather.id_ forKey:@"city"];
+        [requestParam setObject:day forKey:@"day"];
+        LOG(@"requestParam=%@", [requestParam description]);
+        
+        NSString *paramString = [NSString stringForURLParam:requestParam method:@"GET"];
+        NSString *url = [NSString stringWithFormat:@"%@%@", lwwsUrl, paramString];
+        
+        NSURLRequest *request = [[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:url] 
+                                                       cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                   timeoutInterval:30.0f] autorelease];
+        ATRequestOperation *operation = [[[ATRequestOperation alloc] initWithDelegate:self 
+                                                                     notificationName:ATNotificationNameLwwsRequest
+                                                                              request:request] 
+                                         autorelease];
+        [operation setQueuePriority:NSOperationQueuePriorityHigh];
+        [[ATOperationManager sharedATOperationManager] addOperation:operation];
+    }
 }
 
 
@@ -228,6 +320,7 @@ static NSString *starString = nil;
               title:(NSString *)title {
     LOG_CURRENT_METHOD;
     POOL_START;
+    
     NSArray *ekEvents = [self fetchEventsForStartDate:startDate endDate:endDate];
     
     if (ekEvents && ekEvents.count > 0) {
@@ -239,7 +332,7 @@ static NSString *starString = nil;
         UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:ctl] autorelease];
         [self presentModalViewController:nav animated:YES];
     } else {
-        NSString *message = [NSString stringWithFormat:@"予定はありません."];
+        static NSString *message = @"予定はありません.";
         [[TKAlertCenter defaultCenter] postAlertWithMessage:message];
     }
     POOL_END;
@@ -277,7 +370,7 @@ static NSString *starString = nil;
     
     [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
         if (result == TWTweetComposeViewControllerResultDone) {
-            NSString *message = @"ツイートしました.";
+            static NSString *message = @"ツイートしました.";
             [[TKAlertCenter defaultCenter] performSelectorOnMainThread:@selector(postAlertWithMessage:) 
                                                             withObject:message 
                                                          waitUntilDone:NO];
@@ -299,6 +392,137 @@ static NSString *starString = nil;
     
     POOL_END;
 }
+
+- (void)requestLwws:(NSString *)address location:(CLLocation *)location startDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+    static NSString *defaultRssTitle = @"東京";
+    
+    NSArray *forecasts = [[ATLdWeatherConnecter sharedATLdWeatherConnecter] forecasts];
+    self.rssLdWeather = [self searchRssLdWeather:address];
+    if (!_rssLdWeather) {
+        CLGeocoder *geocoder = [[[CLGeocoder alloc] init] autorelease];
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            if (!error){
+                for (CLPlacemark *placemark in placemarks) {
+                    NSString *addressString = ABCreateStringWithAddressDictionary(placemark.addressDictionary, YES);
+                    self.rssLdWeather = [self searchRssLdWeather:addressString];
+                }
+            }
+            if (!_rssLdWeather) {
+                for (ATRssLdWeather *rss in forecasts) {
+                    if ([rss.title isEqualToString:defaultRssTitle]) {
+                        self.rssLdWeather = rss;
+                    }
+                }
+            }
+            [self requestLwwsWithStartDate:startDate endDate:endDate];
+        }];
+    } else {
+        [self requestLwwsWithStartDate:startDate endDate:endDate];
+    }
+
+}
+
+- (UIActivityIndicatorView *)indicatorViewForCellImage {
+    UIActivityIndicatorView *indicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    indicatorView.frame = CGRectMake(0.0f,0.0f,30.0f, 30.0f);
+    indicatorView.contentMode = UIViewContentModeCenter;
+    indicatorView.userInteractionEnabled = NO;
+    indicatorView.tag = ATEventCellViewTagIndicator;
+    [indicatorView startAnimating];
+    return indicatorView;
+}
+
+
+- (void)settingLwwsCell:(ATLwwsCell *)cell {
+    static NSString *labelFormat = @"%@  [%@℃ 〜 %@℃]";
+    
+    if (self.lwws) {
+        if (self.lwws.imageUrl) {
+            UIImage *i = [[TKImageCenter sharedImageCenter] imageAtURL:self.lwws.imageUrl queueIfNeeded:YES];
+            if (!i) {
+                cell.iconImageView.image = [[[UIImage alloc] init] autorelease];
+                [cell.iconImageView addSubview:[self indicatorViewForCellImage]];
+            } else {
+                cell.iconImageView.image = i;
+                [[cell.iconImageView viewWithTag:ATEventCellViewTagIndicator] removeFromSuperview];
+            }
+        }
+        cell.label.text = [NSString stringWithFormat:labelFormat, self.lwws.telop, self.lwws.maxCelsius, self.lwws.minCelsius];
+        cell.field.text = [ATLwwsManager stringForDispDescription:self.lwws];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.iconImageView.image = nil;
+        cell.label.text = nil;
+        cell.field.text = nil;
+    }
+}
+
+#pragma mark - Observer
+
+- (void)newImageRetrieved {
+    LOG_CURRENT_METHOD;
+	for (UITableViewCell *cell in [self.tableView visibleCells]) {
+        if ([cell isKindOfClass:ATLwwsCell.class]) {
+            ATLwwsCell *c = (ATLwwsCell *)cell;
+            
+            UIImage *image = [[TKImageCenter sharedImageCenter] imageAtURL:self.lwws.imageUrl queueIfNeeded:NO];
+            if(image){
+                [[c.iconImageView viewWithTag:ATEventCellViewTagIndicator] removeFromSuperview];
+                c.iconImageView.image = image;
+                [c setNeedsLayout];
+            }
+        }
+	}
+}
+
+#pragma mark - lwws Callback
+
+- (void)notificationLwwsRequest:(NSNotification *)notification {
+    LOG_CURRENT_METHOD;
+    
+    NSDictionary *userInfo = [notification userInfo];
+    NSError *error = [userInfo objectForKey:kATRequestUserInfoError];
+    NSNumber *statusCode = [userInfo objectForKey:kATRequestUserInfoStatusCode];
+    
+    if (!error && statusCode && [statusCode integerValue] == 200) {
+        [self successLwwsRequest:userInfo];
+    } else {
+        [self errorLwwsRequest:userInfo];
+    }
+}
+
+- (void)successLwwsRequest:(NSDictionary *)userInfo {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    
+    NSData *data = [userInfo objectForKey:kATRequestUserInfoReceivedData];
+    
+    ATLwwsXmlParser *parser = [[[ATLwwsXmlParser alloc] init] autorelease];
+    [parser parse:data];
+    self.lwws = parser.lwws;
+    [self.tableView reloadData];
+    
+    LOG(@"title=%@", parser.lwws.title);
+    LOG(@"link=%@", parser.lwws.link);
+    LOG(@"telop=%@", parser.lwws.telop);
+    LOG(@"description_=%@", parser.lwws.description_);
+    LOG(@"imageUrl=%@", parser.lwws.imageUrl);
+    LOG(@"maxCelsius=%@", parser.lwws.maxCelsius);
+    LOG(@"minCelsius=%@", parser.lwws.minCelsius);
+    POOL_END;
+}
+
+- (void)errorLwwsRequest:(NSDictionary *)userInfo {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    NSString *message = [NSString stringWithFormat:@"LWWS Server Error\nStatus : %@",  [userInfo objectForKey:kATRequestUserInfoStatusCode]];
+	[[TKAlertCenter defaultCenter] postAlertWithMessage:message];
+    
+    [[ATOperationManager sharedATOperationManager] cancelAllOperationOfName:ATNotificationNameLwwsRequest];
+    POOL_END;
+}
+
+
 
 #pragma mark - EKEventEditViewDelegate
 

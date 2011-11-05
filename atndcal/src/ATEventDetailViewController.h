@@ -13,7 +13,10 @@
 
 #import "ATEventOutline.h"
 #import "ATMailComposer.h"
+#import "ATLwws.h"
+#import "ATLwwsCell.h"
 
+@class ATRssLdWeather;
 @class ATTitleView;
 
 typedef enum {
@@ -21,9 +24,14 @@ typedef enum {
     ATEventCellTypeDate,
     ATEventCellTypeLabelText,
     ATEventCellTypeMap,
+    ATEventCellTypeLwws,
     ATEventCellTypeComment,
     ATEventCellTypeButton,
 } ATEventCellType;
+
+typedef enum {
+    ATEventCellViewTagIndicator = 1,
+} ATEventCellViewTag;
 
 
 @interface ATEventDetailViewController : TKTableViewController <EKEventEditViewDelegate> {
@@ -37,8 +45,14 @@ typedef enum {
 	EKCalendar *_defaultCalendar;
     
     ATMailComposer *_mailComposer;
+    
+    ATLwws *_lwws;
+    ATRssLdWeather *_rssLdWeather;
 }
 @property (nonatomic, readonly) NSString *bookmarkedIdentifier;
+@property (nonatomic, retain) ATLwws *lwws;
+@property (nonatomic, retain) ATRssLdWeather *rssLdWeather;
+
 
 - (id)initWithEventObject:(id)eventObject;
 
@@ -62,6 +76,9 @@ typedef enum {
 - (void)removeBookmark:(id)sender;
 - (void)sendTweet:(id)sender initialText:(NSString *)initialText url:(NSURL *)url;
 - (void)openMailWithSubject:(NSString *)subject body:(NSString *)body;
+- (void)requestLwws:(NSString *)address location:(CLLocation *)location startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (UIActivityIndicatorView *)indicatorViewForCellImage;
+- (void)settingLwwsCell:(ATLwwsCell *)cell;
 
 
 @end

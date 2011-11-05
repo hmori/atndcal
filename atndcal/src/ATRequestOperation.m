@@ -16,6 +16,7 @@ NSString * const ATNotificationNameAttendeeUsersRequest = @"ATNotificationNameAt
 NSString * const ATNotificationNameAttendeeTwitterUsersRequest = @"ATNotificationNameAttendeeTwitterUsersRequest";
 NSString * const ATNotificationNameEventAttendRequest = @"ATNotificationNameEventAttendRequest";
 NSString * const ATNotificationNameEventCommentRequest = @"ATNotificationNameEventCommentRequest";
+NSString * const ATNotificationNameLwwsRequest = @"ATNotificationNameLwwsRequest";
 NSString * const ATNotificationNameFbMeRequest = @"ATNotificationNameFbMeRequest";
 NSString * const ATNotificationNameFbEventsRequest = @"ATNotificationNameFbEventsRequest";
 NSString * const ATNotificationNameFbEventDetailRequest = @"ATNotificationNameFbEventDetailRequest";
@@ -24,6 +25,7 @@ NSString * const ATNotificationNameFbUpdateRsvpStatusRequest = @"ATNotificationN
 NSString * const ATNotificationNameAnalysisRequest = @"ATNotificationNameAnalysisRequest";
 NSString * const ATNotificationNameProfileUserRequest = @"ATNotificationNameProfileUserRequest";
 NSString * const ATNotificationNameEventsRequest = @"ATNotificationNameEventsRequest";
+NSString * const ATNotificationNameLdWeatherForecastRequest = @"ATNotificationNameLdWeatherForecastRequest";
 
 NSString * const kATRequestUserInfoStatusCode = @"kATRequestUserInfoStatusCode";
 NSString * const kATRequestUserInfoReceivedData = @"kATRequestUserInfoReceivedData";

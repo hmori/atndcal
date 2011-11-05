@@ -12,13 +12,13 @@
 #import "ATCommon.h"
 #import "ATFbEventStatusViewController.h"
 #import "ATTextAnalysisViewController.h"
-
-//#import "ATTitleView.h"
+#import "ATWebViewController.h"
 
 #import "ATEventDateCell.h"
 #import "ATEventTextCell.h"
 #import "ATEventLabelTextCell.h"
 #import "ATEventMapCell.h"
+#import "ATRssLdWeather.h"
 
 typedef enum {
     ATFbEventDetailItemNone,
@@ -32,6 +32,7 @@ typedef enum {
     ATFbEventDetailItemDescription,
     ATFbEventDetailItemDescriptionContinue,
     ATFbEventDetailItemGuest,
+    ATFbEventDetailItemLwws,
 } ATFbEventDetailItem;
 
 
@@ -44,6 +45,7 @@ typedef enum {
 @property (nonatomic, retain) NSMutableArray *itemsInSection2;
 @property (nonatomic, retain) NSMutableArray *itemsInSection3;
 @property (nonatomic, retain) NSMutableArray *itemsInSection4;
+@property (nonatomic, retain) NSMutableArray *itemsInSection5;
 
 - (void)initATFbEventDetailViewController;
 
@@ -72,6 +74,7 @@ typedef enum {
 @synthesize itemsInSection2 = _itemsInSection2;
 @synthesize itemsInSection3 = _itemsInSection3;
 @synthesize itemsInSection4 = _itemsInSection4;
+@synthesize itemsInSection5 = _itemsInSection5;
 
 static NSString *fbMobileWebEventUrl = @"http://m.facebook.com/event.php?eid=";
 static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
@@ -109,6 +112,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
     [_itemsInSection2 release];
     [_itemsInSection3 release];
     [_itemsInSection4 release];
+    [_itemsInSection5 release];
     [super dealloc];
 }
 
@@ -125,6 +129,14 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
 }
 
 #pragma mark - View lifecycle
+
+- (void)viewDidLoad {
+    LOG_CURRENT_METHOD;
+    [super viewDidLoad];
+
+    [self reloadLwwsAction:nil];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     LOG_CURRENT_METHOD;
@@ -146,7 +158,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
 #pragma mark - TableView Delegate & DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
@@ -161,6 +173,10 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         row = _itemsInSection3.count;
     } else if (section == 4) {
         row = _itemsInSection4.count;
+    } else if (section == 5) {
+        if (self.lwws) {
+            row = _itemsInSection5.count;
+        }
     }
 	return row;
 }
@@ -176,6 +192,10 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
     } else if (item == ATFbEventDetailItemDescription) {
         height = [ATEventTextCell heightCellOfLabelText:_event.description_ 
                                                    truncate:!_isContinueDescription];
+    } else if (item == ATFbEventDetailItemLwws) {
+        NSString *text = [ATLwwsManager stringForDispDescription:self.lwws];
+        height = [ATLwwsCell heightCellOfLabelText:text 
+                                          truncate:NO];
     }
 
     return height;
@@ -191,6 +211,10 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         title = @"詳細";
     } else if (section == 4) {
         title = @"出欠の返事";
+    } else if (section == 5) {
+        if (self.lwws) {
+            title = self.lwws.title;
+        }
     }
     return title;
 }
@@ -265,6 +289,9 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
             c.field.text = nil;
         }
         c.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else if (item == ATFbEventDetailItemLwws) {
+        cell = [self cellForIdentifier:ATEventCellTypeLwws tableView:tv];
+        [self settingLwwsCell:(ATLwwsCell *)cell];
     }
     return cell;
 }
@@ -299,6 +326,10 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
             ctl.eventStatus = _eventStatus;
             [self.navigationController pushViewController:ctl animated:YES];
         }
+    } else if (item == ATFbEventDetailItemLwws) {
+        if (self.rssLdWeather.source) {
+            controller = [[[ATWebViewController alloc] initWithUrlString:self.rssLdWeather.source] autorelease];
+        }
     }
     
     if (controller) {
@@ -317,6 +348,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
     self.itemsInSection2 = [NSMutableArray arrayWithCapacity:0];
     self.itemsInSection3 = [NSMutableArray arrayWithCapacity:0];
     self.itemsInSection4 = [NSMutableArray arrayWithCapacity:0];
+    self.itemsInSection5 = [NSMutableArray arrayWithCapacity:0];
     
     [_itemsInSection0 addObject:[NSNumber numberWithInt:ATFbEventDetailItemDate]];
     if (_event.owner && (NSNull *)_event.owner != [NSNull null] ) {
@@ -339,6 +371,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         [_itemsInSection3 addObject:[NSNumber numberWithInt:ATFbEventDetailItemDescriptionContinue]];
     }
     [_itemsInSection4 addObject:[NSNumber numberWithInt:ATFbEventDetailItemStatus]];
+    [_itemsInSection5 addObject:[NSNumber numberWithInt:ATFbEventDetailItemLwws]];
     
     POOL_END;
 }
@@ -355,6 +388,8 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         item = [[_itemsInSection3 objectAtIndex:indexPath.row] intValue];
     } else if (indexPath.section == 4) {
         item = [[_itemsInSection4 objectAtIndex:0] intValue];
+    } else if (indexPath.section == 5) {
+        item = [[_itemsInSection5 objectAtIndex:0] intValue];
     }
     return item;
 }
@@ -364,6 +399,7 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
     static NSString *EventDateCell = @"EventDateCell";
     static NSString *EventLabelTextCell = @"EventLabelTextCell";
     static NSString *EventMapCell = @"EventMapCell";
+    static NSString *LwwsCell = @"LwwsCell";
     static NSString *EventButtonCell = @"EventButtonCell";
     
     UITableViewCell *cell = nil;
@@ -390,6 +426,12 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
         if (cell == nil) {
             cell = [[[ATEventMapCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                           reuseIdentifier:EventMapCell] autorelease];
+        }
+    } else if (type == ATEventCellTypeLwws) {
+        cell = [tv dequeueReusableCellWithIdentifier:LwwsCell];
+        if (cell == nil) {
+            cell = [[[ATLwwsCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                      reuseIdentifier:LwwsCell] autorelease];
         }
     } else if (type == ATEventCellTypeButton) {
         cell = [tv dequeueReusableCellWithIdentifier:EventButtonCell];
@@ -665,6 +707,30 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
 
     POOL_END;
 }
+
+- (void)reloadLwwsAction:(id)sender {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    
+    NSString *street = [_event.venue objectForKey:@"street"];
+    id latitude = [_event.venue objectForKey:@"latitude"];
+    id longitude = [_event.venue objectForKey:@"longitude"];
+    
+    CLLocation *location = nil;
+    if ((NSNull *)latitude != [NSNull null] && (NSNull *)longitude != [NSNull null]) {
+        location = [[[CLLocation alloc] initWithLatitude:[latitude doubleValue] 
+                                               longitude:[longitude doubleValue]] autorelease];
+    }
+    NSDate *startDate = [NSDate dateConvertFromPstDate:
+                         [NSDate dateWithTimeIntervalSince1970:[_event.start_time doubleValue]]];
+    NSDate *endDate = [NSDate dateConvertFromPstDate:
+                       [NSDate dateWithTimeIntervalSince1970:[_event.end_time doubleValue]]];
+    
+    [self requestLwws:street location:location startDate:startDate endDate:endDate];
+   
+    POOL_END;
+}
+
 
 #pragma mark - Facebook Callback
 

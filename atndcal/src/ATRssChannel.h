@@ -10,6 +10,7 @@
 
 
 @interface ATRssChannel : NSObject {
+  @private
     NSString *_title;
     NSString *_link;
     NSString *_description_;

@@ -14,6 +14,7 @@
 #import "ATEventTextCell.h"
 #import "ATEventLabelTextCell.h"
 #import "ATEventMapCell.h"
+#import "ATLwwsCell.h"
 #import "ATEventCommentCell.h"
 
 #import "ATAttendeeViewController.h"
@@ -22,7 +23,7 @@
 #import "ATTextAnalysisViewController.h"
 
 #import "ATRssParser.h"
-
+#import "ATRssLdWeather.h"
 
 typedef enum {
     ATAtndEventDetailItemNone,
@@ -37,6 +38,7 @@ typedef enum {
     ATAtndEventDetailItemDescription,
     ATAtndEventDetailItemDescriptionContinue,
     ATAtndEventDetailItemEntry,
+    ATAtndEventDetailItemLwws,
     ATAtndEventDetailItemComment
 } ATAtndEventDetailItem;
 
@@ -49,6 +51,7 @@ typedef enum {
 @property (nonatomic, retain) NSMutableArray *itemsInSection3;
 @property (nonatomic, retain) NSMutableArray *itemsInSection4;
 @property (nonatomic, retain) NSMutableArray *itemsInSection5;
+@property (nonatomic, retain) NSMutableArray *itemsInSection6;
 
 - (void)initATAtndEventDetailViewController;
 - (void)setupItems;
@@ -73,6 +76,7 @@ typedef enum {
 @synthesize itemsInSection3 = _itemsInSection3;
 @synthesize itemsInSection4 = _itemsInSection4;
 @synthesize itemsInSection5 = _itemsInSection5;
+@synthesize itemsInSection6 = _itemsInSection6;
 
 static NSString *atndWebEventUrl = @"http://atnd.org/events/";
 static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
@@ -95,7 +99,6 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
                                              selector:@selector(notificationEventCommentRequest:) 
                                                  name:ATNotificationNameEventCommentRequest 
                                                object:nil];
-    
     [self setBookmarkedIdentifierWithEventId:_event.event_id type:ATEventTypeAtnd];
 }
 
@@ -110,6 +113,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     [_itemsInSection3 release];
     [_itemsInSection4 release];
     [_itemsInSection5 release];
+    [_itemsInSection6 release];
     [super dealloc];
 }
 
@@ -133,6 +137,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     [super viewDidLoad];
 
     [self reloadCommentAction:nil];
+    [self reloadLwwsAction:nil];
 }
 
 #pragma mark - Overwride ATEventDetailViewController
@@ -145,7 +150,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
 #pragma mark - TableView Delegate & DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tv numberOfRowsInSection:(NSInteger)section {
@@ -161,6 +166,10 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     } else if (section == 4) {
         row = _itemsInSection4.count;
     } else if (section == 5) {
+        if (self.lwws) {
+            row = _itemsInSection5.count;
+        }
+    } else if (section == 6) {
         row = _commentItems.count;
     }
 	return row;
@@ -180,11 +189,14 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     } else if (item == ATAtndEventDetailItemDescription) {
         height = [ATEventTextCell heightCellOfLabelText:[ATEventManager stringForDispDescription:_event] 
                                                    truncate:!_isContinueDescription];
+    } else if (item == ATAtndEventDetailItemLwws) {
+        NSString *text = [ATLwwsManager stringForDispDescription:self.lwws];
+        height = [ATLwwsCell heightCellOfLabelText:text 
+                                          truncate:NO];
     } else if (item == ATAtndEventDetailItemComment) {
         NSString *text = [[_commentItems objectAtIndex:indexPath.row] description_];
-        
         height = [ATEventCommentCell heightCellOfLabelText:text 
-                                                      truncate:NO];
+                                                  truncate:NO];
     }
     return height;
 }
@@ -200,6 +212,10 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     } else if (section == 4) {
         title = @"出席";
     } else if (section == 5) {
+        if (self.lwws) {
+            title = self.lwws.title;
+        }
+    } else if (section == 6) {
         title = @"コメント";
     }
     return title;
@@ -284,6 +300,9 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         cell = [self cellForIdentifier:ATEventCellTypeButton tableView:tv];
         TKButtonCell *c = (TKButtonCell *)cell;
         c.textLabel.text = @"出席の申し込み";
+    } else if (item == ATAtndEventDetailItemLwws) {
+        cell = [self cellForIdentifier:ATEventCellTypeLwws tableView:tv];
+        [self settingLwwsCell:(ATLwwsCell *)cell];
     } else if (item == ATAtndEventDetailItemComment) {
         cell = [self cellForIdentifier:ATEventCellTypeComment tableView:tv];
         ATEventCommentCell *c = (ATEventCommentCell *)cell;
@@ -329,6 +348,10 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [tv reloadData];
     } else if (item == ATAtndEventDetailItemEntry) {
         [self entryAction:nil];
+    } else if (item == ATAtndEventDetailItemLwws) {
+        if (self.rssLdWeather.source) {
+            controller = [[[ATWebViewController alloc] initWithUrlString:self.rssLdWeather.source] autorelease];
+        }
     } else if (item == ATAtndEventDetailItemComment) {
         //TODO:
     }
@@ -350,6 +373,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     self.itemsInSection3 = [NSMutableArray arrayWithCapacity:0];
     self.itemsInSection4 = [NSMutableArray arrayWithCapacity:0];
     self.itemsInSection5 = [NSMutableArray arrayWithCapacity:0];
+    self.itemsInSection6 = [NSMutableArray arrayWithCapacity:0];
     
     if (_event.catch_ && [_event.catch_ length] > 0) {
         [_itemsInSection0 addObject:[NSNumber numberWithInt:ATAtndEventDetailItemCatch]];
@@ -376,7 +400,8 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         [_itemsInSection3 addObject:[NSNumber numberWithInt:ATAtndEventDetailItemDescriptionContinue]];
     }
     [_itemsInSection4 addObject:[NSNumber numberWithInt:ATAtndEventDetailItemEntry]];
-    [_itemsInSection5 addObject:[NSNumber numberWithInt:ATAtndEventDetailItemComment]];
+    [_itemsInSection5 addObject:[NSNumber numberWithInt:ATAtndEventDetailItemLwws]];
+    [_itemsInSection6 addObject:[NSNumber numberWithInt:ATAtndEventDetailItemComment]];
     
     POOL_END;
 }
@@ -394,7 +419,9 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     } else if (indexPath.section == 4) {
         item = [[_itemsInSection4 objectAtIndex:indexPath.row] intValue];
     } else if (indexPath.section == 5) {
-        item = [[_itemsInSection5 objectAtIndex:0] intValue];
+        item = [[_itemsInSection5 objectAtIndex:indexPath.row] intValue];
+    } else if (indexPath.section == 6) {
+        item = [[_itemsInSection6 objectAtIndex:0] intValue];
     }
     return item;
 }
@@ -405,6 +432,7 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     static NSString *EventLabelTextCell = @"EventLabelTextCell";
     static NSString *EventMapCell = @"EventMapCell";
     static NSString *EventCommentCell = @"EventCommentCell";
+    static NSString *LwwsCell = @"LwwsCell";
     static NSString *ButtonCell = @"ButtonCell";
     
     UITableViewCell *cell = nil;
@@ -437,6 +465,12 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
         if (cell == nil) {
             cell = [[[ATEventCommentCell alloc] initWithStyle:UITableViewCellStyleDefault 
                                               reuseIdentifier:EventCommentCell] autorelease];
+        }
+    } else if (type == ATEventCellTypeLwws) {
+        cell = [tv dequeueReusableCellWithIdentifier:LwwsCell];
+        if (cell == nil) {
+            cell = [[[ATLwwsCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                      reuseIdentifier:LwwsCell] autorelease];
         }
     } else if (type == ATEventCellTypeButton) {
         cell = [tv dequeueReusableCellWithIdentifier:ButtonCell];
@@ -533,7 +567,6 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
                                                      waitUntilDone:YES];
     }
 }
-
 
 #pragma mark - Public
 
@@ -746,8 +779,29 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
     POOL_END;
 }
 
+- (void)reloadLwwsAction:(id)sender {
+    LOG_CURRENT_METHOD;
+    POOL_START;
+    
+    CLLocation *location = nil;
+    if ((NSNull *)_event.lat != [NSNull null] && (NSNull *)_event.lon != [NSNull null]) {
+        location = [[[CLLocation alloc] initWithLatitude:[_event.lat doubleValue] 
+                                               longitude:[_event.lon doubleValue]] autorelease];
+    }
+    NSDate *startDate = [NSDate dateForAtndDateString:_event.started_at];
+    NSDate *endDate = [NSDate dateForAtndDateString:_event.ended_at];
+    
+    [self requestLwws:_event.address 
+             location:location 
+            startDate:startDate 
+              endDate:endDate];
+    
+    POOL_END;
+}
 
-#pragma mark - AtndRequest Callback
+
+
+#pragma mark - Event Comment Request Callback
 
 - (void)notificationEventCommentRequest:(NSNotification *)notification {
     LOG_CURRENT_METHOD;
@@ -779,15 +833,14 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
 - (void)errorEventCommentRequest:(NSDictionary *)userInfo {
     LOG_CURRENT_METHOD;
     POOL_START;
-
+    
     NSString *message = [NSString stringWithFormat:@"ATND Server Error\nStatus : %@",  [userInfo objectForKey:kATRequestUserInfoStatusCode]];
 	[[TKAlertCenter defaultCenter] postAlertWithMessage:message];
     
-    [[ATOperationManager sharedATOperationManager] cancelAllOperationOfName:ATNotificationNameAttendeeUsersRequest];
+    [[ATOperationManager sharedATOperationManager] cancelAllOperationOfName:ATNotificationNameEventCommentRequest];
     
     POOL_END;
 }
-
 
 
 @end
