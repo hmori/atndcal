@@ -563,6 +563,15 @@ static NSString *fbWebEventUrl = @"http://www.facebook.com/event.php?eid=";
             [self addBookmark:sender type:ATEventTypeFacebook eventId:_event.id_];
         }];
     }
+    [actionSheet addButtonWithTitle:@"事前に通知する" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSString *message = [NSString stringWithFormat:@"%@ : [%@] @ %@", 
+                             _event.name, 
+                             [ATFbEventManager stringForDispDate:_event],
+                             _event.location];
+        NSDate *startDate = [NSDate dateConvertFromPstDate:
+                             [NSDate dateWithTimeIntervalSince1970:[_event.start_time doubleValue]]];
+        [self selectTimerForNotification:sender message:message startDate:startDate];
+    }];
 
     NSString *evernoteUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsEvernoteUsername];
     if (evernoteUsername) {

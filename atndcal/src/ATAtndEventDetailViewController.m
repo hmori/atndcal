@@ -598,6 +598,14 @@ static NSString *atndRssEventCommenturl = @"http://atnd.org/comments/%@.rss";
             [self addBookmark:sender type:ATEventTypeAtnd eventId:_event.event_id];
         }];
     }
+    [actionSheet addButtonWithTitle:@"事前に通知する" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSString *message = [NSString stringWithFormat:@"%@ : [%@] @ %@", 
+                             _event.title, 
+                             [ATEventManager stringForDispDate:_event],
+                             _event.place];
+        NSDate *startDate = [NSDate dateForAtndDateString:_event.started_at];
+        [self selectTimerForNotification:sender message:message startDate:startDate];
+    }];
     
     NSString *evernoteUsername = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaultsEvernoteUsername];
     if (evernoteUsername) {

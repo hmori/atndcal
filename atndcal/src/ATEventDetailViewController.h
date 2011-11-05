@@ -79,6 +79,7 @@ typedef enum {
 - (void)requestLwws:(NSString *)address location:(CLLocation *)location startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 - (UIActivityIndicatorView *)indicatorViewForCellImage;
 - (void)settingLwwsCell:(ATLwwsCell *)cell;
+- (void)selectTimerForNotification:(id)sender message:(NSString *)message startDate:(NSDate *)startDate;
 
 
 @end

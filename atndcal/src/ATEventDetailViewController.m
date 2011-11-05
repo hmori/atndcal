@@ -32,8 +32,9 @@
 - (NSString *)stringForLwwsDayParamWithToday:(NSDate *)todayDate startDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 - (ATRssLdWeather *)searchRssLdWeather:(NSString *)string;
 - (void)requestLwwsWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+- (void)scheduleAlarmForDate:(NSDate *)theDate message:(NSString *)message;
 
-    - (void)successLwwsRequest:(NSDictionary *)userInfo;
+- (void)successLwwsRequest:(NSDictionary *)userInfo;
 - (void)errorLwwsRequest:(NSDictionary *)userInfo;
 @end
 
@@ -234,6 +235,24 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
                                          autorelease];
         [operation setQueuePriority:NSOperationQueuePriorityHigh];
         [[ATOperationManager sharedATOperationManager] addOperation:operation];
+    }
+}
+
+- (void)scheduleAlarmForDate:(NSDate *)theDate message:(NSString *)message {
+//    UIApplication *app = [UIApplication sharedApplication];
+//    NSArray *oldNotifications = [app scheduledLocalNotifications];
+//    if ([oldNotifications count] > 0) {
+//        [app cancelAllLocalNotifications];
+//    }
+
+    UILocalNotification *alarm = [[[UILocalNotification alloc] init] autorelease];
+    if (alarm) {
+        alarm.fireDate = theDate;
+        alarm.timeZone = [NSTimeZone defaultTimeZone];
+        alarm.repeatInterval = 0;
+        alarm.soundName = UILocalNotificationDefaultSoundName;
+        alarm.alertBody = message;
+        [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
     }
 }
 
@@ -456,6 +475,36 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
         cell.label.text = nil;
         cell.field.text = nil;
     }
+}
+
+- (void)selectTimerForNotification:(id)sender message:(NSString *)message startDate:(NSDate *)startDate {
+    POOL_START;
+    
+    ATActionSheet *actionSheet = [[[ATActionSheet alloc] initWithTitle:@"イベント前に通知します."] autorelease];
+    [actionSheet addButtonWithTitle:@"５日前" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSDate *fireDate = [NSDate dateWithTimeInterval:-1*(60*60*24*5) sinceDate:startDate];
+        [self scheduleAlarmForDate:fireDate message:message];
+    }];
+    [actionSheet addButtonWithTitle:@"１日前" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSDate *fireDate = [NSDate dateWithTimeInterval:-1*(60*60*24*1) sinceDate:startDate];
+        [self scheduleAlarmForDate:fireDate message:message];
+    }];
+    [actionSheet addButtonWithTitle:@"１２時間前" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSDate *fireDate = [NSDate dateWithTimeInterval:-1*(60*60*12) sinceDate:startDate];
+        [self scheduleAlarmForDate:fireDate message:message];
+    }];
+    [actionSheet addButtonWithTitle:@"３時間前" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSDate *fireDate = [NSDate dateWithTimeInterval:-1*(60*60*3) sinceDate:startDate];
+        [self scheduleAlarmForDate:fireDate message:message];
+    }];
+    [actionSheet addButtonWithTitle:@"１時間前" callback:^(ATActionSheet *actionSheet, NSInteger index) {
+        NSDate *fireDate = [NSDate dateWithTimeInterval:-1*(60*60*1) sinceDate:startDate];
+        [self scheduleAlarmForDate:fireDate message:message];
+    }];
+    [actionSheet addCancelButtonWithTitle:@"閉じる" callback:nil];
+    [actionSheet showInView:[UIApplication sharedApplication].keyWindow];
+
+    POOL_END;
 }
 
 #pragma mark - Observer
