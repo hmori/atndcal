@@ -363,6 +363,7 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
 - (void)sendTweet:(id)sender initialText:(NSString *)initialText url:(NSURL *)url {
     LOG_CURRENT_METHOD;
     POOL_START;
+    static NSString *message = @"ツイートしました.";
     
     TWTweetComposeViewController *tweetViewController = [[[TWTweetComposeViewController alloc] init] autorelease];
     [tweetViewController setInitialText:initialText];
@@ -370,7 +371,6 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
     
     [tweetViewController setCompletionHandler:^(TWTweetComposeViewControllerResult result) {
         if (result == TWTweetComposeViewControllerResultDone) {
-            static NSString *message = @"ツイートしました.";
             [[TKAlertCenter defaultCenter] performSelectorOnMainThread:@selector(postAlertWithMessage:) 
                                                             withObject:message 
                                                          waitUntilDone:NO];
@@ -405,6 +405,7 @@ static NSString *lwwsUrl = @"http://weather.livedoor.com/forecast/webservice/res
                 for (CLPlacemark *placemark in placemarks) {
                     NSString *addressString = ABCreateStringWithAddressDictionary(placemark.addressDictionary, YES);
                     self.rssLdWeather = [self searchRssLdWeather:addressString];
+                    [addressString release];
                 }
             }
             if (!_rssLdWeather) {
