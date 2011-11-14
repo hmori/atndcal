@@ -10,6 +10,7 @@
 		B600DC6A1439D023002B0F8D /* ATProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B600DC691439D023002B0F8D /* ATProfileViewController.m */; };
 		B6024CF21435D0DA007FB27B /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = B6024CF11435D0DA007FB27B /* RegexKitLite.m */; };
 		B6024CF41435D1FA007FB27B /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6024CF31435D1FA007FB27B /* libicucore.dylib */; };
+		B62356E01470C32200C375FD /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B62356DF1470C32200C375FD /* LICENSE */; };
 		B62941B014500E4E00B338C0 /* EDAMLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = B629418C14500E4E00B338C0 /* EDAMLimits.m */; };
 		B62941B114500E4E00B338C0 /* Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = B629418E14500E4E00B338C0 /* Errors.m */; };
 		B62941B214500E4E00B338C0 /* NoteStore.m in Sources */ = {isa = PBXBuildFile; fileRef = B629419014500E4E00B338C0 /* NoteStore.m */; };
@@ -187,6 +188,7 @@
 		B6024CF01435D0DA007FB27B /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = "External/RegexKitLite-4.0/RegexKitLite.h"; sourceTree = "<group>"; };
 		B6024CF11435D0DA007FB27B /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = "External/RegexKitLite-4.0/RegexKitLite.m"; sourceTree = "<group>"; };
 		B6024CF31435D1FA007FB27B /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		B62356DF1470C32200C375FD /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		B629418B14500E4E00B338C0 /* EDAMLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EDAMLimits.h; sourceTree = "<group>"; };
 		B629418C14500E4E00B338C0 /* EDAMLimits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EDAMLimits.m; sourceTree = "<group>"; };
 		B629418D14500E4E00B338C0 /* Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Errors.h; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 				B600DC671439C26A002B0F8D /* atndcal-extend-Prefix.pch */,
 				B68DDEF81439412D00A7A125 /* atndcal-exclusive-Prefix.pch */,
 				B682B5AF1432FD8700E43A46 /* main.m */,
+				B62356DF1470C32200C375FD /* LICENSE */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1184,6 +1187,7 @@
 				B682B718143305D300E43A46 /* OwnerInfo.html in Resources */,
 				B682B71B143305DF00E43A46 /* CortYuming.png in Resources */,
 				B682B71C143305DF00E43A46 /* h_mori.png in Resources */,
+				B62356E01470C32200C375FD /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1411,7 +1415,7 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1428,7 +1432,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1441,7 +1445,7 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atndcal/atndcal-Prefix.pch";
@@ -1457,7 +1461,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3898F153-692E-416C-9B54-1073826EC9AC";
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
