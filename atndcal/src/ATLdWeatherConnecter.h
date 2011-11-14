@@ -1,11 +1,3 @@
-//
-//  ATLdWeatherConnecter.h
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/11/01.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import "ATRssLdWeather.h"
 

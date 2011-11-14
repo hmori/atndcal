@@ -1,11 +1,3 @@
-//
-//  ATFbEventStatus.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/25.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATFbEventStatus.h"
 #import "ObjectSingleton.h"
 #import "NSString+SBJSON.h"

@@ -1,11 +1,3 @@
-//
-//  NSDate+ATCategory.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/29.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "NSDate+ATCategory.h"
 #import <TapkuLibrary/TapkuLibrary.h>
 
@@ -32,22 +24,6 @@
     
     return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate] autorelease];
 }
-
-/*
-+ (NSDate *)dateForPstTimeInterval:(NSTimeInterval)secs {
-    NSDate *sourceDate = [NSDate dateWithTimeIntervalSince1970:secs];
-
-    NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"PST"];
-    NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-    
-    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:sourceDate];
-    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:sourceDate];
-    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-    LOG(@"interval=%d", interval);
-    
-    return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:sourceDate] autorelease];
-}
-*/
 
 + (NSDate *)dateForRssItemPubDateString:(NSString *)dateString {
     NSDate *date = nil;
@@ -82,11 +58,6 @@
 
 - (NSString *)stringYmd {
     return [self stringYmdWithTimeZone:nil];
-//    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];	
-//    [dateFormatter setLocale:[NSLocale currentLocale]];
-//	[dateFormatter setDateFormat:@"yyyyMMdd"];
-//    NSString *ymd = [dateFormatter stringFromDate:self];
-//    return ymd;
 }
 
 - (NSString *)stringYmdWithTimeZone:(NSTimeZone *)tz {
@@ -99,15 +70,6 @@
     NSString *ymd = [dateFormatter stringFromDate:self];
     return ymd;
 }
-
-//- (NSString *)stringYmdForFacebook {
-//    NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"PST"]];
-//    [dateFormatter setLocale:[NSLocale currentLocale]];
-//	[dateFormatter setDateFormat:@"yyyyMMdd"];
-//    NSString *ymd = [dateFormatter stringFromDate:self];
-//    return ymd;
-//}
 
 - (NSString *)stringForDispDateYmw {
     return [self stringForDispDateYmwWithTimeZone:nil];
@@ -165,7 +127,6 @@
     }
     return @"";
 }
-
 
 
 @end

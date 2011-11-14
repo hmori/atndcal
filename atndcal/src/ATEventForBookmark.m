@@ -1,11 +1,3 @@
-//
-//  ATEventForBookmark.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/07.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventForBookmark.h"
 
 #import "ObjectSingleton.h"
@@ -34,7 +26,7 @@ static NSString *EventForBookmark = @"EventForBookmark";
         eventId = [NSString stringWithFormat:@"%@", fbEvent.id_];
     }
     
-    ATEventForBookmark *eventForBookmark = [[self new:EventForBookmark] autorelease];
+    ATEventForBookmark *eventForBookmark = [(ATEventForBookmark *)[self new:EventForBookmark] autorelease];
     eventForBookmark.type = [NSNumber numberWithInt:type];
     eventForBookmark.eventId = eventId;
     eventForBookmark.eventObject = eventObject;

@@ -1,11 +1,3 @@
-//
-//  ATRssParser.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/14.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #import "ATRssChannel.h"
@@ -17,7 +9,7 @@
     NSMutableString *_buffer;
     NSMutableArray *_items;
 
-    ATRssItem *_currentItem; // Assign
+    ATRssItem *_currentItem; //week reference
     BOOL _isRss;
     BOOL _isChannel;
     BOOL _isItem;

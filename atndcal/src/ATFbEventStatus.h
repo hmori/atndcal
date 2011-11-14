@@ -1,11 +1,3 @@
-//
-//  ATFbEventStatus.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/25.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #import "ATFacebookConnecter.h"

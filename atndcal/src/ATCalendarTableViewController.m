@@ -1,11 +1,3 @@
-//
-//  ATCalendarTableViewController.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/07/23.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATCalendarTableViewController.h"
 #import "ATCommon.h"
 
@@ -31,8 +23,6 @@
 @property (nonatomic, copy) NSString *keyword_or;
 
 - (void)initATCalendarTableViewController;
-
-//- (void)resetData;
 
 - (void)clearSavedEventData;
 - (void)setupLoadTerm:(NSDate *)startDate;

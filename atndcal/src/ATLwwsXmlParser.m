@@ -1,11 +1,3 @@
-//
-//  ATLwwsXmlParser.m
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/11/02.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATLwwsXmlParser.h"
 
 @interface ATLwwsXmlParser ()

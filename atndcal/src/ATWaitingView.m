@@ -1,11 +1,3 @@
-//
-//  ATWaitingView.m
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/10/21.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATWaitingView.h"
 
 @implementation ATWaitingView
@@ -14,8 +6,6 @@
 
 - (id)init {
     if ((self = [super init])) {
-//        self.backgroundColor = HEXCOLOR(0x33333333);
-        
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
         [self initWithFrame:window.frame];
     }

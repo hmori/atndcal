@@ -1,11 +1,3 @@
-//
-//  ATFbEventDetailViewController.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/22.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATFbEventDetailViewController.h"
 #import <Twitter/Twitter.h>
 

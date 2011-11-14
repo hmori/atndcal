@@ -1,11 +1,3 @@
-//
-//  ATEventTableViewCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/25.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventOutlineCell.h"
 #import "ATCommon.h"
 
@@ -97,13 +89,13 @@ static NSString * const fbmarkPath = @"atndcal.bundle/images/mark/fbmark0808.png
     textColor = ([_eventOutline isOver]) ? _disableColor : _detailColor;
     textColor = (self.selected || self.highlighted) ? [UIColor whiteColor] : textColor;
     [textColor set];
-    rect.origin.y += 17;
+    rect.origin.y += 17.0f;
     [_eventOutline.date drawAtPoint:rect.origin 
                            forWidth:rect.size.width 
                            withFont:_detailFont 
                       lineBreakMode:UILineBreakModeTailTruncation];
     
-    rect.origin.y += 14;
+    rect.origin.y += 14.0f;
     [_eventOutline.place drawAtPoint:rect.origin 
                             forWidth:rect.size.width 
                             withFont:_detailFont 
@@ -112,7 +104,7 @@ static NSString * const fbmarkPath = @"atndcal.bundle/images/mark/fbmark0808.png
     if (_eventOutline.type == ATEventTypeFacebook) {
         UIImage *fbImage = [[ATResource sharedATResource] imageOfPath:fbmarkPath];
         if ([_eventOutline isOver]) {
-            [fbImage drawInRect:CGRectMake(4.0f, 4.0f, 16.0f, 16.0f) blendMode:kCGBlendModeNormal alpha:0.5];
+            [fbImage drawInRect:CGRectMake(4.0f, 4.0f, 16.0f, 16.0f) blendMode:kCGBlendModeNormal alpha:0.5f];
         } else {
             [fbImage drawInRect:CGRectMake(4.0f, 4.0f, 16.0f, 16.0f)];
         }

@@ -1,11 +1,3 @@
-//
-//  ATEventCommentCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/15.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventCommentCell.h"
 
 #define xInsetCommentCellForField 8.0f

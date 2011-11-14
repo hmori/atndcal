@@ -63,7 +63,6 @@
 		B682B62C1433015900E43A46 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B62B1433015900E43A46 /* AppDelegate.m */; };
 		B682B6571433028900E43A46 /* UIImage+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B64F1433028900E43A46 /* UIImage+ATCategory.m */; };
 		B682B6581433028900E43A46 /* NSString+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B6511433028900E43A46 /* NSString+ATCategory.m */; };
-		B682B6591433028900E43A46 /* NSManagedObjectContext+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B6531433028900E43A46 /* NSManagedObjectContext+ATCategory.m */; };
 		B682B65A1433028900E43A46 /* NSDate+ATCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B6551433028900E43A46 /* NSDate+ATCategory.m */; };
 		B682B66F1433030700E43A46 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B65B1433030700E43A46 /* NetworkActivityIndicator.m */; };
 		B682B6701433030700E43A46 /* BaseCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B682B65D1433030700E43A46 /* BaseCoreDataManager.m */; };
@@ -284,8 +283,6 @@
 		B682B6501433028900E43A46 /* UIImage+ATCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ATCategory.h"; path = "src/UIImage+ATCategory.h"; sourceTree = "<group>"; };
 		B682B6511433028900E43A46 /* NSString+ATCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ATCategory.m"; path = "src/NSString+ATCategory.m"; sourceTree = "<group>"; };
 		B682B6521433028900E43A46 /* NSString+ATCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ATCategory.h"; path = "src/NSString+ATCategory.h"; sourceTree = "<group>"; };
-		B682B6531433028900E43A46 /* NSManagedObjectContext+ATCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObjectContext+ATCategory.m"; path = "src/NSManagedObjectContext+ATCategory.m"; sourceTree = "<group>"; };
-		B682B6541433028900E43A46 /* NSManagedObjectContext+ATCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObjectContext+ATCategory.h"; path = "src/NSManagedObjectContext+ATCategory.h"; sourceTree = "<group>"; };
 		B682B6551433028900E43A46 /* NSDate+ATCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+ATCategory.m"; path = "src/NSDate+ATCategory.m"; sourceTree = "<group>"; };
 		B682B6561433028900E43A46 /* NSDate+ATCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+ATCategory.h"; path = "src/NSDate+ATCategory.h"; sourceTree = "<group>"; };
 		B682B65B1433030700E43A46 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkActivityIndicator.m; path = src/NetworkActivityIndicator.m; sourceTree = "<group>"; };
@@ -914,8 +911,6 @@
 				B682B64F1433028900E43A46 /* UIImage+ATCategory.m */,
 				B682B6521433028900E43A46 /* NSString+ATCategory.h */,
 				B682B6511433028900E43A46 /* NSString+ATCategory.m */,
-				B682B6541433028900E43A46 /* NSManagedObjectContext+ATCategory.h */,
-				B682B6531433028900E43A46 /* NSManagedObjectContext+ATCategory.m */,
 				B682B6561433028900E43A46 /* NSDate+ATCategory.h */,
 				B682B6551433028900E43A46 /* NSDate+ATCategory.m */,
 				B6C36B72143564D7005AFB7D /* NSMutableURLRequest+ATCategory.h */,
@@ -1237,7 +1232,6 @@
 				B682B62C1433015900E43A46 /* AppDelegate.m in Sources */,
 				B682B6571433028900E43A46 /* UIImage+ATCategory.m in Sources */,
 				B682B6581433028900E43A46 /* NSString+ATCategory.m in Sources */,
-				B682B6591433028900E43A46 /* NSManagedObjectContext+ATCategory.m in Sources */,
 				B682B65A1433028900E43A46 /* NSDate+ATCategory.m in Sources */,
 				B682B66F1433030700E43A46 /* NetworkActivityIndicator.m in Sources */,
 				B682B6701433030700E43A46 /* BaseCoreDataManager.m in Sources */,

@@ -1,11 +1,3 @@
-//
-//  ATTitleView.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/31.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATTitleView.h"
 
 #import "NSString+ATCategory.h"
@@ -40,7 +32,7 @@
     _titleLabel.backgroundColor = [UIColor clearColor];
     _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.shadowColor = [UIColor darkGrayColor];
-    _titleLabel.shadowOffset = CGSizeMake(0,-1);
+    _titleLabel.shadowOffset = CGSizeMake(0.0f,-1.0f);
     _titleLabel.numberOfLines = 2;
     [self addSubview:_titleLabel];
     POOL_END;
@@ -57,7 +49,7 @@
     [super layoutSubviews];
     LOG_FRAME(self.bounds);
 
-    _titleLabel.frame = CGRectInset(self.bounds, 10, 4);
+    _titleLabel.frame = CGRectInset(self.bounds, 10.0f, 4.0f);
     CGFloat fontSize = [_titleLabel.text fontSizeWithFont:[UIFont boldSystemFontOfSize:21] 
                             constrainedToSize:_titleLabel.frame.size];
     if (fontSize < 12.0f) {

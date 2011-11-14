@@ -1,11 +1,3 @@
-//
-//  ATMailComposer.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/23.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <TapkuLibrary/TapkuLibrary.h>

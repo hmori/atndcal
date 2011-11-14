@@ -1,11 +1,3 @@
-//
-//  ATActionSheet.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/01.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 @class ATActionSheet;

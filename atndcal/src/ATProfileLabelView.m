@@ -1,11 +1,3 @@
-//
-//  ATProfileLabelView.m
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/10/04.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATProfileLabelView.h"
 #import "ATCommon.h"
 

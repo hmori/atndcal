@@ -1,11 +1,3 @@
-//
-//  NSString+ATCategory.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/31.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "NSString+ATCategory.h"
 #import "RegexKitLite.h"
 

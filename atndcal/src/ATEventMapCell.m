@@ -1,11 +1,3 @@
-//
-//  ATEventMapCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/26.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventMapCell.h"
 #import <QuartzCore/QuartzCore.h>
 

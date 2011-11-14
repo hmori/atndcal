@@ -1,11 +1,3 @@
-//
-//  ATEkEventCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/03.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEkEventCell.h"
 
 #import "NSDate+ATCategory.h"
@@ -74,10 +66,10 @@ static NSString * const dateFormat = @"%@-%@";
     
     CGFloat widthDate = 80.0f;
     
-	CGRect rect = CGRectInset(r, 22, 3);
+	CGRect rect = CGRectInset(r, 22.0f, 3.0f);
 	
 	if(self.editing){
-		rect.origin.x += 30;
+		rect.origin.x += 30.0f;
 	}
 	
     UIColor *detailTextColor = self.selected || self.highlighted ? [UIColor whiteColor] : _detailColor;
@@ -96,13 +88,13 @@ static NSString * const dateFormat = @"%@-%@";
         dateHm = [startDate stringForDispDateHm];
     }
 
-    CGRect startDateRect = CGRectMake(rect.origin.x, rect.origin.y+3, widthDate, 19);
+    CGRect startDateRect = CGRectMake(rect.origin.x, rect.origin.y+3.0f, widthDate, 19.0f);
     [[startDate stringForDispDateYmw] drawAtPoint:startDateRect.origin 
                                                   forWidth:widthDate
                                                   withFont:_detailFont 
                                              lineBreakMode:UILineBreakModeTailTruncation];
     
-    CGRect endDateRect = CGRectMake(rect.origin.x, rect.origin.y+19, widthDate, 19);
+    CGRect endDateRect = CGRectMake(rect.origin.x, rect.origin.y+19.0f, widthDate, 19.0f);
     [dateHm drawAtPoint:endDateRect.origin 
                forWidth:widthDate
                withFont:_detailFont 
@@ -110,14 +102,14 @@ static NSString * const dateFormat = @"%@-%@";
 
 	[textColor set];
     
-    CGRect titleRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+3, rect.size.width-widthDate, 19);
+    CGRect titleRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+3.0f, rect.size.width-widthDate, 19.0f);
     [_ekEvent.title drawAtPoint:titleRect.origin 
                        forWidth:titleRect.size.width 
                        withFont:_titleFont 
                   lineBreakMode:UILineBreakModeTailTruncation];
     
 
-    CGRect locationRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+21, rect.size.width-widthDate, 19);
+    CGRect locationRect = CGRectMake(rect.origin.x+widthDate, rect.origin.y+21.0f, rect.size.width-widthDate, 19.0f);
     [_ekEvent.location drawAtPoint:locationRect.origin 
                           forWidth:locationRect.size.width 
                           withFont:_detailFont 

@@ -1,11 +1,3 @@
-//
-//  ATSettingEvernoteViewController.m
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/10/20.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATSettingEvernoteViewController.h"
 #import "ATCommon.h"
 

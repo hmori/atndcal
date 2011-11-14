@@ -1,11 +1,3 @@
-//
-//  ATEventDateTableViewCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/25.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventDateCell.h"
 
 
@@ -28,8 +20,8 @@
         self.endField = [[[UILabel alloc] init] autorelease];
         _startField.backgroundColor = [UIColor clearColor];
         _endField.backgroundColor = [UIColor clearColor];
-        _startField.font = [UIFont systemFontOfSize:13.0];
-        _endField.font = [UIFont systemFontOfSize:13.0];
+        _startField.font = [UIFont systemFontOfSize:13.0f];
+        _endField.font = [UIFont systemFontOfSize:13.0f];
         [self.contentView addSubview:_startField];
         [self.contentView addSubview:_endField];
         POOL_END;
@@ -40,16 +32,16 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 	
-    CGRect r = CGRectInset(self.contentView.bounds, 8, 8);
-	r.size.width = 45;
-	r.size.height = 30;
+    CGRect r = CGRectInset(self.contentView.bounds, 8.0f, 8.0f);
+	r.size.width = 45.0f;
+	r.size.height = 30.0f;
 	_label.frame = r;
 
-	r = CGRectInset(self.contentView.bounds, 4, 4);
+	r = CGRectInset(self.contentView.bounds, 4.0f, 4.0f);
     CGFloat height = r.size.height/2;
 
-	r.origin.x += self.label.frame.size.width + 6;
-	r.size.width -= self.label.frame.size.width + 6;
+	r.origin.x += self.label.frame.size.width + 6.0f;
+	r.size.width -= self.label.frame.size.width + 6.0f;
     r.size.height -= height;
 
 	_startField.frame = r;

@@ -1,11 +1,3 @@
-//
-//  ATLabelTextFieldCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/08.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATLabelTextFieldCell.h"
 
 @implementation ATLabelTextFieldCell
@@ -16,7 +8,7 @@
 	if((self=[super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
         _widthLabel = 90.0f;
         _field = [[UITextField alloc] initWithFrame:CGRectZero];
-        _field.font = [UIFont systemFontOfSize:17.0];
+        _field.font = [UIFont systemFontOfSize:17.0f];
         _field.textColor = HEXCOLOR(0x44608CFF);
         _field.delegate = self;
         _field.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -34,13 +26,13 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-	CGRect r = CGRectInset(self.contentView.bounds, 8, 8);
+	CGRect r = CGRectInset(self.contentView.bounds, 8.0f, 8.0f);
 	r.size.width = _widthLabel;
 	self.textLabel.frame = r;
 
-	r = CGRectInset(self.contentView.bounds, 8, 8);
-	r.origin.x += self.textLabel.frame.size.width + 12;
-	r.size.width -= self.textLabel.frame.size.width + 12;
+	r = CGRectInset(self.contentView.bounds, 8.0f, 8.0f);
+	r.origin.x += self.textLabel.frame.size.width + 12.0f;
+	r.size.width -= self.textLabel.frame.size.width + 12.0f;
 	self.field.frame = r;
 }
 

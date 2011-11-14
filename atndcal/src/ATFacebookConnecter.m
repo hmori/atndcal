@@ -1,11 +1,3 @@
-//
-//  ATFacebookConnecter.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/17.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATFacebookConnecter.h"
 #import "ATCommon.h"
 
@@ -15,7 +7,7 @@
 
 @interface ATFacebookConnecter ()
 - (void)initATFacebookConnecter;
-@property (nonatomic) NSUInteger authStatus;
+@property (nonatomic) ATFacebookAuthStatus authStatus;
 @property (nonatomic, retain) NSData *meData;
 @property (nonatomic) NSUInteger countUpdateMeData;
 

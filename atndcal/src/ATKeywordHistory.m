@@ -1,11 +1,3 @@
-//
-//  ATKeywordHistory.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/30.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATKeywordHistory.h"
 #import "ObjectSingleton.h"
 
@@ -32,7 +24,7 @@ static NSString *KeywordHistory = @"KeywordHistory";
         [self delete:[allResult objectAtIndex:0]];
     }
     
-    ATKeywordHistory *history = [[self new:KeywordHistory] autorelease];
+    ATKeywordHistory *history = [(ATKeywordHistory *)[self new:KeywordHistory] autorelease];
     history.keyword = keyword;
     history.createAt = [NSDate date];
     

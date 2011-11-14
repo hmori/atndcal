@@ -1,11 +1,3 @@
-//
-//  ATEventMapCell.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/26.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
@@ -15,7 +7,7 @@
     
 }
 @property (nonatomic, retain) MKMapView *mapView;
-@property CLLocationCoordinate2D location;
+@property (nonatomic) CLLocationCoordinate2D location;
 
 + (CGFloat)heightCell;
 

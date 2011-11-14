@@ -1,11 +1,3 @@
-//
-//  ATKeyphraseParser.h
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/09/29.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #import "ATKeyphraseResult.h"
@@ -14,7 +6,7 @@
     NSMutableArray *_results;
     NSMutableString *_buffer;
   
-    ATKeyphraseResult *_currentResult; // Assign
+    ATKeyphraseResult *_currentResult; //week reference
 
     BOOL _isResultSet;
     BOOL _isResult;

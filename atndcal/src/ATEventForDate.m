@@ -1,11 +1,3 @@
-//
-//  ATEventForDate.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/07.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventForDate.h"
 #import "ObjectSingleton.h"
 
@@ -26,7 +18,7 @@ static NSString *EventForDate = @"EventForDate";
     NSDate *createAt = [NSDate date];
     for (id eventObject in eventArray) {
         POOL_START;
-        ATEventForDate *eventForDate = [[self new:EventForDate] autorelease];
+        ATEventForDate *eventForDate = [(ATEventForDate *)[self new:EventForDate] autorelease];
         eventForDate.type = [NSNumber numberWithInt:type];
         eventForDate.date = date;
         eventForDate.eventObject = eventObject;

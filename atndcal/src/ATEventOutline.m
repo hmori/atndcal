@@ -1,11 +1,3 @@
-//
-//  ATEventOutline.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/20.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventOutline.h"
 
 #import "ObjectSingleton.h"

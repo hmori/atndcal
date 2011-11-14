@@ -1,11 +1,3 @@
-//
-//  ATCalendarTableViewController.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/07/23.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import <TapkuLibrary/TapkuLibrary.h>
 #import "ATCalendarTitleView.h"

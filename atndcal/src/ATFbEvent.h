@@ -1,11 +1,3 @@
-//
-//  ATFbEvent.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/18.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 #import "NSDate+ATCategory.h"

@@ -1,11 +1,3 @@
-//
-//  ATProfileViewController.h
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/10/03.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "ATTableViewController.h"
 

@@ -1,11 +1,3 @@
-//
-//  ATAtndEventDetailViewController.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/22.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATAtndEventDetailViewController.h"
 #import <Twitter/Twitter.h>
 #import "ATCommon.h"

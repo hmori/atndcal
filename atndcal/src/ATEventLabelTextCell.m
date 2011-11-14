@@ -1,11 +1,3 @@
-//
-//  ATEventLabelTextCell.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/26.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventLabelTextCell.h"
 
 
@@ -33,14 +25,14 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
 	
-    CGRect r = CGRectInset(self.contentView.bounds, 8, 8);
+    CGRect r = CGRectInset(self.contentView.bounds, 8.0f, 8.0f);
 	r.size.width = _widthLabel;
 	_label.frame = r;
 
 	
-    r = CGRectInset(self.contentView.bounds, 8, 8);
-	r.origin.x += self.label.frame.size.width + 6;
-	r.size.width -= self.label.frame.size.width + 6;
+    r = CGRectInset(self.contentView.bounds, 8.0f, 8.0f);
+	r.origin.x += self.label.frame.size.width + 6.0f;
+	r.size.width -= self.label.frame.size.width + 6.0f;
 	_field.frame = r;
 }
 

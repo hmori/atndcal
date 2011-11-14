@@ -1,15 +1,6 @@
-//
-//  ATMenuViewController.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/05.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATMenuViewController.h"
 #import "ATCommon.h"
 
-//#import "ATEventListViewController.h"
 #import "ATEventAttendViewController.h"
 #import "ATEventBookmarkViewController.h"
 #import "ATSettingMenuViewController.h"

@@ -1,13 +1,5 @@
-//
-//  ATFacebookConnecter.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/17.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
-
 #import "FBConnect.h"
 
 typedef enum {
@@ -15,7 +7,6 @@ typedef enum {
     ATFacebookAuthStatusProcessing,
     ATFacebookAuthStatusSuccessed,
 } ATFacebookAuthStatus;
-
 
 typedef enum {
     ATFacebookRsvpStatusNoreply = -1,
@@ -34,7 +25,7 @@ typedef enum {
     NSUInteger _countUpdateMeData;
 }
 @property (nonatomic, readonly) Facebook *facebook;
-@property (nonatomic, readonly) NSUInteger authStatus;
+@property (nonatomic, readonly) ATFacebookAuthStatus authStatus;
 @property (nonatomic, readonly) NSUInteger countUpdateMeData;
 
 - (NSDictionary *)dictionaryForMe;

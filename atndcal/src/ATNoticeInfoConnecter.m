@@ -1,11 +1,3 @@
-//
-//  ATNoticeInfoConnecter.m
-//  atndcal
-//
-//  Created by Mori Hidetoshi on 11/10/01.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATNoticeInfoConnecter.h"
 #import "ATCommon.h"
 

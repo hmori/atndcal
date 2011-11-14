@@ -1,11 +1,3 @@
-//
-//  ATResource.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/26.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATResource.h"
 #import "ObjectSingleton.h"
 #import "ATCommon.h"

@@ -1,11 +1,3 @@
-//
-//  ATUser.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/31.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATUser.h"
 #import "ObjectSingleton.h"
 #import "NSString+SBJSON.h"
@@ -41,13 +33,6 @@ static NSString * const kStatus = @"status";
         id events = [jsonData objectForKey:kEvents];
         if ([events isKindOfClass:NSArray.class]) {
             for (id e in events) {
-/*
-                NSString *event_id = [e objectForKey:@"event_id"];
-                NSString *title = [e objectForKey:@"title"];
-                LOG(@"-----");
-                LOG(@"-event_id=%@", event_id);
-                LOG(@"-title=%@", title);
-*/
                 id users = [e objectForKey:kUsers];
                 [dictionary setObject:users forKey:kUsers];
             }

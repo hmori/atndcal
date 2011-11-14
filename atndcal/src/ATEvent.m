@@ -1,11 +1,3 @@
-//
-//  ATEvent.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/08/16.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEvent.h"
 #import <TapkuLibrary/TapkuLibrary.h>
 #import "ObjectSingleton.h"

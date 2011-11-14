@@ -1,11 +1,3 @@
-//
-//  AppDelegate.h
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/07/21.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "ATCalendarTableViewController.h"
 #import "ATFacebookConnecter.h"

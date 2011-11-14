@@ -1,11 +1,3 @@
-//
-//  ATLocalWebViewController.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/15.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATLocalWebViewController.h"
 
 @interface ATLocalWebViewController ()

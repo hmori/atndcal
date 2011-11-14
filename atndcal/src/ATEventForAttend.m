@@ -1,11 +1,3 @@
-//
-//  ATEventForAttend.m
-//  ATndCal
-//
-//  Created by Mori Hidetoshi on 11/09/08.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
-
 #import "ATEventForAttend.h"
 
 #import "ObjectSingleton.h"
@@ -26,7 +18,7 @@ static NSString *EventForAttend = @"EventForAttend";
     NSDate *createAt = [NSDate date];
     for (id eventObject in eventArray) {
         POOL_START;
-        ATEventForAttend *eventForBookmark = [[self new:EventForAttend] autorelease];
+        ATEventForAttend *eventForBookmark = [(ATEventForAttend *)[self new:EventForAttend] autorelease];
         eventForBookmark.eventObject = eventObject;
         eventForBookmark.createAt = createAt;
         NSError *e = [self save];
@@ -39,7 +31,7 @@ static NSString *EventForAttend = @"EventForAttend";
 }
 
 - (NSError *)saveWithEventObject:(id)eventObject {
-    ATEventForAttend *eventForBookmark = [[self new:EventForAttend] autorelease];
+    ATEventForAttend *eventForBookmark = [(ATEventForAttend *)[self new:EventForAttend] autorelease];
     eventForBookmark.eventObject = eventObject;
     eventForBookmark.createAt = [NSDate date];
     return [self save];
