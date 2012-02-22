@@ -21,7 +21,6 @@
 
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObjectContext *)managedObjectContextForThread:(NSThread *)thread;
-//- (NSPersistentStoreCoordinator *)persistentStoreCoordinator;
 - (NSString *)modelName;
 
 @end

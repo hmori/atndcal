@@ -52,8 +52,6 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL*)url {
     LOG_CURRENT_METHOD;
-    LOG(@"%@ [%@|%@|%@|%@]", url, url.scheme, url.host, url.path, url.query);
-    
     [_facebookConnecter.facebook handleOpenURL:url];
     
     return YES;
@@ -65,7 +63,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     LOG_CURRENT_METHOD;
-#if DEBUG    
+#if DEBUG
     for (NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
         LOG(@"cookie=%@", cookie);
     }

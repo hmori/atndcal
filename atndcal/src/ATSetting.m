@@ -3,6 +3,7 @@
 
 NSString * const kDefaultsSettingAtndNickname = @"kDefaultsSettingAtndNickname";
 NSString * const kDefaultsSettingAtndLoadDaysValue = @"kDefaultsSettingAtndLoadDaysValue";
+NSString * const kDefaultsSettingAtndIntervalConditionValue = @"kDefaultsSettingAtndIntervalConditionValue";
 NSString * const kDefaultsSettingAutoLoadingValue = @"kDefaultsSettingAutoLoadingValue";
 
 @implementation ATSetting

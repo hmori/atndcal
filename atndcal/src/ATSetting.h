@@ -2,6 +2,7 @@
 
 extern NSString * const kDefaultsSettingAtndNickname;
 extern NSString * const kDefaultsSettingAtndLoadDaysValue;
+extern NSString * const kDefaultsSettingAtndIntervalConditionValue;
 extern NSString * const kDefaultsSettingAutoLoadingValue;
 
 @interface ATSetting : NSObject {

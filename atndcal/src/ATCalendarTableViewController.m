@@ -226,18 +226,6 @@ static NSString *atndEventSearchUrl = @"http://api.atnd.org/events/";
     POOL_END;
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    LOG_CURRENT_METHOD;
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    LOG_CURRENT_METHOD;
-    [super viewDidAppear:animated];
-}
-*/
-
 - (void)viewDidUnload {
     LOG_CURRENT_METHOD;
     [super viewDidUnload];
@@ -770,7 +758,24 @@ static NSString *atndEventSearchUrl = @"http://api.atnd.org/events/";
     NSString *results_returned = [dictionary objectForKey:@"results_returned"];
     NSInteger iResultsReturned = [results_returned integerValue];
     
-    NSArray *array = [dictionary objectForKey:@"events"];
+    NSArray *array = nil;
+    double intervalCondition = [[NSUserDefaults standardUserDefaults] doubleForKey:kDefaultsSettingAtndIntervalConditionValue];
+    if (intervalCondition > 0) {
+        NSMutableArray *eventsArray = [NSMutableArray arrayWithCapacity:0];
+        for (id e in [dictionary objectForKey:@"events"]) {
+            ATEvent *event = [ATEventManager eventWithEventObject:e];
+            NSDate *startDate = [NSDate dateForAtndDateString:event.started_at];
+            NSDate *endDate = [NSDate dateForAtndDateString:event.ended_at];
+            NSTimeInterval sInterval = [startDate timeIntervalSince1970];
+            NSTimeInterval eInterval = [endDate timeIntervalSince1970];
+            if (!endDate || eInterval-sInterval < intervalCondition) {
+                [eventsArray addObject:e];
+            }
+        }
+        array = eventsArray;
+    } else {
+        array = [dictionary objectForKey:@"events"];
+    }
     [_eventArray addObjectsFromArray:array];
     
     NSInteger iCount = [[param objectForKey:@"count"] integerValue];

@@ -68,6 +68,38 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
+			<integer>604800</integer>
+			<key>Key</key>
+			<string>kDefaultsSettingAtndIntervalConditionValue</string>
+			<key>Title</key>
+			<string>日数以上を無視</string>
+			<key>Titles</key>
+			<array>
+				<string>全表示</string>
+				<string>当日のみ</string>
+				<string>２日</string>
+				<string>３日</string>
+				<string>４日</string>
+				<string>５日</string>
+				<string>６日</string>
+				<string>７日</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<integer>0</integer>
+				<integer>86400</integer>
+				<integer>172800</integer>
+				<integer>259200</integer>
+				<integer>345600</integer>
+				<integer>432000</integer>
+				<integer>518400</integer>
+				<integer>604800</integer>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
 			<integer>0</integer>
 			<key>Key</key>
 			<string>kDefaultsSettingAutoLoadingValue</string>

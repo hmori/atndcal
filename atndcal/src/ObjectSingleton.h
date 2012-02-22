@@ -28,7 +28,7 @@ return self;                                     \
 - (NSUInteger)retainCount {                        \
 return NSUIntegerMax;                            \
 }                                                  \
-- (void)release {                                  \
+- (oneway void)release {                                  \
 	[super release];								\
 	z##_shared_obj_name_ = nil;						\
 }                                                  \

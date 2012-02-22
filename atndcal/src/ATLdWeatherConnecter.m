@@ -80,11 +80,13 @@ static NSString *forecastUrl = @"http://weather.livedoor.com/forecast/rss/foreca
 
 - (void)errorLdWeatherForecastRequest:(NSDictionary *)userInfo {
     LOG_CURRENT_METHOD;
+#if DEBUG
     NSError *error = [userInfo objectForKey:kATRequestUserInfoError];
     NSString *message = [NSString stringWithFormat:@"Forecast Error\nStatus : %@ \n %@",  
                          [userInfo objectForKey:kATRequestUserInfoStatusCode],
                          [error localizedDescription]];
     LOG(@"error=%@", message);
+#endif
     [[ATOperationManager sharedATOperationManager] cancelAllOperationOfName:ATNotificationNameLdWeatherForecastRequest];
 }
 

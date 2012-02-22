@@ -16,6 +16,7 @@ typedef enum {
     NSMutableArray *_sectionItems;
     ATLabelTextFieldCell *_usernameCell;
     UITableViewCell *_requestDaysCountCell;
+    UITableViewCell *_fetchIntervalConditionCell;
     UITableViewCell *_facebookLoginCell;
     UITableViewCell *_facebookLogoutCell;
     UITableViewCell *_evernoteCell;

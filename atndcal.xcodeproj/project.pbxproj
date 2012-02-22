@@ -30,6 +30,7 @@
 		B62941D01452EE4400B338C0 /* ATEvernoteConnecter.m in Sources */ = {isa = PBXBuildFile; fileRef = B62941CF1452EE4400B338C0 /* ATEvernoteConnecter.m */; };
 		B654B90714374E8700AD55F1 /* ATNoticeInfoConnecter.m in Sources */ = {isa = PBXBuildFile; fileRef = B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */; };
 		B6787BBC143ADF8200E3C223 /* ATProfileLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */; };
+		B67B825314F4C9B400A2564C /* ATSettingIntervalConditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B67B825214F4C9B300A2564C /* ATSettingIntervalConditionViewController.m */; };
 		B682B5A31432FD8700E43A46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A21432FD8700E43A46 /* UIKit.framework */; };
 		B682B5A51432FD8700E43A46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A41432FD8700E43A46 /* Foundation.framework */; };
 		B682B5A71432FD8700E43A46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B682B5A61432FD8700E43A46 /* CoreGraphics.framework */; };
@@ -231,6 +232,8 @@
 		B654B90614374E8600AD55F1 /* ATNoticeInfoConnecter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATNoticeInfoConnecter.m; path = src/ATNoticeInfoConnecter.m; sourceTree = "<group>"; };
 		B6787BBA143ADF8200E3C223 /* ATProfileLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATProfileLabelView.h; path = src/ATProfileLabelView.h; sourceTree = "<group>"; };
 		B6787BBB143ADF8200E3C223 /* ATProfileLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATProfileLabelView.m; path = src/ATProfileLabelView.m; sourceTree = "<group>"; };
+		B67B825114F4C9B200A2564C /* ATSettingIntervalConditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ATSettingIntervalConditionViewController.h; path = src/ATSettingIntervalConditionViewController.h; sourceTree = "<group>"; };
+		B67B825214F4C9B300A2564C /* ATSettingIntervalConditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ATSettingIntervalConditionViewController.m; path = src/ATSettingIntervalConditionViewController.m; sourceTree = "<group>"; };
 		B682B59E1432FD8700E43A46 /* atndcal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atndcal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B682B5A21432FD8700E43A46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B682B5A41432FD8700E43A46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1041,6 +1044,8 @@
 				B682B6CA1433047F00E43A46 /* ATSettingSingleSelectViewController.m */,
 				B682B6C51433047F00E43A46 /* ATSettingLoadDaysViewController.h */,
 				B682B6C61433047F00E43A46 /* ATSettingLoadDaysViewController.m */,
+				B67B825114F4C9B200A2564C /* ATSettingIntervalConditionViewController.h */,
+				B67B825214F4C9B300A2564C /* ATSettingIntervalConditionViewController.m */,
 				B682B6C11433047F00E43A46 /* ATSettingAutoLoadingViewController.h */,
 				B682B6C21433047F00E43A46 /* ATSettingAutoLoadingViewController.m */,
 				B682B6C31433047F00E43A46 /* ATSettingInfoViewController.h */,
@@ -1322,6 +1327,7 @@
 				B6A152E61460E6A10091AD74 /* ATLwwsXmlParser.m in Sources */,
 				B69272571461084F0091BDB1 /* ATLwwsCell.m in Sources */,
 				B692725A146210350091BDB1 /* ATLwws.m in Sources */,
+				B67B825314F4C9B400A2564C /* ATSettingIntervalConditionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1409,7 +1415,7 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1426,7 +1432,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4905EA11-5F30-418B-B07A-B17038CC4F90";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1439,7 +1445,7 @@
 					armv6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hidetoshi Mori (YZ3WKFRNYR)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "atndcal/atndcal-Prefix.pch";
@@ -1455,7 +1461,7 @@
 					"-lTapkuLibrary",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4905EA11-5F30-418B-B07A-B17038CC4F90";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

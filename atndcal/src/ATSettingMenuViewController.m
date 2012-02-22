@@ -2,6 +2,7 @@
 #import "ATCommon.h"
 
 #import "ATSettingLoadDaysViewController.h"
+#import "ATSettingIntervalConditionViewController.h"
 #import "ATSettingAutoLoadingViewController.h"
 #import "ATSettingEvernoteViewController.h"
 
@@ -53,6 +54,10 @@
     _requestDaysCountCell.textLabel.text = [setting objectForItemKey:@"Title" key:kDefaultsSettingAtndLoadDaysValue];
     _requestDaysCountCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    _fetchIntervalConditionCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+    _fetchIntervalConditionCell.textLabel.text = [setting objectForItemKey:@"Title" key:kDefaultsSettingAtndIntervalConditionValue];
+    _fetchIntervalConditionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
 
     _facebookLoginCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     UIImageView *loginImageView = 
@@ -96,6 +101,7 @@
     [_sectionItems release];
     [_usernameCell release];
     [_requestDaysCountCell release];
+    [_fetchIntervalConditionCell release];
     [_facebookLoginCell release];
     [_facebookLogoutCell release];
     [_evernoteCell release];
@@ -134,7 +140,7 @@
     
     ATSettingMenuSection sectionItem = [[_sectionItems objectAtIndex:section] intValue];
     if (sectionItem == ATSettingMenuSectionAtnd) {
-        row = 2;
+        row = 3;
     } else if (sectionItem == ATSettingMenuSectionFacebook) {
         row = 1;
     } else if (sectionItem == ATSettingMenuSectionEvernote) {
@@ -180,6 +186,11 @@
             cell.detailTextLabel.text = 
             [setting stringTitleOfValue:[defaults objectForKey:kDefaultsSettingAtndLoadDaysValue] 
                                     key:kDefaultsSettingAtndLoadDaysValue];
+        } else if (indexPath.row == 2) {
+            cell = _fetchIntervalConditionCell;
+            cell.detailTextLabel.text = 
+            [setting stringTitleOfValue:[defaults objectForKey:kDefaultsSettingAtndIntervalConditionValue] 
+                                    key:kDefaultsSettingAtndIntervalConditionValue];
         }
     } else if (sectionItem == ATSettingMenuSectionFacebook) {
         ATFacebookConnecter *fbConnecter = [ATCommon facebookConnecter];
@@ -214,6 +225,9 @@
         if (indexPath.row == 1) {
             ATSettingLoadDaysViewController *ctl = [[[ATSettingLoadDaysViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
             [self.navigationController pushViewController:ctl animated:YES];
+        } else if (indexPath.row == 2) {
+                ATSettingIntervalConditionViewController *ctl = [[[ATSettingIntervalConditionViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+                [self.navigationController pushViewController:ctl animated:YES];
         }
     } else if (sectionItem == ATSettingMenuSectionFacebook) {
         ATFacebookConnecter *fbConnecter = [ATCommon facebookConnecter];
