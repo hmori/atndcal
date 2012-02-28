@@ -1,0 +1,27 @@
+
+////Exclusive atndcal key////
+
+//atndcal NoticeInfo URL
+#ifdef DEBUG
+#define kAtndcalNoticeInfoUrl @"http://hmori.s3.amazonaws.com/apps/atndcal/noticeinfo_sandbox"
+#else
+#define kAtndcalNoticeInfoUrl @"http://hmori.s3.amazonaws.com/apps/atndcal/noticeinfo"
+#endif
+
+//iTunes Download URL
+#define kAtndcalDownloadUrl @"http://itunes.apple.com/jp/app/id469446797?mt=8"
+
+//Facebook APP_ID
+#define kAtndcalFacebookAppId @"xxxxxxxx"
+
+//About application info
+#define kAtndcalInfoProgrammerName @"Hidetoshi Mori"
+#define kAtndcalInfoDesinerName @"Takashi Ito"
+#define kAtndcalInfoContactEmail @"hmori99@gmail.com"
+
+//YOLP Key
+#define kAtndcalYolpKey @"xxxxxxxxxxxxxxxxxxxx"
+
+//Evernote API Key
+#define kAtndcalEvernoteConsumerKey @"xxxxxxxx"
+#define kAtndcalEvernoteConsumerSecret @"xxxxxxxxxxxxxxxx"
