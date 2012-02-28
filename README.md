@@ -1,15 +1,15 @@
 [atndcal](https://github.com/hmori/atndcal)
 ===================================================
 
-atndcal is source code in Objective-C for iPhone. Tihs application is published at AppStore about [ATND—ï](http://itunes.apple.com/jp/app/id469446797?mt=8). ATND—ï can manage easy ATND service by calendar. ATND service is Japanese event manager.
+atndcal is source code in Objective-C for iPhone. Tihs application is published at AppStore about [ATNDæš¦](http://itunes.apple.com/jp/app/id469446797?mt=8). ATNDæš¦ can manage easy ATND service by calendar. ATND service is Japanese event manager.
 
 atndcal source code is required for iOS 4.0+.
 
 
-Introduction page about ATND—ï
+Introduction page about ATNDæš¦
 =============
 
-It is published Facebook page about [ATND—ï](http://www.facebook.com/apps/application.php?id=206545929412729) and [Blog](http://d.hatena.ne.jp/h_mori).
+It is published Facebook page about [ATNDæš¦](http://www.facebook.com/apps/application.php?id=206545929412729) and [Blog](http://d.hatena.ne.jp/h_mori).
 
 
 License
